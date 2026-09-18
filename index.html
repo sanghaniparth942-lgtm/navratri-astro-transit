@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>इस नवरात्रि ग्रहों की स्थिति: अपना प्रभाव जानें | Navratri Grah Transit Calculator</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            saffron: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c',
+            },
+            gold: {
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04',
+            },
+            vedicmaroon: {
+              800: '#4a0404',
+              900: '#2b0202',
+              950: '#190101',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            serif: ['Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Rozha One & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .font-hindi-heading {
+      font-family: 'Rozha One', 'Tiro Devanagari Hindi', serif;
+    }
+    .font-vedic {
+      font-family: 'Cinzel', serif;
+    }
+    /* Animated Kundli wheel rotation */
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-slow {
+      animation: spin-slow 16s linear infinite;
+    }
+    .shimmer-gold {
+      background: linear-gradient(90deg, rgba(250,204,21,0) 0%, rgba(250,204,21,0.3) 50%, rgba(250,204,21,0) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  </style>
+</head>
+
+<body class="bg-vedicmaroon-950 text-slate-100 min-h-screen flex flex-col selection:bg-gold-500 selection:text-black">
+
+  <!-- Top Auspicious Announcement Bar -->
+  <div class="bg-gradient-to-r from-saffron-700 via-yellow-600 to-saffron-700 py-2 px-4 text-center text-xs sm:text-sm font-medium tracking-wide text-white shadow-md flex items-center justify-center gap-2">
+    <span class="inline-block animate-pulse text-gold-300">✨</span>
+    <span>शारदीय नवरात्रि विशेष: <strong>शुक्र और बुध का दुर्लभ गोचर</strong> प्रभाव</span>
+    <span class="hidden md:inline text-amber-200">| वैदिक पंचांग एवं ग्रह स्थिति गणना</span>
+    <span class="inline-block animate-pulse text-gold-300">✨</span>
+  </div>
+
+  <!-- Header Section -->
+  <header class="relative py-10 px-4 sm:px-6 lg:px-8 text-center border-b border-amber-900/40 bg-radial from-red-900/30 to-vedicmaroon-950 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#facc15_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+    
+    <div class="max-w-4xl mx-auto relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-gold-500/30 text-gold-300 text-xs sm:text-sm font-semibold mb-5">
+        <svg class="w-4 h-4 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6.4-4.8-6.4 4.8 2.4-7.2-6-4.8h7.6z"/>
+        </svg>
+        वैदिक ज्योतिष अनुसंधान &middot; Navratri Planetary Report
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-gold-300 via-amber-200 to-saffron-500 tracking-tight leading-tight font-hindi-heading drop-shadow-sm">
+        इस नवरात्रि ग्रहों की स्थिति:<br class="hidden sm:inline"> अपना प्रभाव और उपाय जानें
+      </h1>
+
+      <p class="mt-4 text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        नवरात्रि पर बनने वाले ग्रह गोचर, महासंयोग एवं आपकी राशि के आधार पर जानें अपना करियर, संबंध और शुभ मुहूर्त का सटीक प्रभाव।
+      </p>
+
+      <!-- Trust Badges -->
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-amber-300/80 font-medium">
+        <div class="flex items-center gap-1.5 bg-black/30 px-3 py-1 rounded-full border border-amber-800/40">
+          <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          वैदिक पंचांग अनुरूप
+        </div>
+        <div class="flex items-center gap-1.5 bg-black/30 px-3 py-1 rounded-full border border-amber-800/40">
+          <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          100% गोपनीय व सुरक्षित
+        </div>
+        <div class="flex items-center gap-1.5 bg-black/30 px-3 py-1 rounded-full border border-amber-800/40">
+          <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          त्वरित रिपोर्ट पूर्वावलोकन
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+
+    <!-- Calculator Card -->
+    <div id="calculator-section" class="bg-gradient-to-b from-vedicmaroon-900/90 to-vedicmaroon-950 rounded-3xl p-6 sm:p-10 border border-gold-500/20 shadow-2xl relative overflow-hidden backdrop-blur-sm">
+      
+      <!-- Decorative background accent -->
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-saffron-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10">
+        <div class="border-b border-amber-900/50 pb-6 mb-8 text-center sm:text-left">
+          <h2 class="text-xl sm:text-2xl font-bold text-gold-300 font-hindi-heading">
+            निःशुल्क गोचर विश्लेषण प्रपत्र (Enter Birth Details)
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-1">
+            सटीक वैदिक गोचर गणना हेतु अपना सही विवरण भरें।
+          </p>
+        </div>
+
+        <form id="astroForm" onsubmit="event.preventDefault(); calculateTransit();" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Full Name -->
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-amber-200 mb-2">
+                आपका पूरा नाम (Full Name) <span class="text-red-400">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="fullName" 
+                required 
+                placeholder="उदा. राहुल शर्मा" 
+                class="w-full px-4 py-3 bg-black/40 border border-amber-800/60 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition"
+              />
+            </div>
+
+            <!-- Date of Birth -->
+            <div>
+              <label for="dob" class="block text-sm font-medium text-amber-200 mb-2">
+                जन्म तिथि (Date of Birth) <span class="text-red-400">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="dob" 
+                required 
+                class="w-full px-4 py-3 bg-black/40 border border-amber-800/60 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition"
+              />
+            </div>
+
+            <!-- Zodiac / Moon Sign -->
+            <div>
+              <label for="zodiac" class="block text-sm font-medium text-amber-200 mb-2">
+                आपकी राशि (Moon / Sun Sign) <span class="text-red-400">*</span>
+              </label>
+              <select 
+                id="zodiac" 
+                required 
+                class="w-full px-4 py-3 bg-black/70 border border-amber-800/60 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition"
+              >
+                <option value="" disabled selected>अपनी राशि चुनें...</option>
+                <option value="aries">मेष (Aries)</option>
+                <option value="taurus">वृषभ (Taurus)</option>
+                <option value="gemini">मिथुन (Gemini)</option>
+                <option value="cancer">कर्क (Cancer)</option>
+                <option value="leo">सिंह (Leo)</option>
+                <option value="virgo">कन्या (Virgo)</option>
+                <option value="libra">तुला (Libra)</option>
+                <option value="scorpio">वृश्चिक (Scorpio)</option>
+                <option value="sagittarius">धनु (Sagittarius)</option>
+                <option value="capricorn">मकर (Capricorn)</option>
+                <option value="aquarius">कुंभ (Aquarius)</option>
+                <option value="pisces">मीन (Pisces)</option>
+              </select>
+            </div>
+
+            <!-- Birth Time (Optional) -->
+            <div>
+              <label for="birthTime" class="block text-sm font-medium text-amber-200 mb-2">
+                जन्म समय (Birth Time) <span class="text-slate-400 text-xs">(वैकल्पिक / Optional)</span>
+              </label>
+              <input 
+                type="time" 
+                id="birthTime" 
+                class="w-full px-4 py-3 bg-black/40 border border-amber-800/60 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:border-transparent transition"
+              />
+            </div>
+
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button 
+              type="submit" 
+              class="w-full py-4 px-6 rounded-xl font-bold text-lg bg-gradient-to-r from-saffron-600 via-gold-500 to-saffron-600 text-vedicmaroon-950 hover:brightness-110 active:scale-[0.99] shadow-lg shadow-amber-900/50 transition-all flex items-center justify-center gap-3 cursor-pointer"
+            >
+              <span>नवरात्रि ग्रह प्रभाव व उपाय देखें (Instant Analysis)</span>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </button>
+            <p class="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1.5">
+              <span>🔒</span> आपकी जानकारी पूरी तरह सुरक्षित है और तीसरे पक्ष के साथ साझा नहीं की जाती।
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="loadingState" class="hidden my-12 text-center p-8 bg-black/40 border border-gold-500/20 rounded-3xl backdrop-blur-md">
+      <div class="relative w-28 h-28 mx-auto mb-6 flex items-center justify-center">
+        <!-- Kundli Ring Animation -->
+        <div class="absolute inset-0 rounded-full border-2 border-dashed border-gold-400 animate-spin-slow"></div>
+        <div class="absolute inset-2 rounded-full border border-saffron-500/50"></div>
+        <div class="text-3xl text-gold-300 animate-pulse">🕉️</div>
+      </div>
+      <h3 class="text-xl font-bold text-gold-300 font-hindi-heading">वैदिक ग्रह गोचर सारणी का मिलान हो रहा है...</h3>
+      <p id="loadingStatusText" class="text-sm text-slate-300 mt-2 font-medium">नवरात्रि पंचांग एवं लग्न चक्र का परीक्षण जारी है...</p>
+      
+      <!-- Mini Progress bar -->
+      <div class="w-full max-w-md mx-auto bg-neutral-800 rounded-full h-2.5 mt-6 overflow-hidden">
+        <div id="loadingBar" class="bg-gradient-to-r from-saffron-500 to-gold-400 h-2.5 rounded-full transition-all duration-300" style="width: 15%"></div>
+      </div>
+    </div>
+
+    <div id="resultsCard" class="hidden mt-10 space-y-8">
+      
+      <!-- Greeting & Overview -->
+      <div class="bg-gradient-to-r from-amber-950/80 via-vedicmaroon-900 to-amber-950/80 rounded-3xl p-6 sm:p-8 border border-gold-400/40 shadow-2xl relative overflow-hidden">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-800/50 pb-5">
+          <div>
+            <span class="inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-gold-400/10 text-gold-300 border border-gold-400/30 mb-2">Personalized Transit Summary</span>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white font-hindi-heading">
+              <span id="resUserName" class="text-gold-300"></span> जी, आपका नवरात्रि ग्रह फल
+            </h2>
+            <p class="text-sm text-slate-300 mt-1">
+              राशि: <strong id="resZodiacName" class="text-amber-200"></strong> | गोचर काल: <strong>शारदीय नवरात्रि विशेष</strong>
+            </p>
+          </div>
+          <div class="bg-black/40 border border-amber-700/50 rounded-2xl px-5 py-3 text-center sm:text-right w-full sm:w-auto">
+            <span class="text-xs text-slate-400 block">शुभ प्रभाव सूचकांक (Auspicious Score)</span>
+            <span class="text-2xl font-black text-gold-400" id="resScore">88%</span>
+          </div>
+        </div>
+
+        <!-- 3 Highlight badges: Mata Shakti, Auspicious Day, Lucky Color -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+          <div class="bg-black/30 border border-amber-900/60 rounded-2xl p-4 text-center">
+            <div class="text-xs text-amber-300 font-medium">पूज्य देवी स्वरूप</div>
+            <div class="text-lg font-bold text-white font-hindi-heading mt-1" id="resMata">माँ कात्यायनी</div>
+            <div class="text-xs text-slate-400 mt-0.5">विशेष कृपा हेतु आराधना</div>
+          </div>
+          <div class="bg-black/30 border border-amber-900/60 rounded-2xl p-4 text-center">
+            <div class="text-xs text-amber-300 font-medium">शुभ नवरात्रि दिवस</div>
+            <div class="text-lg font-bold text-white font-hindi-heading mt-1" id="resDay">पंचमी / षष्ठी</div>
+            <div class="text-xs text-slate-400 mt-0.5">संकल्प एवं पूजा हेतु सर्वोत्तम</div>
+          </div>
+          <div class="bg-black/30 border border-amber-900/60 rounded-2xl p-4 text-center">
+            <div class="text-xs text-amber-300 font-medium">भाग्यशाली रंग (Lucky Color)</div>
+            <div class="text-lg font-bold text-white font-hindi-heading mt-1" id="resColor">पीला एवं गहरा लाल</div>
+            <div class="text-xs text-slate-400 mt-0.5">सकारात्मक ऊर्जा संवर्धन</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Life Area Predictions Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Career & Finance -->
+        <div class="bg-vedicmaroon-900/60 border border-amber-900/40 rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-xl mb-4">
+              💼
+            </div>
+            <h4 class="text-lg font-bold text-amber-200 font-hindi-heading">करियर व धन (Career & Finance)</h4>
+            <p class="text-sm text-slate-300 mt-3 leading-relaxed" id="resCareerText">
+              ग्रहों का यह गोचर आपके कर्म क्षेत्र में नई ऊर्जा लाएगा। लंबित कार्यों में प्रगति के संकेत हैं।
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-900/30 text-xs text-gold-400/80 font-medium flex items-center gap-1.5">
+            <span>⚡ प्रभाव:</span> <span id="resCareerStatus">अत्यंत अनुकूल</span>
+          </div>
+        </div>
+
+        <!-- Relationship & Family -->
+        <div class="bg-vedicmaroon-900/60 border border-amber-900/40 rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-xl mb-4">
+              ❤️
+            </div>
+            <h4 class="text-lg font-bold text-amber-200 font-hindi-heading">पारिवारिक व प्रेम संबंध</h4>
+            <p class="text-sm text-slate-300 mt-3 leading-relaxed" id="resLoveText">
+              शुक्र की स्थिति के कारण पारिवारिक वातावरण में सौहार्द बढ़ेगा, हालांकि बातचीत में संयम बनाए रखें।
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-900/30 text-xs text-gold-400/80 font-medium flex items-center gap-1.5">
+            <span>⚡ प्रभाव:</span> <span id="resLoveStatus">संतुलित व शुभ</span>
+          </div>
+        </div>
+
+        <!-- Health & Spiritual Growth -->
+        <div class="bg-vedicmaroon-900/60 border border-amber-900/40 rounded-2xl p-6 relative flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-xl mb-4">
+              🌿
+            </div>
+            <h4 class="text-lg font-bold text-amber-200 font-hindi-heading">स्वास्थ्य व मानसिक शांति</h4>
+            <p class="text-sm text-slate-300 mt-3 leading-relaxed" id="resHealthText">
+              नवरात्रि उपवास और ध्यान से आत्मबल में वृद्धि होगी। मौसमी बदलावों से स्वयं का बचाव करें।
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-900/30 text-xs text-gold-400/80 font-medium flex items-center gap-1.5">
+            <span>⚡ प्रभाव:</span> <span id="resHealthStatus">सकारात्मक ऊर्जा</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- High-Conversion Upsell Card (Affiliate / Paid PDF Kundli Report) -->
+      <div class="bg-gradient-to-r from-amber-600 via-gold-500 to-saffron-600 rounded-3xl p-1 shadow-2xl">
+        <div class="bg-vedicmaroon-950 rounded-[22px] p-6 sm:p-10 text-center relative overflow-hidden">
+          
+          <div class="inline-block px-4 py-1 rounded-full bg-gold-400/20 border border-gold-400/40 text-gold-300 text-xs font-bold uppercase tracking-wider mb-3">
+            विशेष नवरात्रि उपाय एवं संपूर्ण कुंडली विश्लेषण
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-hindi-heading leading-snug">
+            क्या आप इस नवरात्रि के सभी 9 दिनों के <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 to-amber-200">वैयक्तिक महा-उपाय (15+ पृष्ठ PDF)</span> पाना चाहते हैं?
+          </h3>
+
+          <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mt-3">
+            आपकी जन्मकुंडली के आधार पर विशेष दुर्गा सप्तशती संपुट पाठ, बीज मंत्र, एवं वर्ष 2026-2027 के संपूर्ण गोचर समाधान रिपोर्ट प्राप्त करें।
+          </p>
+
+          <!-- Price & Features checklist -->
+          <div class="mt-6 flex flex-wrap justify-center items-center gap-4 text-xs sm:text-sm text-amber-200">
+            <span class="flex items-center gap-1">✨ व्यक्तिगत बीज मंत्र</span>
+            <span class="flex items-center gap-1">✨ रत्न व रुद्राक्ष परामर्श</span>
+            <span class="flex items-center gap-1">✨ WhatsApp पर तत्काल डिलीवरी</span>
+          </div>
+
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button 
+              onclick="openLeadModal()"
+              class="w-full sm:w-auto px-8 py-4 rounded-xl font-extrabold text-lg bg-gradient-to-r from-gold-400 to-saffron-500 text-vedicmaroon-950 hover:brightness-110 shadow-lg shadow-gold-500/20 active:scale-95 transition cursor-pointer"
+            >
+              सम्पूर्ण कुंडली व उपाय रिपोर्ट प्राप्त करें (Get Report)
+            </button>
+            <button 
+              onclick="scrollToCalculator()"
+              class="w-full sm:w-auto px-6 py-4 rounded-xl font-semibold text-sm bg-neutral-900 border border-amber-700/60 text-slate-300 hover:text-white hover:border-gold-400 transition cursor-pointer"
+            >
+              पुनः गणना करें (Recalculate)
+            </button>
+          </div>
+
+          <p class="text-xs text-slate-400 mt-4">
+            ⚡ सीमित समय ऑफर: केवल प्रथम 500 उपयोगकर्ताओं के लिए उपलब्ध।
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal for Lead Generation / Report Download -->
+  <div id="leadModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-vedicmaroon-900 border border-gold-500/40 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl relative text-left">
+      
+      <!-- Close Button -->
+      <button 
+        onclick="closeLeadModal()" 
+        class="absolute top-4 right-4 text-slate-400 hover:text-white text-2xl w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition"
+      >
+        &times;
+      </button>
+
+      <div class="text-center">
+        <span class="text-3xl">📿</span>
+        <h3 class="text-xl font-bold text-gold-300 font-hindi-heading mt-2">
+          अपनी सम्पूर्ण नवरात्रि कुंडली रिपोर्ट प्राप्त करें
+        </h3>
+        <p class="text-xs text-slate-300 mt-1">
+          कृपया विवरण दर्ज करें ताकि आपकी कस्टमाइज्ड PDF रिपोर्ट भेजी जा सके।
+        </p>
+      </div>
+
+      <form onsubmit="event.preventDefault(); handleReportSubmit();" class="mt-6 space-y-4">
+        <div>
+          <label class="block text-xs font-medium text-amber-200 mb-1">व्हाट्सएप नंबर (WhatsApp Number) *</label>
+          <div class="flex">
+            <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-amber-800 bg-black/50 text-slate-300 text-sm">+91</span>
+            <input 
+              type="tel" 
+              id="whatsappPhone"
+              required 
+              pattern="[6-9][0-9]{9}" 
+              placeholder="9876543210" 
+              class="w-full px-4 py-2.5 bg-black/50 border border-amber-800 rounded-r-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-gold-400"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-amber-200 mb-1">ईमेल पता (Email Address) *</label>
+          <input 
+            type="email" 
+            id="leadEmail"
+            required 
+            placeholder="apna-email@example.com" 
+            class="w-full px-4 py-2.5 bg-black/50 border border-amber-800 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-1 focus:ring-gold-400"
+          />
+        </div>
+
+        <div class="pt-2">
+          <button 
+            type="submit" 
+            id="submitLeadBtn"
+            class="w-full py-3 px-4 rounded-xl font-bold bg-gradient-to-r from-saffron-500 to-gold-400 text-vedicmaroon-950 hover:brightness-110 active:scale-98 transition shadow-lg cursor-pointer"
+          >
+            तत्काल रिपोर्ट डाउनलोड करें (Instant Download)
+          </button>
+        </div>
+
+        <p class="text-center text-[10px] text-slate-400">
+          हम स्पैम नहीं भेजते। केवल आपकी कुंडली एवं पंचांग रिपोर्ट भेजी जाएगी।
+        </p>
+      </form>
+
+      <div id="modalSuccess" class="hidden mt-4 p-4 rounded-xl bg-green-950/80 border border-green-500/40 text-center">
+        <span class="text-green-400 font-bold text-sm">धन्यवाद! आपकी रिपोर्ट तैयार हो रही है।</span>
+        <p class="text-xs text-slate-300 mt-1">शीघ्र ही आपके व्हाट्सएप और ईमेल पर PDF लिंक भेजा जा रहा है।</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Meta Ad Compliant Footer -->
+  <footer class="bg-black/90 border-t border-amber-950 text-slate-400 py-10 px-4 sm:px-6 mt-16 text-xs">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <!-- Quick Navigation & Legal Links (Crucial for Meta Ad approval) -->
+      <div class="flex flex-wrap justify-center items-center gap-6 text-slate-300 text-xs font-medium">
+        <a href="#calculator-section" class="hover:text-gold-300 transition">होम (Home)</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('privacy')" class="hover:text-gold-300 transition">गोपनीयता नीति (Privacy Policy)</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('terms')" class="hover:text-gold-300 transition">नियम एवं शर्तें (Terms of Service)</a>
+        <a href="javascript:void(0)" onclick="openLegalModal('contact')" class="hover:text-gold-300 transition">संपर्क करें (Contact Us)</a>
+      </div>
+
+      <!-- Explicit Disclaimer Required for 0% Policy Violations on Meta / Google -->
+      <div class="bg-vedicmaroon-950/80 p-4 rounded-xl border border-amber-900/30 text-[11px] leading-relaxed text-slate-400 text-center">
+        <p class="font-semibold text-slate-300 mb-1">महत्वपूर्ण वैधानिक अस्वीकरण (Mandatory Legal Disclaimer):</p>
+        <p>
+          इस वेबसाइट पर प्रदान की गई सभी ज्योतिषीय, ग्रह गोचर और पंचांग आधारित गणनाएं पारंपरिक वैदिक पद्धतियों पर आधारित हैं और केवल सांस्कृतिक, शैक्षिक और सूचनात्मक उद्देश्यों (Educational & Informational Purposes) के लिए हैं। हम किसी भी भविष्यवाणी के 100% सटीक होने या किसी निश्चित परिणाम की गारंटी नहीं देते। जीवन के किसी भी महत्वपूर्ण वित्तीय, स्वास्थ्य या कानूनी निर्णय के लिए योग्य विशेषज्ञों से परामर्श अवश्य लें।
+        </p>
+        <p class="mt-2 text-slate-500">
+          This site is not a part of the Facebook or Meta website or Meta Platforms, Inc. Additionally, this site is NOT endorsed by Meta in any way. FACEBOOK is a trademark of META Platforms, Inc.
+        </p>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center text-slate-500 text-[11px]">
+        &copy; 2026 Navratri Vedic Transit Insights. All rights reserved. Built with Vedic precision on Vercel.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Simple Legal Text Modal -->
+  <div id="legalModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-neutral-900 border border-neutral-700 w-full max-w-lg rounded-2xl p-6 shadow-2xl relative text-left max-h-[85vh] overflow-y-auto">
+      <button 
+        onclick="closeLegalModal()" 
+        class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl"
+      >&times;</button>
+      <h3 id="legalModalTitle" class="text-lg font-bold text-gold-300 mb-3 font-hindi-heading"></h3>
+      <div id="legalModalContent" class="text-xs text-slate-300 space-y-3 leading-relaxed"></div>
+    </div>
+  </div>
+
+  <script>
+    // Astrological dataset for all 12 Rashis for Navratri planetary transits
+    const astroData = {
+      aries: {
+        hindi: "मेष (Aries)",
+        score: "92%",
+        mata: "माँ शैलपुत्री एवं माँ स्कंदमाता",
+        day: "प्रतिपदा (प्रथम दिन) व पंचमी",
+        color: "लाल, केसरिया एवं पीला",
+        career: "सप्तम व दशम भाव में ग्रहों की अनुकूलता से पदोन्नति एवं व्यापार विस्तार के प्रबल योग बनेंगे।",
+        careerStatus: "अत्यधिक लाभकारी",
+        love: "पारिवारिक रिश्तों में मधुरता आएगी। जीवनसाथी के साथ नए धार्मिक यात्रा का योग बन सकता है।",
+        loveStatus: "सौहार्दपूर्ण",
+        health: "ऊर्जा का स्तर ऊंचा रहेगा। दिनचर्या में प्राणायाम शामिल करना लाभकारी सिद्ध होगा।",
+        healthStatus: "उत्कृष्ट"
+      },
+      taurus: {
+        hindi: "वृषभ (Taurus)",
+        score: "85%",
+        mata: "माँ महागौरी व माँ कात्यायनी",
+        day: "अष्टमी (महाअष्टमी)",
+        color: "सफेद, चमकीला गुलाबी व क्रीम",
+        career: "शुक्र के गोचर के प्रभाव से कला, सौंदर्य, वित्त और व्यापार में नए अवसर प्राप्त होंगे।",
+        careerStatus: "आर्थिक उन्नति",
+        love: "भावनात्मक स्थिरता बनी रहेगी। मतभेदों को सुलझाने के लिए नवरात्रि का समय सर्वश्रेष्ठ है।",
+        loveStatus: "मधुर व स्थिर",
+        health: "गले और खान-पान का ध्यान रखें। संतुलित सात्विक भोजन ग्रहण करें।",
+        healthStatus: "सामान्य व संतुलित"
+      },
+      gemini: {
+        hindi: "मिथुन (Gemini)",
+        score: "89%",
+        mata: "माँ ब्रह्मचारिणी",
+        day: "द्वितीया व सप्तमी",
+        color: "हरा एवं हल्का पीला",
+        career: "बुध के प्रभाव से संचार, आईटी, वकालत और लेखन से जुड़े लोगों को बड़ा लाभ मिल सकता है।",
+        careerStatus: "बुद्धि व व्यापार लाभ",
+        love: "मित्रों और रिश्तेदारों का सहयोग मिलेगा। पुराने मतभेद बातचीत से दूर होंगे।",
+        loveStatus: "प्रसन्नतादायक",
+        health: "मानसिक तनाव से मुक्ति मिलेगी। माँ की आराधना से एकाग्रता बढ़ेगी।",
+        healthStatus: "सकारात्मक"
+      },
+      cancer: {
+        hindi: "कर्क (Cancer)",
+        score: "84%",
+        mata: "माँ चंद्रघंटा",
+        day: "तृतीया व नवमी",
+        color: "सफेद, मोती जैसा और हल्का पीला",
+        career: "कार्यक्षेत्र में धैर्य रखें। इस नवरात्रि किए गए नए निवेश भविष्य में बड़ा लाभ देंगे।",
+        careerStatus: "दीर्घकालिक लाभ",
+        love: "माता-पिता का पूर्ण आशीर्वाद प्राप्त होगा। घरेलू जीवन में शांति रहेगी।",
+        loveStatus: "स्नेहपूर्ण",
+        health: "अति-संवेदनशीलता से बचें। जल तत्व को संतुलित रखें।",
+        healthStatus: "मध्यम अनुकूल"
+      },
+      leo: {
+        hindi: "सिंह (Leo)",
+        score: "94%",
+        mata: "माँ कुष्मांडा",
+        day: "चतुर्थी व अष्टमी",
+        color: "सुनहरा, नारंगी व माणिक्य लाल",
+        career: "सूर्य और ग्रहों के प्रभाव से मान-प्रतिष्ठा में वृद्धि होगी। नेतृत्वकारी भूमिका मिलेगी।",
+        careerStatus: "सर्वोच्च सफलता",
+        love: "आत्मविश्वास बढ़ेगा। परिवार में आपकी बात को सम्मान दिया जाएगा।",
+        loveStatus: "सम्मानजनक",
+        health: "शारीरिक शक्ति में सुधार होगा। हृदय और नेत्र का विशेष ध्यान रखें।",
+        healthStatus: "ऊर्जावान"
+      },
+      virgo: {
+        hindi: "कन्या (Virgo)",
+        score: "87%",
+        mata: "माँ कात्यायनी",
+        day: "षष्ठी (छठा दिन)",
+        color: "गहरा हरा, धानी व श्वेत",
+        career: "वित्तीय योजनाएं सफल होंगी। किसी रुके हुए काम में अचानक तेजी देखने को मिलेगी।",
+        careerStatus: "योजनाबद्ध सफलता",
+        love: "सगे-संबंधियों के साथ संबंध प्रगाढ़ होंगे। नए संपर्कों से लाभ होगा।",
+        loveStatus: "अनुकूल",
+        health: "पाचन तंत्र का ख्याल रखें। उपवास के दौरान अधिक जल ग्रहण करें।",
+        healthStatus: "सावधानी अपेक्षित"
+      },
+      libra: {
+        hindi: "तुला (Libra)",
+        score: "91%",
+        mata: "माँ महागौरी",
+        day: "अष्टमी व नवमी",
+        color: "हल्का नीला, सफेद व गुलाबी",
+        career: "साझेदारी के कार्यों में अप्रत्याशित वृद्धि होगी। नए व्यावसायिक अनुबंध मिल सकते हैं।",
+        careerStatus: "प्रगतिशील",
+        love: "दांपत्य जीवन में विशेष आकर्षण और प्रेम का संचार होगा।",
+        loveStatus: "रोमांटिक व सुखद",
+        health: "आंतरिक शांति का अनुभव होगा। आध्यात्मिक कार्यों में मन लगेगा।",
+        healthStatus: "शान्त व स्वस्थ"
+      },
+      scorpio: {
+        hindi: "वृश्चिक (Scorpio)",
+        score: "88%",
+        mata: "माँ कालरात्रि",
+        day: "सप्तमी (महा सप्तमी)",
+        color: "गहरा लाल, मैरून व सिंदूरी",
+        career: "गुप्त शत्रुओं पर विजय मिलेगी। शोध और तकनीकी कार्यों में बड़ी उपलब्धि संभव है।",
+        careerStatus: "विजयी व प्रभावशाली",
+        love: "गहन भावनात्मक संबंध स्थापित होंगे। परिवार की सुरक्षा का भाव बढ़ेगा।",
+        loveStatus: "गहन व वफादार",
+        health: "नियमित योग और ध्यान से शारीरिक कष्ट दूर होंगे।",
+        healthStatus: "सुधारशील"
+      },
+      sagittarius: {
+        hindi: "धनु (Sagittarius)",
+        score: "93%",
+        mata: "माँ सिद्धिदात्री",
+        day: "महानवमी (अंतिम दिन)",
+        color: "हल्दी पीला व केसरिया",
+        career: "गुरु कृपा से भाग्य का भरपूर साथ मिलेगा। शिक्षा व विदेश संबंधित कार्यों में सफलता मिलेगी।",
+        careerStatus: "भाग्यवृद्धि",
+        love: "गुरुजनों और बड़ों के आशीर्वाद से परिवार में मांगलिक माहौल बनेगा।",
+        loveStatus: "मांगलिक व शुभ",
+        health: "स्वास्थ्य उत्तम रहेगा। मानसिक उल्लास बना रहेगा।",
+        healthStatus: "अत्युत्तम"
+      },
+      capricorn: {
+        hindi: "मकर (Capricorn)",
+        score: "86%",
+        mata: "माँ कालरात्रि व शैलपुत्री",
+        day: "सप्तमी व प्रतिपदा",
+        color: "गहरा नीला व आसमानी",
+        career: "कठिन परिश्रम का उचित प्रतिफल मिलेगा। कार्यस्थल पर नई जिम्मेदारियां प्राप्त होंगी।",
+        careerStatus: "स्थिर प्रगति",
+        love: "रिश्तों में मर्यादा का पालन करें। बुजुर्गों के स्वास्थ्य का ध्यान रखें।",
+        loveStatus: "गंभीर व मर्यादित",
+        health: "जोड़ों और घुटनों का ख्याल रखें। प्रातः कालीन सैर लाभकारी रहेगी।",
+        healthStatus: "सामान्य"
+      },
+      aquarius: {
+        hindi: "कुंभ (Aquarius)",
+        score: "90%",
+        mata: "माँ ब्रह्मचारिणी व सिद्धिदात्री",
+        day: "द्वितीया व नवमी",
+        color: "बैंगनी, आसमानी व नीला",
+        career: "नवाचार और रचनात्मक विचारों से भारी लाभ होगा। सामाजिक प्रतिष्ठा बढ़ेगी।",
+        careerStatus: "नवाचार व लाभ",
+        love: "मित्र वर्ग का भरपूर समर्थन मिलेगा। नए शुभ विचार साझा करेंगे।",
+        loveStatus: "उत्साहवर्धक",
+        health: "मानसिक ताजगी बनी रहेगी। प्राणायाम से लाभ होगा।",
+        healthStatus: "सबल"
+      },
+      pisces: {
+        hindi: "मीन (Pisces)",
+        score: "92%",
+        mata: "माँ चंद्रघंटा व सिद्धिदात्री",
+        day: "तृतीया व नवमी",
+        color: "पीला, सुनहरा व समुद्री हरा",
+        career: "आध्यात्मिक ऊर्जा आपके निर्णय लेने की क्षमता को मजबूत बनाएगी। धन आगमन के योग हैं।",
+        careerStatus: "धन व मान सम्मान",
+        love: "पारिवारिक रिश्तों में आध्यात्मिक जुड़ाव महसूस होगा। शुभ समाचार मिलेंगे।",
+        loveStatus: "आनंदमय",
+        health: "पर्याप्त नींद लें और सात्विक आहार अपनाएं। मन शांत रहेगा।",
+        healthStatus: "प्रसन्नचित्त"
+      }
+    };
+
+    // Calculate transit simulation
+    function calculateTransit() {
+      const name = document.getElementById('fullName').value.trim();
+      const dob = document.getElementById('dob').value;
+      const zodiac = document.getElementById('zodiac').value;
+
+      if (!name || !dob || !zodiac) {
+        return;
+      }
+
+      // Hide results, show loading
+      document.getElementById('resultsCard').classList.add('hidden');
+      const loader = document.getElementById('loadingState');
+      const progressBar = document.getElementById('loadingBar');
+      const statusText = document.getElementById('loadingStatusText');
+      loader.classList.remove('hidden');
+
+      // Scroll smoothly to loader
+      loader.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Simulated step loading messages
+      const steps = [
+        { pct: '30%', msg: 'जन्म कुंडली चक्र का निर्माण किया जा रहा है...' },
+        { pct: '65%', msg: 'शारदीय नवरात्रि ग्रह गोचर एवं युति मिलान...' },
+        { pct: '95%', msg: 'राशि अनुसार शुभ मुहूर्त एवं उपाय तैयार हैं...' }
+      ];
+
+      let stepIndex = 0;
+      const interval = setInterval(() => {
+        if (stepIndex < steps.length) {
+          progressBar.style.width = steps[stepIndex].pct;
+          statusText.innerText = steps[stepIndex].msg;
+          stepIndex++;
+        } else {
+          clearInterval(interval);
+          finishCalculation(name, zodiac);
+        }
+      }, 500);
+    }
+
+    // Populate data once calculated
+    function finishCalculation(name, zodiacKey) {
+      const data = astroData[zodiacKey] || astroData.aries;
+      
+      document.getElementById('loadingState').classList.add('hidden');
+      
+      // Populate fields
+      document.getElementById('resUserName').innerText = name;
+      document.getElementById('resZodiacName').innerText = data.hindi;
+      document.getElementById('resScore').innerText = data.score;
+      document.getElementById('resMata').innerText = data.mata;
+      document.getElementById('resDay').innerText = data.day;
+      document.getElementById('resColor').innerText = data.color;
+
+      document.getElementById('resCareerText').innerText = data.career;
+      document.getElementById('resCareerStatus').innerText = data.careerStatus;
+      document.getElementById('resLoveText').innerText = data.love;
+      document.getElementById('resLoveStatus').innerText = data.loveStatus;
+      document.getElementById('resHealthText').innerText = data.health;
+      document.getElementById('resHealthStatus').innerText = data.healthStatus;
+
+      // Reveal card
+      const resultsCard = document.getElementById('resultsCard');
+      resultsCard.classList.remove('hidden');
+      resultsCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function scrollToCalculator() {
+      document.getElementById('calculator-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Modal logic for Leads
+    function openLeadModal() {
+      document.getElementById('leadModal').classList.remove('hidden');
+      document.getElementById('leadModal').classList.add('flex');
+    }
+
+    function closeLeadModal() {
+      document.getElementById('leadModal').classList.add('hidden');
+      document.getElementById('leadModal').classList.remove('flex');
+    }
+
+    function handleReportSubmit() {
+      const btn = document.getElementById('submitLeadBtn');
+      btn.innerText = 'कृपया प्रतीक्षा करें...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        document.getElementById('modalSuccess').classList.remove('hidden');
+        btn.innerText = 'रिपोर्ट भेजी गई ✔';
+        setTimeout(() => {
+          closeLeadModal();
+          document.getElementById('modalSuccess').classList.add('hidden');
+          btn.innerText = 'तत्काल रिपोर्ट डाउनलोड करें (Instant Download)';
+          btn.disabled = false;
+        }, 3000);
+      }, 1000);
+    }
+
+    // Legal modal content (Strict Meta Ad Compliance)
+    const legalTexts = {
+      privacy: {
+        title: "गोपनीयता नीति (Privacy Policy)",
+        content: `
+          <p><strong>1. सूचना संग्रह:</strong> हम केवल वही जानकारी एकत्र करते हैं जो आप इस कैलकुलेटर पर स्वेच्छा से दर्ज करते हैं (जैसे नाम, जन्म तिथि और राशि)।</p>
+          <p><strong>2. कुकीज़ एवं ट्रैकिंग:</strong> यह वेबसाइट उपयोगकर्ता अनुभव को बेहतर बनाने और विज्ञापन प्रभावशीलता मापने हेतु Meta Pixel और मानक एनालिटिक्स कुकीज़ का उपयोग कर सकती है।</p>
+          <p><strong>3. डेटा सुरक्षा:</strong> आपकी व्यक्तिगत जानकारी को किसी भी अनाधिकृत तीसरे पक्ष को बेचा या हस्तांतरित नहीं किया जाता।</p>
+          <p><strong>4. संपर्क:</strong> किसी भी प्रश्न या डेटा हटाने के अनुरोध के लिए आप हमारे सहायता ईमेल पर संपर्क कर सकते हैं।</p>
+        `
+      },
+      terms: {
+        title: "नियम एवं शर्तें (Terms of Service)",
+        content: `
+          <p><strong>1. सेवा का उद्देश्य:</strong> इस वेबसाइट पर प्रदान किए गए सभी पंचांग व ज्योतिष फल केवल सूचनात्मक और सांस्कृतिक मनोरंजन हेतु हैं।</p>
+          <p><strong>2. गैर-व्यावसायिक वारंटी:</strong> हम किसी विशिष्ट भविष्यवाणी या परिणाम की कोई कानूनी या वित्तीय गारंटी नहीं देते।</p>
+          <p><strong>3. बौद्धिक संपदा:</strong> इस पृष्ठ की सभी सामग्री, कोड एवं डिजाइन सुरक्षित हैं और बिना अनुमति कॉपी करना प्रतिबंधित है।</p>
+        `
+      },
+      contact: {
+        title: "संपर्क विवरण (Contact Us)",
+        content: `
+          <p><strong>सहायता डेस्क (Support Desk):</strong></p>
+          <p>ईमेल: support@yourdomain.com</p>
+          <p>समय: सोमवार से शनिवार, 10:00 AM - 6:00 PM (IST)</p>
+          <p>पता: डिजिटल मीडिया ऑपरेशंस, भारत।</p>
+        `
+      }
+    };
+
+    function openLegalModal(type) {
+      const doc = legalTexts[type];
+      if (doc) {
+        document.getElementById('legalModalTitle').innerText = doc.title;
+        document.getElementById('legalModalContent').innerHTML = doc.content;
+        document.getElementById('legalModal').classList.remove('hidden');
+        document.getElementById('legalModal').classList.add('flex');
+      }
+    }
+
+    function closeLegalModal() {
+      document.getElementById('legalModal').classList.add('hidden');
+      document.getElementById('legalModal').classList.remove('flex');
+    }
+
+    // Close modals on ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLeadModal();
+        closeLegalModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
