@@ -91,7 +91,7 @@
     </div>
   </header>
 
-  <!-- Main Area -->
+  <!-- Main Content Area -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full flex-grow z-10 space-y-10">
     
     <!-- Hero Section -->
@@ -107,7 +107,7 @@
       </p>
     </div>
 
-    <!-- The Form -->
+    <!-- The Input Form -->
     <div id="calculatorCard" class="shakti-border rounded-2xl p-6 sm:p-8 shadow-2xl relative transition-all duration-500">
       <form id="astroForm" onsubmit="runQuantumCalculation(event)" class="space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -151,16 +151,15 @@
       <p id="loaderStatus" class="text-xs font-mono text-accent-amber">નામ અને સૂર્ય સિદ્ધાંત મુજબ કુંડળી વિશ્લેષણ થઈ રહ્યું છે...</p>
     </div>
 
-    <!-- Personalized Reading Screen -->
+    <!-- Results Container -->
     <div id="resultScreen" class="hidden space-y-10 mt-4">
       
-      <!-- Free Reading Content (મફત પ્રિવ્યૂ - ૧૦૦% સાચું અને જિજ્ઞાસા વધારનારું) -->
+      <!-- Free Reading Box (૧૦૦% પ્રામાણિક અને આકર્ષક) -->
       <div class="bg-cosmic-900/60 border border-accent-red/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-lg">
-        
         <div class="border-b border-white/10 pb-4 mb-4 relative z-10">
           <h2 class="text-2xl md:text-3xl font-bold font-cinzel text-accent-gold" id="resTitle">રિપોર્ટ તૈયાર છે!</h2>
           
-          <!-- Rashi Badge Cards (નામ રાશિ + સૂર્ય રાશિ) -->
+          <!-- Rashi Badges -->
           <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 mt-4">
             <div class="bg-cosmic-950/80 border border-accent-gold/30 p-3 rounded-lg flex items-center gap-3">
               <div class="p-2 bg-accent-gold/10 text-accent-gold rounded-md"><i data-lucide="user-check" class="w-5 h-5"></i></div>
@@ -179,7 +178,6 @@
           </div>
         </div>
 
-        <!-- 3 Affected Areas Explanation -->
         <div class="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed font-light relative z-10">
           <p id="paraIntro" class="text-white font-medium"></p>
 
@@ -206,12 +204,11 @@
             </div>
           </div>
 
-          <!-- Free Preview Warning & Hook -->
           <div class="flex gap-4 p-4 bg-accent-red/10 border border-accent-red/30 rounded-xl mt-4">
             <div class="mt-0.5 text-accent-red"><i data-lucide="alert-octagon" class="w-6 h-6 animate-pulse"></i></div>
             <div class="space-y-1">
               <p class="text-sm font-bold text-white">મહા ગ્રહ પરિવર્તન પ્રશ્ન:</p>
-              <p class="text-xs text-slate-300" id="paraTransitQuestion">
+              <p class="text-xs text-slate-300">
                 નવરાત્રિ દરમિયાન થનારી આ ગ્રહીય હિલચાલ તમારા માટે અણધાર્યો ધનલાભ લાવશે કે મોટો આર્થિક ફટકો? કયા નિર્ણયોમાં સાવધાની રાખવી અને કયા ઉપાયો કરવા તે સંપૂર્ણ રિપોર્ટમાં ઉપલબ્ધ છે.
               </p>
             </div>
@@ -219,7 +216,7 @@
         </div>
       </div>
 
-      <!-- FOMO Paywall (૧૦૦% Value Pitch - ₹૯૯ કેમ આપવા) -->
+      <!-- Paywall Section (₹99 Offer) -->
       <div id="paywallBox" class="relative shakti-border rounded-2xl p-1 border border-accent-red shadow-[0_0_40px_rgba(238,68,68,0.3)] overflow-hidden animate-pulse-glow">
         <div class="relative bg-cosmic-950 rounded-xl p-6 sm:p-10 space-y-6">
           <div class="text-center space-y-3">
@@ -232,7 +229,6 @@
              </p>
           </div>
 
-          <!-- Razorpay Box with Timer -->
           <div class="border border-white/10 rounded-xl bg-cosmic-900 p-6 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 shadow-inner">
             <div class="text-center md:text-left">
               <div class="text-xs text-accent-red font-bold mb-1">આ ઓફર માત્ર <span id="fomoTimer" class="font-mono text-white text-sm bg-accent-red px-1.5 py-0.5 rounded">૧૪:૫૯</span> મિનિટ માટે!</div>
@@ -251,7 +247,17 @@
         </div>
       </div>
 
-      <!-- PREMIUM UNLOCKED SECTION (Gemini AI પેમેન્ટ પછી જ આ બનાવશે) -->
+      <!-- Paid AI Generation Loader (પેમેન્ટ થઈ ગયા પછી દેખાશે) -->
+      <div id="aiPaidLoader" class="hidden shakti-border rounded-2xl p-8 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl">
+        <div class="w-16 h-16 border-4 border-emerald-400 border-t-accent-gold rounded-full animate-spin mx-auto"></div>
+        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! AI વૈદિક રિપોર્ટ તૈયાર થઈ રહ્યો છે...</h3>
+        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">કૃપા કરીને રાહ જુઓ, પેજ રિફ્રેશ કે બેક ન કરશો (આમાં ૧૫ થી ૩૦ સેકન્ડ લાગી શકે છે)...</p>
+        <button id="retryBtn" onclick="fetchPaidGeminiPrediction()" class="hidden mt-4 px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider bg-emerald-500 text-black hover:bg-emerald-400 cursor-pointer">
+          ફરીથી રિપોર્ટ લોડ કરો (મફતમાં)
+        </button>
+      </div>
+
+      <!-- Premium Unlocked Section -->
       <div id="premiumUnlokedSection" class="hidden space-y-10 mt-12 scroll-mt-20">
          <div class="shakti-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
              <div class="border-b border-white/10 pb-5 mb-6 flex items-center gap-4">
@@ -273,7 +279,7 @@
                      <div class="flex items-center gap-2 text-base font-bold text-white border-b border-emerald-500/10 pb-2">
                          <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i> કરિયર અને નાણાકીય ભવિષ્ય
                      </div>
-                     <div id="premiumCareer" class="text-slate-300">AI રિપોર્ટ તૈયાર થઈ રહ્યો છે...</div>
+                     <div id="premiumCareer" class="text-slate-300 leading-relaxed"></div>
                  </div>
                  
                  <!-- પ્રેમ અને પરિવાર -->
@@ -281,7 +287,7 @@
                      <div class="flex items-center gap-2 text-base font-bold text-white border-b border-emerald-500/10 pb-2">
                          <i data-lucide="heart-handshake" class="w-5 h-5 text-emerald-400"></i> પ્રેમ, લગ્ન અને પરિવાર
                      </div>
-                     <div id="premiumLove" class="text-slate-300">AI રિપોર્ટ તૈયાર થઈ રહ્યો છે...</div>
+                     <div id="premiumLove" class="text-slate-300 leading-relaxed"></div>
                  </div>
                  
                  <!-- નવરાત્રિ વિશેષ ઉપાયો -->
@@ -289,10 +295,16 @@
                      <div class="flex items-center gap-2 text-base font-bold text-accent-gold border-b border-accent-amber/20 pb-2">
                          <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold"></i> નવરાત્રિ વિશેષ શાસ્ત્રોક્ત ઉપાયો અને પૂજન
                      </div>
-                     <div id="premiumRemedies" class="text-slate-300">AI રિપોર્ટ તૈયાર થઈ રહ્યો છે...</div>
+                     <div id="premiumRemedies" class="text-slate-300 leading-relaxed"></div>
                      <p class="text-xs text-accent-gold/80 italic pt-2 border-t border-accent-amber/10">• આ ઉપાયો ખાસ આ નવરાત્રિ દરમિયાન કરવાથી તમારા દોષો શાંત થશે અને પ્રગતિના દ્વાર ખુલશે.</p>
                  </div>
              </div>
+
+             <!-- બીજા સભ્ય માટે નવો સ્કેન કરવાનું બટન -->
+             <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer">
+               <i data-lucide="user-plus" class="w-4 h-4"></i>
+               પરિવારના અન્ય સભ્ય માટે નવો સ્કેન કરો
+             </button>
          </div>
       </div>
 
@@ -307,15 +319,18 @@
   <script>
     lucide.createIcons();
 
+    // લાઈવ Render બેકએન્ડ
     const BACKEND_URL = "https://bhagyaveda-backend.onrender.com";
+    
     let clientData = {};
+    let isUserPaid = false;
 
-    // ૧. નામના પ્રથમ અક્ષર પરથી સાચી વૈદિક નામ રાશિ નક્કી કરવાની પદ્ધતિ
+    // નામના અક્ષર પરથી સાચી વૈદિક નામ રાશિ
     function getNaamRashi(name) {
       if (!name) return "મેષ";
-      const ch = name.trim().charAt(0).toUpperCase();
+      const clean = name.trim().toUpperCase();
+      const ch = clean.charAt(0);
 
-      // ગુજરાતી અને અંગ્રેજી બંને માટે સપોર્ટ
       const rashiMap = [
         { rashi: "મેષ", chars: ["A", "L", "E", "I", "O", "અ", "લ", "ઇ", "ઈ", "એ"] },
         { rashi: "વૃષભ", chars: ["B", "V", "U", "W", "બ", "વ", "ઉ", "ઊ"] },
@@ -325,35 +340,36 @@
         { rashi: "કન્યા", chars: ["P", "TH", "N", "પ", "ઠ", "ણ"] },
         { rashi: "તુલા", chars: ["R", "T", "ર", "ત"] },
         { rashi: "વૃશ્ચિક", chars: ["N", "Y", "ન", "ય"] },
-        { rashi: "ધન", chars: ["BH", "DH", "F", "DH", "ભ", "ધ", "ફ", "ઢ"] },
+        { rashi: "ધન", chars: ["BH", "DH", "F", "ભ", "ધ", "ફ", "ઢ"] },
         { rashi: "મકર", chars: ["KH", "J", "ખ", "જ"] },
         { rashi: "કુંભ", chars: ["G", "S", "SH", "ગ", "શ", "ષ", "સ"] },
         { rashi: "મીન", chars: ["D", "CH", "Z", "TH", "દ", "ચ", "ઝ", "થ"] }
       ];
 
       for (const item of rashiMap) {
-        if (item.chars.some(c => ch.startsWith(c))) return item.rashi;
+        if (item.chars.some(c => clean.startsWith(c) || ch === c)) return item.rashi;
       }
-      return "સિંહ"; // ડિફોલ્ટ
+      return "સિંહ";
     }
 
-    // ૨. સૂર્ય સિદ્ધાંત મુજબ જન્મતારીખ પરથી સૂર્ય રાશિ નક્કી કરવી
+    // જન્મતારીખ પરથી સૂર્ય સિદ્ધાંત મુજબ સૂર્ય રાશિ (ટાઇમઝોન-સેફ)
     function getSuryaRashi(dob) {
-      const d = new Date(dob);
-      const day = d.getDate();
-      const month = d.getMonth() + 1; // 1 to 12
+      if (!dob) return "મેષ";
+      const parts = dob.split('-');
+      const month = parseInt(parts[1], 10);
+      const day = parseInt(parts[2], 10);
 
-      if ((month == 1 && day >= 14) || (month == 2 && day <= 12)) return "મકર";
-      if ((month == 2 && day >= 13) || (month == 3 && day <= 14)) return "કુંભ";
-      if ((month == 3 && day >= 15) || (month == 4 && day <= 13)) return "મીન";
-      if ((month == 4 && day >= 14) || (month == 5 && day <= 14)) return "મેષ";
-      if ((month == 5 && day >= 15) || (month == 6 && day <= 14)) return "વૃષભ";
-      if ((month == 6 && day >= 15) || (month == 7 && day <= 15)) return "મિથુન";
-      if ((month == 7 && day >= 16) || (month == 8 && day <= 16)) return "કર્ક";
-      if ((month == 8 && day >= 17) || (month == 9 && day <= 16)) return "સિંહ";
-      if ((month == 9 && day >= 17) || (month == 10 && day <= 16)) return "કન્યા";
-      if ((month == 10 && day >= 17) || (month == 11 && day <= 15)) return "તુલા";
-      if ((month == 11 && day >= 16) || (month == 12 && day <= 15)) return "વૃશ્ચિક";
+      if ((month === 1 && day >= 14) || (month === 2 && day <= 12)) return "મકર";
+      if ((month === 2 && day >= 13) || (month === 3 && day <= 14)) return "કુંભ";
+      if ((month === 3 && day >= 15) || (month === 4 && day <= 13)) return "મીન";
+      if ((month === 4 && day >= 14) || (month === 5 && day <= 14)) return "મેષ";
+      if ((month === 5 && day >= 15) || (month === 6 && day <= 14)) return "વૃષભ";
+      if ((month === 6 && day >= 15) || (month === 7 && day <= 15)) return "મિથુન";
+      if ((month === 7 && day >= 16) || (month === 8 && day <= 16)) return "કર્ક";
+      if ((month === 8 && day >= 17) || (month === 9 && day <= 16)) return "સિંહ";
+      if ((month === 9 && day >= 17) || (month === 10 && day <= 16)) return "કન્યા";
+      if ((month === 10 && day >= 17) || (month === 11 && day <= 15)) return "તુલા";
+      if ((month === 11 && day >= 16) || (month === 12 && day <= 15)) return "વૃશ્ચિક";
       return "ધન";
     }
 
@@ -378,16 +394,13 @@
       const time = document.getElementById('userTimePeriod').value;
       const gender = document.getElementById('userGender').value;
 
-      const naamRashi = getNaamRashi(name);
-      const suryaRashi = getSuryaRashi(dob);
-
       clientData = {
         name: name,
         dob: dob,
         time: time,
         gender: gender,
-        naamRashi: naamRashi,
-        suryaRashi: suryaRashi
+        naamRashi: getNaamRashi(name),
+        suryaRashi: getSuryaRashi(dob)
       };
 
       document.getElementById('heroSection').style.display = 'none';
@@ -420,16 +433,24 @@
     }
 
     function initiateRazorpay() {
+      // જો પેમેન્ટ થઈ ગયેલું હોય તો ફરી પૈસા ન માંગો
+      if (isUserPaid) {
+        fetchPaidGeminiPrediction();
+        return;
+      }
+
       const name = clientData.name || 'Customer';
       
       var options = {
-        // અહીં તમારી સાચી Razorpay Key ID મૂકવી
-        "key": "rzp_live_TeGqB4epR2sZ2I", 
+        // અહીં તમારી Razorpay Dashboard માંથી મળેલી અસલી Key ID મૂકવી
+        "key": "YOUR_ACTUAL_RAZORPAY_KEY_HERE", 
         "amount": "9900", // ₹99
         "currency": "INR",
         "name": "ભાગ્યવેદ (Bhagyaveda)",
         "description": "સંપૂર્ણ નવરાત્રિ અહેવાલ - Instant Access",
         "handler": function (response) {
+          isUserPaid = true;
+          document.getElementById('paywallBox').classList.add('hidden');
           fetchPaidGeminiPrediction();
         },
         "prefill": { "name": name },
@@ -444,21 +465,26 @@
     }
 
     async function fetchPaidGeminiPrediction() {
-      document.getElementById('payBtnText').innerText = "AI રિપોર્ટ તૈયાર થઈ રહ્યો છે...";
-      document.getElementById('payBtn').disabled = true;
+      const paidLoader = document.getElementById('aiPaidLoader');
+      const retryBtn = document.getElementById('retryBtn');
+      const paidStatus = document.getElementById('aiPaidStatus');
+
+      paidLoader.classList.remove('hidden');
+      retryBtn.classList.add('hidden');
+      paidStatus.innerText = "મા શક્તિ અને ગ્રહોની ગણતરીથી તમારો પ્રીમિયમ રિપોર્ટ તૈયાર થઈ રહ્યો છે (૧૫-૨૫ સેકન્ડ)...";
+      paidLoader.scrollIntoView({ behavior: 'smooth' });
 
       try {
         const response = await fetch(`${BACKEND_URL}/api/get-prediction`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          // હવે Gemini ને નામ રાશિ અને સૂર્ય રાશિ બંને સાથે મોકલાય છે!
           body: JSON.stringify(clientData)
         });
 
         const resData = await response.json();
 
         if (!resData.success) {
-          throw new Error(resData.message || 'AI અહેવાલ બનાવવામાં ભૂલ થઈ');
+          throw new Error(resData.message || 'AI અહેવાલ બનાવવામાં વિલંબ થયો');
         }
 
         const aiData = resData.data;
@@ -467,7 +493,7 @@
         document.getElementById('premiumLove').innerHTML = aiData.premLove;
         document.getElementById('premiumRemedies').innerHTML = aiData.premRemedies;
 
-        document.getElementById('paywallBox').classList.add('hidden');
+        paidLoader.classList.add('hidden');
         const premiumSection = document.getElementById('premiumUnlokedSection');
         premiumSection.classList.remove('hidden');
         premiumSection.scrollIntoView({ behavior: 'smooth' });
@@ -475,10 +501,29 @@
 
       } catch (err) {
         console.error("Gemini Error:", err);
-        alert("રિપોર્ટ તૈયાર કરવામાં સહેજ વાર લાગી રહી છે. કૃપા કરીને થોડીવાર પછી જુઓ.");
-        document.getElementById('payBtnText').innerText = "ફરી પ્રયાસ કરો";
-        document.getElementById('payBtn').disabled = false;
+        paidStatus.innerText = "સર્વર સ્લીપમાંથી જાગવામાં સહેજ વાર લાગી રહી છે. ચિંતા કરશો નહીં, તમારા પૈસા સફળતાપૂર્વક ચૂકવાઈ ગયા છે. નીચે ક્લિક કરો:";
+        retryBtn.classList.remove('hidden');
       }
+    }
+
+    // બીજા વ્યક્તિ માટે નવો સ્કેન (Fresh ₹99 ફરીથી માંગશે)
+    function startNewScan() {
+      isUserPaid = false;
+      clientData = {};
+
+      document.getElementById('userName').value = '';
+      document.getElementById('userDob').value = '';
+
+      document.getElementById('resultScreen').classList.add('hidden');
+      document.getElementById('premiumUnlokedSection').classList.add('hidden');
+      document.getElementById('aiPaidLoader').classList.add('hidden');
+      document.getElementById('paywallBox').classList.remove('hidden');
+
+      document.getElementById('heroSection').style.display = 'block';
+      document.getElementById('calculatorCard').classList.remove('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
     }
   </script>
 </body>
