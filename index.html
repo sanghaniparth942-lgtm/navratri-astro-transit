@@ -113,7 +113,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="group">
             <label class="block text-xs font-mono text-accent-gold/70 uppercase tracking-widest mb-2">તમારું પૂરૂં નામ *</label>
-            <input type="text" id="userName" required placeholder="દા.ત. પાર્થ સંઘાણી" class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all placeholder:text-slate-700">
+            <input type="text" id="userName" required placeholder="દા.ત. રાહુલ શર્મા" autocomplete="off" class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all placeholder:text-slate-600">
           </div>
           <div class="group">
             <label class="block text-xs font-mono text-accent-gold/70 uppercase tracking-widest mb-2">જન્મ તારીખ *</label>
@@ -154,7 +154,7 @@
     <!-- Results Container -->
     <div id="resultScreen" class="hidden space-y-10 mt-4">
       
-      <!-- Free Reading Box (૧૦૦% પ્રામાણિક અને આકર્ષક) -->
+      <!-- Free Reading Box -->
       <div class="bg-cosmic-900/60 border border-accent-red/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-lg">
         <div class="border-b border-white/10 pb-4 mb-4 relative z-10">
           <h2 class="text-2xl md:text-3xl font-bold font-cinzel text-accent-gold" id="resTitle">રિપોર્ટ તૈયાર છે!</h2>
@@ -247,7 +247,7 @@
         </div>
       </div>
 
-      <!-- Paid AI Generation Loader (પેમેન્ટ થઈ ગયા પછી દેખાશે) -->
+      <!-- Paid AI Generation Loader -->
       <div id="aiPaidLoader" class="hidden shakti-border rounded-2xl p-8 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl">
         <div class="w-16 h-16 border-4 border-emerald-400 border-t-accent-gold rounded-full animate-spin mx-auto"></div>
         <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! AI વૈદિક રિપોર્ટ તૈયાર થઈ રહ્યો છે...</h3>
@@ -300,7 +300,7 @@
                  </div>
              </div>
 
-             <!-- બીજા સભ્ય માટે નવો સ્કેન કરવાનું બટન -->
+             <!-- બીજા સભ્ય માટે નવો સ્કેન -->
              <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer">
                <i data-lucide="user-plus" class="w-4 h-4"></i>
                પરિવારના અન્ય સભ્ય માટે નવો સ્કેન કરો
@@ -319,18 +319,15 @@
   <script>
     lucide.createIcons();
 
-    // લાઈવ Render બેકએન્ડ
     const BACKEND_URL = "https://bhagyaveda-backend.onrender.com";
     
     let clientData = {};
     let isUserPaid = false;
 
-    // નામના અક્ષર પરથી સાચી વૈદિક નામ રાશિ
     function getNaamRashi(name) {
       if (!name) return "મેષ";
       const clean = name.trim().toUpperCase();
       const ch = clean.charAt(0);
-
       const rashiMap = [
         { rashi: "મેષ", chars: ["A", "L", "E", "I", "O", "અ", "લ", "ઇ", "ઈ", "એ"] },
         { rashi: "વૃષભ", chars: ["B", "V", "U", "W", "બ", "વ", "ઉ", "ઊ"] },
@@ -345,20 +342,17 @@
         { rashi: "કુંભ", chars: ["G", "S", "SH", "ગ", "શ", "ષ", "સ"] },
         { rashi: "મીન", chars: ["D", "CH", "Z", "TH", "દ", "ચ", "ઝ", "થ"] }
       ];
-
       for (const item of rashiMap) {
         if (item.chars.some(c => clean.startsWith(c) || ch === c)) return item.rashi;
       }
       return "સિંહ";
     }
 
-    // જન્મતારીખ પરથી સૂર્ય સિદ્ધાંત મુજબ સૂર્ય રાશિ (ટાઇમઝોન-સેફ)
     function getSuryaRashi(dob) {
       if (!dob) return "મેષ";
       const parts = dob.split('-');
       const month = parseInt(parts[1], 10);
       const day = parseInt(parts[2], 10);
-
       if ((month === 1 && day >= 14) || (month === 2 && day <= 12)) return "મકર";
       if ((month === 2 && day >= 13) || (month === 3 && day <= 14)) return "કુંભ";
       if ((month === 3 && day >= 15) || (month === 4 && day <= 13)) return "મીન";
@@ -421,7 +415,6 @@
       document.getElementById('resTitle').innerText = `${name}, તમારો નવરાત્રિ રિપોર્ટ તૈયાર છે!`;
       document.getElementById('badgeNaamRashi').innerText = naamRashi;
       document.getElementById('badgeSuryaRashi').innerText = suryaRashi;
-
       document.getElementById('paraIntro').innerText = 
         `${name}જી, વૈદિક જ્યોતિષ મુજબ તમારી નામ રાશિ "${naamRashi}" અને સૂર્ય કુંડળી રાશિ "${suryaRashi}" નું વિશેષ સંયોજન રચાય છે. આ નવરાત્રિ દરમિયાન ગ્રહોની દિશા બદલાઈ રહી છે, જેની સીધી અસર તમારા જીવનના મુખ્ય ૩ પાસાંઓ પર પડી રહી છે:`;
 
@@ -433,33 +426,42 @@
     }
 
     function initiateRazorpay() {
-      // જો પેમેન્ટ થઈ ગયેલું હોય તો ફરી પૈસા ન માંગો
       if (isUserPaid) {
         fetchPaidGeminiPrediction();
         return;
       }
 
-      const name = clientData.name || 'Customer';
-      
+      // અગત્યનું: લાઈન નંબર 337 પર "YOUR_ACTUAL_RAZORPAY_TEST_KEY" ની જગ્યાએ તમારું સાચું Razorpay Key નાખો.
+      const myRazorpayKey = "YOUR_ACTUAL_RAZORPAY_TEST_KEY"; 
+
+      if (myRazorpayKey === "rzp_live_TeGqB4epR2sZ2I") {
+        alert("ભૂલ: પેમેન્ટ ચાલુ કરવા માટે કૃપા કરીને કોડમાં (લાઇન ૩૩૭) તમારી સાચી Razorpay 'Test Key' ઉમેરો.");
+        return;
+      }
+
       var options = {
-        // અહીં તમારી Razorpay Dashboard માંથી મળેલી અસલી Key ID મૂકવી
-        "key": "YOUR_ACTUAL_RAZORPAY_KEY_HERE", 
-        "amount": "9900", // ₹99
+        "key": myRazorpayKey,
+        "amount": "9900",
         "currency": "INR",
-        "name": "ભાગ્યવેદ (Bhagyaveda)",
-        "description": "સંપૂર્ણ નવરાત્રિ અહેવાલ - Instant Access",
+        "name": "Bhagyaveda",
+        "description": "Vedic Astrology Scan",
         "handler": function (response) {
           isUserPaid = true;
           document.getElementById('paywallBox').classList.add('hidden');
           fetchPaidGeminiPrediction();
         },
-        "prefill": { "name": name },
-        "theme": { "color": "#ee4444" }
+        "prefill": {
+          "name": clientData.name || "User"
+        },
+        "theme": {
+          "color": "#ee4444"
+        }
       };
 
-      var rzp1 = new Razorpay(options);
+      var rzp1 = new window.Razorpay(options);
       rzp1.on('payment.failed', function (response){
-        alert("પેમેન્ટ નિષ્ફળ થયું: " + (response.error.description || "કૃપા કરીને ફરી પ્રયાસ કરો."));
+        console.error("Payment Error:", response.error);
+        alert("પેમેન્ટ નિષ્ફળ થયું. મહેરબાની કરીને ફરી પ્રયાસ કરો.");
       });
       rzp1.open();
     }
@@ -481,17 +483,21 @@
           body: JSON.stringify(clientData)
         });
 
+        if (!response.ok) {
+          throw new Error(`Server Error: ${response.status}`);
+        }
+
         const resData = await response.json();
 
-        if (!resData.success) {
+        if (!resData.success || !resData.data) {
           throw new Error(resData.message || 'AI અહેવાલ બનાવવામાં વિલંબ થયો');
         }
 
         const aiData = resData.data;
 
-        document.getElementById('premiumCareer').innerHTML = aiData.premCareer;
-        document.getElementById('premiumLove').innerHTML = aiData.premLove;
-        document.getElementById('premiumRemedies').innerHTML = aiData.premRemedies;
+        document.getElementById('premiumCareer').innerHTML = aiData.premCareer || "માહિતી તૈયાર થઈ રહી છે...";
+        document.getElementById('premiumLove').innerHTML = aiData.premLove || "માહિતી તૈયાર થઈ રહી છે...";
+        document.getElementById('premiumRemedies').innerHTML = aiData.premRemedies || "માહિતી તૈયાર થઈ રહી છે...";
 
         paidLoader.classList.add('hidden');
         const premiumSection = document.getElementById('premiumUnlokedSection');
@@ -501,27 +507,22 @@
 
       } catch (err) {
         console.error("Gemini Error:", err);
-        paidStatus.innerText = "સર્વર સ્લીપમાંથી જાગવામાં સહેજ વાર લાગી રહી છે. ચિંતા કરશો નહીં, તમારા પૈસા સફળતાપૂર્વક ચૂકવાઈ ગયા છે. નીચે ક્લિક કરો:";
+        paidStatus.innerText = "સર્વર સ્લીપમાંથી જાગવામાં સહેજ વાર લાગી રહી છે. ચિંતા કરશો નહીં, નીચે આપેલા બટન પર ક્લિક કરો:";
         retryBtn.classList.remove('hidden');
       }
     }
 
-    // બીજા વ્યક્તિ માટે નવો સ્કેન (Fresh ₹99 ફરીથી માંગશે)
     function startNewScan() {
       isUserPaid = false;
       clientData = {};
-
       document.getElementById('userName').value = '';
       document.getElementById('userDob').value = '';
-
       document.getElementById('resultScreen').classList.add('hidden');
       document.getElementById('premiumUnlokedSection').classList.add('hidden');
       document.getElementById('aiPaidLoader').classList.add('hidden');
       document.getElementById('paywallBox').classList.remove('hidden');
-
       document.getElementById('heroSection').style.display = 'block';
       document.getElementById('calculatorCard').classList.remove('hidden');
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
       lucide.createIcons();
     }
