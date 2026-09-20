@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vedic-AI Transit Matrix | Navratri Planetary Quantum Analysis</title>
+  <title>Vedic-AI Transit Matrix | Bhagyaveda Quantum Analysis</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Razorpay Checkout JS -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -14,29 +18,35 @@
         extend: {
           colors: {
             cosmic: {
-              950: '#030712',
-              900: '#0b0f19',
+              950: '#02040a',
+              900: '#0a0f1d',
               800: '#111827',
               700: '#1f293d'
             },
             accent: {
-              gold: '#f59e0b',
-              amber: '#d97706',
-              cyan: '#06b6d4',
-              violet: '#8b5cf6'
+              gold: '#ffd700',
+              amber: '#f59e0b',
+              cyan: '#00f0ff',
+              violet: '#b026ff'
             }
           },
           fontFamily: {
             mono: ['Courier New', 'monospace', 'ui-monospace']
           },
           animation: {
-            'spin-slow': 'spin 20s linear infinite',
-            'pulse-glow': 'pulseGlow 2s ease-in-out infinite'
+            'spin-slow': 'spin 25s linear infinite',
+            'spin-reverse': 'spin 30s linear infinite reverse',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'matrix-scan': 'scan 2s linear infinite'
           },
           keyframes: {
             pulseGlow: {
-              '0%, 100%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(245, 158, 11, 0.4))' },
-              '50%': { opacity: '0.8', filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.6))' }
+              '0%, 100%': { opacity: '0.3', filter: 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.3))' },
+              '50%': { opacity: '0.7', filter: 'drop-shadow(0 0 30px rgba(0, 240, 255, 0.6))' }
+            },
+            scan: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' }
             }
           }
         }
@@ -48,338 +58,409 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Samarkan&display=swap');
     
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #030712;
+      background-color: #02040a;
       color: #f3f4f6;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(176, 38, 255, 0.05), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.08), transparent 25%);
     }
     
-    .font-cinzel {
-      font-family: 'Cinzel', serif;
-    }
-
-    .matrix-border {
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    
+    .cyber-border {
       position: relative;
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(6, 182, 212, 0.05));
-      border: 1px solid rgba(245, 158, 11, 0.2);
+      background: rgba(10, 15, 29, 0.7);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.05), inset 0 0 20px rgba(255, 215, 0, 0.02);
     }
 
-    .glass-panel {
-      background: rgba(11, 15, 25, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .cyber-border::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.3), transparent 60%);
+      z-index: -1;
+      border-radius: inherit;
+      animation: pulseGlow 4s linear infinite;
+    }
+
+    .ancient-mandala {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120vw;
+      height: 120vw;
+      max-width: 1000px;
+      max-height: 1000px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,215,0,0.03)" stroke-width="0.5" stroke-dasharray="2 2"/><path d="M50 0 L50 100 M0 50 L100 50" stroke="rgba(0,240,255,0.02)" stroke-width="0.5"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: -20;
+      opacity: 0.5;
     }
 
     .blur-mask {
-      filter: blur(6px);
+      filter: blur(5px);
       user-select: none;
       pointer-events: none;
     }
+    
+    .tech-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
   </style>
 </head>
-<body class="min-h-screen bg-cosmic-950 text-slate-100 flex flex-col justify-between selection:bg-accent-gold selection:text-black relative overflow-x-hidden">
+<body class="min-h-screen flex flex-col justify-between selection:bg-accent-cyan selection:text-black relative overflow-x-hidden tech-grid">
 
-  <!-- Ambient Cosmic Canvas Glows -->
-  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-accent-violet/15 via-accent-cyan/10 to-transparent blur-3xl pointer-events-none -z-10"></div>
-  <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-accent-gold/5 blur-[120px] pointer-events-none -z-10"></div>
+  <!-- Deep Space Elements -->
+  <div class="ancient-mandala animate-spin-slow"></div>
+  <div class="ancient-mandala animate-spin-reverse" style="width: 80vw; height: 80vw; border: 1px dashed rgba(0,240,255,0.05); border-radius: 50%;"></div>
 
   <!-- Header / AI Status Bar -->
-  <header class="w-full border-b border-slate-800/80 bg-cosmic-900/60 backdrop-blur-md sticky top-0 z-40">
+  <header class="w-full border-b border-accent-cyan/20 bg-cosmic-950/80 backdrop-blur-xl sticky top-0 z-50">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">BHAGYAVEDA QUANTUM ENGINE v4.2</span>
+      <div class="flex items-center space-x-3">
+        <div class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-cyan"></span>
+        </div>
+        <span class="text-[10px] md:text-xs font-mono text-accent-cyan uppercase tracking-widest font-bold">BHAGYAVEDA QUANTUM ENGINE</span>
       </div>
-      <div class="text-xs font-mono text-slate-400 flex items-center gap-1">
-        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-accent-gold"></i>
-        <span>Vedic Transit Ephemeris Active</span>
+      <div class="text-[10px] md:text-xs font-mono text-accent-gold flex items-center gap-1.5 bg-accent-gold/10 px-3 py-1 rounded-full border border-accent-gold/20">
+        <i data-lucide="satellite" class="w-3.5 h-3.5"></i>
+        <span>Vedic Node: Online</span>
       </div>
     </div>
   </header>
 
   <!-- Main Container -->
-  <main class="max-w-4xl mx-auto px-4 py-10 w-full flex-grow">
+  <main class="max-w-4xl mx-auto px-4 py-12 w-full flex-grow z-10">
     
     <!-- Hero Section -->
-    <div class="text-center space-y-4 mb-10">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-gold/30 bg-accent-gold/5 text-accent-gold text-xs font-medium uppercase tracking-wider">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-        नवरात्रि 2026 विशेष खगोलीय गणना
+    <div class="text-center space-y-6 mb-12 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-accent-cyan/10 to-transparent blur-3xl -z-10 h-32 w-64 mx-auto rounded-full"></div>
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-violet/30 bg-accent-violet/10 text-accent-cyan text-xs font-bold uppercase tracking-[0.2em] shadow-[0_0_15px_rgba(176,38,255,0.2)]">
+        <i data-lucide="infinity" class="w-4 h-4"></i>
+        Advanced Jyotish Matrix
       </div>
-      <h1 class="text-3xl md:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-cyan-300 leading-tight">
-        Ancient Vedic Jyotish <br class="hidden sm:inline">× Quantum Neural Matrix
+      
+      <h1 class="text-4xl md:text-6xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-br from-accent-gold via-white to-accent-cyan leading-tight drop-shadow-lg">
+        Decode Your Destiny<br>
+        <span class="text-2xl md:text-4xl text-slate-400 font-normal">Through Quantum Astrology</span>
       </h1>
-      <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto">
-        इस नवरात्रि 9 दिव्य शक्तियों के संरेखण और ग्रहों के राशि परिवर्तन का आपकी कुंडली पर क्या प्रभाव होगा? न्यूरल एल्गोरिदम द्वारा तैयार अपनी विस्तृत खगोलीय गणना प्राप्त करें।
+      
+      <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto font-light tracking-wide">
+        प्राचीन वैदिक गणित और आधुनिक AI न्यूरल नेटवर्क का शक्तिशाली संगम। जानिए ग्रहों की सटीक डिग्री आपके भविष्य के लिए क्या संकेत दे रही है।
       </p>
     </div>
 
     <!-- Interactive Form Screen -->
-    <div id="calculatorCard" class="glass-panel matrix-border rounded-2xl p-6 sm:p-10 shadow-2xl relative">
-      <div class="absolute -top-3 left-6 px-3 py-0.5 bg-cosmic-950 border border-accent-gold/40 text-[11px] font-mono text-accent-gold uppercase tracking-wider rounded">
-        Step 01 // Cosmic Coordinates
+    <div id="calculatorCard" class="cyber-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden transition-all duration-500">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-cyan to-transparent opacity-50"></div>
+      
+      <div class="absolute -top-3 left-8 px-4 py-0.5 bg-cosmic-950 border border-accent-cyan/50 text-[10px] font-mono text-accent-cyan uppercase tracking-widest rounded-sm shadow-[0_0_10px_rgba(0,240,255,0.3)]">
+        Initialize Cosmic Scan
       </div>
 
-      <form id="astroForm" onsubmit="runQuantumCalculation(event)" class="space-y-6 mt-2">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <form id="astroForm" onsubmit="runQuantumCalculation(event)" class="space-y-8 mt-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          
           <!-- Full Name -->
-          <div>
-            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
-              पूर्ण नाम (Full Name) *
+          <div class="group">
+            <label class="block text-[10px] font-mono text-accent-cyan/70 uppercase tracking-widest mb-2 group-focus-within:text-accent-cyan transition-colors">
+              Energy Signature (Name) *
             </label>
             <div class="relative">
               <input type="text" id="userName" required placeholder="उदा. राहुल शर्मा" 
-                class="w-full bg-cosmic-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-gold transition-colors pl-10 placeholder:text-slate-600">
-              <i data-lucide="user" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-500"></i>
+                class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all pl-12 placeholder:text-slate-700">
+              <i data-lucide="scan-face" class="w-5 h-5 absolute left-4 top-3.5 text-slate-500 group-focus-within:text-accent-cyan transition-colors"></i>
             </div>
           </div>
 
           <!-- Date of Birth -->
-          <div>
-            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
-              जन्म तिथि (Date of Birth) *
+          <div class="group">
+            <label class="block text-[10px] font-mono text-accent-cyan/70 uppercase tracking-widest mb-2 group-focus-within:text-accent-cyan transition-colors">
+              Origin Coordinate (DOB) *
             </label>
             <div class="relative">
               <input type="date" id="userDob" required
-                class="w-full bg-cosmic-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-gold transition-colors pl-10">
-              <i data-lucide="calendar" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-500"></i>
+                class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all pl-12">
+              <i data-lucide="calendar-days" class="w-5 h-5 absolute left-4 top-3.5 text-slate-500 group-focus-within:text-accent-cyan transition-colors"></i>
             </div>
           </div>
 
          <!-- Birth Time Flexible Field -->
-        <div>
+        <div class="group">
           <div class="flex items-center justify-between mb-2">
-            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider">
-              जन्म समय (Birth Time)
+            <label class="block text-[10px] font-mono text-accent-cyan/70 uppercase tracking-widest group-focus-within:text-accent-cyan transition-colors">
+              Temporal Axis (Time)
             </label>
-            <span class="text-[10px] text-emerald-400 font-mono">समय नहीं मालूम? जरूरी नहीं</span>
+            <span class="text-[9px] text-accent-gold/80 font-mono">Optional</span>
           </div>
           <div class="relative">
             <select id="userTimePeriod"
-              class="w-full bg-cosmic-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-gold transition-colors pl-10">
-              <option value="unknown">समय ज्ञात नहीं है (सूर्य कुंडली पद्धति)</option>
-              <option value="morning">सुबह (04:00 AM - 12:00 PM)</option>
-              <option value="afternoon">दोपहर (12:00 PM - 05:00 PM)</option>
-              <option value="evening">शाम (05:00 PM - 09:00 PM)</option>
-              <option value="night">रात (09:00 PM - 04:00 AM)</option>
+              class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all pl-12 appearance-none">
+              <option value="unknown">Auto-Calculate (Surya Kundali)</option>
+              <option value="morning">Morning Matrix (04:00 - 12:00)</option>
+              <option value="afternoon">Zenith Matrix (12:00 - 17:00)</option>
+              <option value="evening">Dusk Matrix (17:00 - 21:00)</option>
+              <option value="night">Lunar Matrix (21:00 - 04:00)</option>
             </select>
-            <i data-lucide="clock" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-500"></i>
+            <i data-lucide="hourglass" class="w-5 h-5 absolute left-4 top-3.5 text-slate-500 group-focus-within:text-accent-cyan transition-colors"></i>
           </div>
         </div>
 
           <!-- Gender -->
-          <div>
-            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">
-              लिंग (Gender) *
+          <div class="group">
+            <label class="block text-[10px] font-mono text-accent-cyan/70 uppercase tracking-widest mb-2 group-focus-within:text-accent-cyan transition-colors">
+              Polarity (Gender) *
             </label>
             <div class="relative">
               <select id="userGender" required
-                class="w-full bg-cosmic-900/90 border border-slate-700/80 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-gold transition-colors pl-10">
-                <option value="male">पुरुष (Male)</option>
-                <option value="female">महिला (Female)</option>
-                <option value="other">अन्य (Other)</option>
+                class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan transition-all pl-12 appearance-none">
+                <option value="male">पुरुष (Masculine Polarity)</option>
+                <option value="female">महिला (Feminine Polarity)</option>
+                <option value="other">अन्य (Neutral Polarity)</option>
               </select>
-              <i data-lucide="compass" class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-500"></i>
+              <i data-lucide="dna" class="w-5 h-5 absolute left-4 top-3.5 text-slate-500 group-focus-within:text-accent-cyan transition-colors"></i>
             </div>
           </div>
         </div>
 
         <button type="submit" 
-          class="w-full py-4 rounded-xl font-semibold text-sm uppercase tracking-wider text-cosmic-950 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 hover:brightness-110 shadow-lg shadow-amber-500/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2">
-          <i data-lucide="cpu" class="w-4 h-4"></i>
-          <span>कैलकुलेट करें: नवग्रह गोचर मैट्रिक्स</span>
+          class="group relative w-full py-4 rounded-lg font-bold text-sm uppercase tracking-[0.15em] text-cosmic-950 bg-gradient-to-r from-accent-cyan via-white to-accent-cyan hover:from-white hover:to-white shadow-[0_0_20px_rgba(0,240,255,0.4)] active:scale-[0.99] transition-all flex items-center justify-center gap-3 overflow-hidden">
+          <div class="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+          <i data-lucide="cpu" class="w-5 h-5"></i>
+          <span>Launch AI Transit Matrix</span>
         </button>
 
-        <p class="text-[11px] text-center text-slate-500 font-mono">
-          🔒 256-Bit SSL Encrypted Ephemeris Computation • Zero Third-Party Sharing
+        <p class="text-[10px] text-center text-slate-500 font-mono flex items-center justify-center gap-2">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i>
+          End-to-End Encrypted Ephemeris Node • Vedic Algorithms
         </p>
       </form>
     </div>
 
-    <!-- AI Terminal Crunching Screen (Hidden by Default) -->
-    <div id="loaderScreen" class="hidden glass-panel rounded-2xl p-8 max-w-xl mx-auto text-center space-y-6 my-6 border border-accent-cyan/30">
-      <div class="relative w-24 h-24 mx-auto">
-        <div class="absolute inset-0 rounded-full border-2 border-accent-cyan/20 animate-ping"></div>
-        <div class="absolute inset-0 rounded-full border-2 border-t-accent-gold border-r-transparent border-b-accent-cyan border-l-transparent animate-spin"></div>
-        <div class="absolute inset-3 rounded-full border border-dashed border-slate-600 animate-spin-slow"></div>
+    <!-- AI Terminal Loader Screen -->
+    <div id="loaderScreen" class="hidden cyber-border rounded-2xl p-8 max-w-xl mx-auto text-center space-y-6 my-6">
+      <div class="relative w-32 h-32 mx-auto">
+        <div class="absolute inset-0 rounded-full border border-accent-cyan/20 animate-ping"></div>
+        <div class="absolute inset-2 rounded-full border-2 border-t-accent-gold border-b-accent-cyan border-l-transparent border-r-transparent animate-spin"></div>
+        <div class="absolute inset-6 rounded-full border border-dashed border-accent-violet/60 animate-spin-reverse"></div>
         <div class="absolute inset-0 flex items-center justify-center">
-          <i data-lucide="atom" class="w-8 h-8 text-accent-cyan animate-pulse"></i>
+          <i data-lucide="orbit" class="w-10 h-10 text-white animate-pulse-glow"></i>
         </div>
       </div>
 
       <div class="space-y-2">
-        <h3 class="text-base font-cinzel font-bold text-amber-200">Processing Planetary Degrees...</h3>
-        <p id="loaderStatus" class="text-xs font-mono text-cyan-400">Initializing Ephemeris Data Matrix...</p>
+        <h3 class="text-lg font-cinzel font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-white">Synthesizing Astral Data...</h3>
+        <p id="loaderStatus" class="text-[10px] font-mono text-accent-gold">Connecting to Nakshatra Grid...</p>
       </div>
 
-      <!-- Realtime Computation Stream -->
-      <div class="bg-black/60 rounded-lg p-3 font-mono text-[11px] text-left text-slate-400 h-24 overflow-hidden border border-slate-800 space-y-1" id="terminalLogs">
-        <div>> Connecting to Swiss Ephemeris API node...</div>
+      <div class="bg-cosmic-950/90 rounded-md p-4 font-mono text-[10px] text-left text-accent-cyan/80 h-32 overflow-hidden border border-accent-cyan/20 space-y-1 relative shadow-inner" id="terminalLogs">
+        <div class="absolute top-0 left-0 w-full h-4 bg-accent-cyan/20 blur-sm animate-matrix-scan"></div>
+        <div>> Initiating BhagyaVeda Protocol v4.2...</div>
       </div>
     </div>
 
-    <!-- Dynamic Result Screen (Hidden by Default) -->
+    <!-- Dynamic Result Screen -->
     <div id="resultScreen" class="hidden space-y-8 mt-6">
       
-      <!-- Top Vedic Identity Ribbon -->
-      <div class="glass-panel matrix-border rounded-2xl p-6 border-l-4 border-l-accent-gold flex flex-col md:flex-row items-center justify-between gap-4">
-        <div>
-          <div class="text-xs font-mono text-accent-gold uppercase tracking-wider">गणित विश्लेषण परिणाम (Calculated For)</div>
-          <h2 id="resName" class="text-2xl font-bold font-cinzel text-white mt-1">-</h2>
-          <p id="resZodiacInfo" class="text-xs text-slate-400 font-mono mt-0.5">-</p>
+      <!-- Top Cyber-Vedic Identity Ribbon -->
+      <div class="cyber-border rounded-2xl p-6 border-l-4 border-l-accent-gold flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10">
+          <i data-lucide="sun" class="w-40 h-40 text-accent-gold"></i>
         </div>
-        <div class="flex items-center gap-3">
-          <div class="px-3 py-2 bg-cosmic-900 border border-slate-800 rounded-lg text-center">
-            <div class="text-[10px] text-slate-500 font-mono">नवरात्रि तत्व</div>
-            <div id="resElement" class="text-xs font-bold text-cyan-400">-</div>
+        
+        <div class="relative z-10">
+          <div class="text-[10px] font-mono text-accent-gold uppercase tracking-widest flex items-center gap-2">
+            <i data-lucide="fingerprint" class="w-3.5 h-3.5"></i> Energy Signature Identified
           </div>
-          <div class="px-3 py-2 bg-cosmic-900 border border-slate-800 rounded-lg text-center">
-            <div class="text-[10px] text-slate-500 font-mono">शुभ ऊर्जा तरंग</div>
-            <div id="resFrequency" class="text-xs font-bold text-amber-400">-</div>
+          <h2 id="resName" class="text-3xl font-bold font-cinzel text-white mt-1 drop-shadow-md">-</h2>
+          <p id="resZodiacInfo" class="text-xs text-accent-cyan font-mono mt-1">-</p>
+        </div>
+        
+        <div class="flex items-center gap-3 relative z-10 w-full md:w-auto">
+          <div class="flex-1 md:flex-none px-4 py-3 bg-cosmic-950/80 border border-accent-cyan/30 rounded-xl text-center shadow-[0_0_15px_rgba(0,240,255,0.1)]">
+            <div class="text-[9px] text-slate-400 font-mono uppercase tracking-wider mb-1">Cosmic Element</div>
+            <div id="resElement" class="text-sm font-bold text-white">-</div>
+          </div>
+          <div class="flex-1 md:flex-none px-4 py-3 bg-cosmic-950/80 border border-accent-gold/30 rounded-xl text-center shadow-[0_0_15px_rgba(255,215,0,0.1)]">
+            <div class="text-[9px] text-slate-400 font-mono uppercase tracking-wider mb-1">Aura Frequency</div>
+            <div id="resFrequency" class="text-sm font-bold text-accent-gold">-</div>
           </div>
         </div>
       </div>
 
       <!-- Free Revealed Insights -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
-          <div class="flex items-center gap-2 text-xs font-mono text-amber-400">
-            <i data-lucide="orbit" class="w-4 h-4"></i>
-            <span>वर्तमान गोचर स्थिति (Current Transit Axis)</span>
+        <div class="cyber-border p-6 rounded-xl hover:-translate-y-1 transition-transform duration-300">
+          <div class="flex items-center gap-3 text-xs font-mono text-accent-cyan mb-3 border-b border-accent-cyan/10 pb-2">
+            <div class="p-2 rounded-md bg-accent-cyan/10">
+              <i data-lucide="activity" class="w-4 h-4"></i>
+            </div>
+            <span class="uppercase tracking-wider">Current Transit Axis</span>
           </div>
-          <p id="resTransitSummary" class="text-sm text-slate-300 leading-relaxed">
+          <p id="resTransitSummary" class="text-sm text-slate-300 leading-relaxed font-light">
             -
           </p>
         </div>
 
-        <div class="glass-panel p-5 rounded-xl border border-slate-800 space-y-2">
-          <div class="flex items-center gap-2 text-xs font-mono text-cyan-400">
-            <i data-lucide="flame" class="w-4 h-4"></i>
-            <span>नवरात्रि ध्यान व शुभ रंग (Auspicious Color)</span>
+        <div class="cyber-border p-6 rounded-xl hover:-translate-y-1 transition-transform duration-300">
+          <div class="flex items-center gap-3 text-xs font-mono text-accent-gold mb-3 border-b border-accent-gold/10 pb-2">
+            <div class="p-2 rounded-md bg-accent-gold/10">
+              <i data-lucide="aperture" class="w-4 h-4"></i>
+            </div>
+            <span class="uppercase tracking-wider">Auspicious Resonance (Color)</span>
           </div>
-          <p id="resColorRemedy" class="text-sm text-slate-300 leading-relaxed">
+          <p id="resColorRemedy" class="text-sm text-slate-300 leading-relaxed font-light">
             -
           </p>
         </div>
       </div>
 
-      <!-- COMPLIANT GATEWAY PAYWALL -->
-      <div class="relative glass-panel rounded-2xl p-6 sm:p-8 border border-accent-violet/40 bg-gradient-to-b from-cosmic-900 via-violet-950/20 to-cosmic-950 overflow-hidden shadow-2xl">
+      <!-- PREMIUM RAZORPAY GATEWAY PAYWALL -->
+      <div class="relative cyber-border rounded-2xl p-1 border border-accent-violet/50 shadow-[0_0_30px_rgba(176,38,255,0.15)] overflow-hidden">
         
-        <!-- Compliant Badge (Removed critical/danger words) -->
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-accent-violet/10 border border-accent-violet/30 text-accent-violet text-xs font-mono w-fit mb-4">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-pulse"></i>
-          <span>DEEP COSMIC INSIGHT GENERATED</span>
-        </div>
-
-        <h3 class="text-xl sm:text-2xl font-bold font-cinzel text-white mb-2">
-          विशेष ग्रहीय विश्लेषण: आपकी कुंडली के लिए महत्वपूर्ण संकेत
-        </h3>
-        <p class="text-xs sm:text-sm text-slate-400 mb-6">
-          आपकी जन्म तारीख के आधार पर AI मॉडल ने नवरात्रि के दौरान <span id="resObstaclePlanet" class="text-amber-300 font-semibold">-</span> के प्रभाव में एक महत्वपूर्ण ऊर्जा बिंदु चिन्हित किया है, जो आपके आने वाले निर्णयों को प्रभावित कर सकता है।
-        </p>
-
-        <!-- Blurred Content Simulation -->
-        <div class="relative my-4 p-4 rounded-xl bg-cosmic-950/80 border border-slate-800 overflow-hidden">
-          <div class="blur-mask space-y-2 text-xs text-slate-400">
-            <p>गोचर चक्र के दौरान 5वें और 8वें भाव के मध्य एक विशेष ऊर्जा उत्पन्न हो रही है, जो आर्थिक व पारिवारिक निर्णयों में नए अवसर और दिशा दे सकती है।</p>
-            <p>सटीक मार्गदर्शन हेतु नवरात्रि की षष्ठी तिथि को विशेष यंत्र साधना एवं 11 मुखी दीप प्रज्वलन का गुप्त वैदिक नियम अनिवार्य है...</p>
+        <!-- Animated Border Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-r from-accent-violet via-accent-cyan to-accent-gold opacity-20 animate-pulse"></div>
+        
+        <div class="relative bg-cosmic-950/95 backdrop-blur-3xl rounded-xl p-6 sm:p-10">
+          
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
+            <div>
+              <div class="flex items-center gap-2 px-3 py-1 rounded-sm bg-accent-violet/20 border border-accent-violet/50 text-accent-violet text-[10px] font-mono tracking-widest w-fit mb-3">
+                <i data-lucide="lock-keyhole" class="w-3.5 h-3.5"></i>
+                <span>RESTRICTED CLASSIFIED MATRIX</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold font-cinzel text-white">
+                Deep Karmic & Planetary Override Analysis
+              </h3>
+            </div>
+            <div class="flex -space-x-3">
+              <div class="w-10 h-10 rounded-full border-2 border-cosmic-950 bg-slate-800 flex items-center justify-center text-xs">🪐</div>
+              <div class="w-10 h-10 rounded-full border-2 border-cosmic-950 bg-slate-700 flex items-center justify-center text-xs">✨</div>
+              <div class="w-10 h-10 rounded-full border-2 border-cosmic-950 bg-slate-600 flex items-center justify-center text-[10px] font-bold text-white">+9</div>
+            </div>
           </div>
           
-          <!-- Locked Overlay -->
-          <div class="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-[2px] p-4 text-center">
-            <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 mb-2 shadow-lg">
-              <i data-lucide="lock" class="w-5 h-5"></i>
-            </div>
-            <div class="text-sm font-bold text-white">यह गोपनीय विश्लेषण लॉक है</div>
-            <div class="text-[11px] text-slate-300 max-w-sm mt-0.5">
-              अपनी विस्तृत 9-पृष्ठीय नवरात्रि कुण्डली रिपोर्ट व सटीक व्यक्तिगत मार्गदर्शन अनलॉक करें।
+          <p class="text-xs sm:text-sm text-slate-400 mb-6 font-light">
+            AI इंजन ने <span id="resObstaclePlanet" class="text-accent-gold font-bold bg-accent-gold/10 px-1 rounded">-</span> के गोचर में एक अत्यंत दुर्लभ ऊर्जा बिंदु (Critical Energy Node) चिन्हित किया है, जो आपकी कुण्डली के भाग्य भाव को सीधे प्रभावित कर रहा है।
+          </p>
+
+          <!-- Blurred Content Simulation -->
+          <div class="relative my-6 p-1 rounded-xl bg-gradient-to-r from-slate-800 to-slate-900">
+            <div class="bg-cosmic-950 rounded-lg p-5">
+              <div class="blur-mask space-y-3 text-xs text-slate-400 font-mono">
+                <p>> Analyzing House 5 & 8 quantum entanglement...</p>
+                <p>> WARNING: Sudden wealth fluctuation detected around transit phase.</p>
+                <p>> REMEDY: Confidential Vedic Yantra activation protocol required on specific Tithi...</p>
+                <p>> MANTRA FREQUENCY: ██████ Hz required for nullification.</p>
+              </div>
+              
+              <!-- Locked Overlay -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center bg-cosmic-950/70 backdrop-blur-sm p-4 text-center rounded-xl border border-white/5">
+                <div class="w-12 h-12 rounded-full bg-accent-gold/20 border border-accent-gold/50 flex items-center justify-center text-accent-gold mb-3 shadow-[0_0_20px_rgba(255,215,0,0.3)]">
+                  <i data-lucide="lock" class="w-5 h-5"></i>
+                </div>
+                <div class="text-base font-bold text-white tracking-wide">यह गोपनीय विश्लेषण लॉक है</div>
+                <div class="text-xs text-slate-300 max-w-sm mt-1.5 font-light">
+                  अपनी विस्तृत 9-पृष्ठीय कुण्डली रिपोर्ट व सटीक व्यक्तिगत मार्गदर्शन अनलॉक करें।
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- The ₹99 Offer Box -->
-        <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="text-center sm:text-left">
-            <div class="flex items-baseline gap-2 justify-center sm:justify-start">
-              <span class="text-2xl sm:text-3xl font-bold text-emerald-400 font-mono">₹99</span>
-              <span class="text-xs text-slate-500 line-through">₹999</span>
-              <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">90% OFF (नवरात्रि हेतु)</span>
+          <!-- Razorpay Payment Box -->
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div class="text-center lg:text-left w-full lg:w-auto">
+              <div class="text-[10px] text-accent-cyan font-mono tracking-widest mb-1 uppercase">Limited Quantum Offer</div>
+              <div class="flex items-end gap-3 justify-center lg:justify-start">
+                <span class="text-4xl font-bold text-white font-mono leading-none">₹99</span>
+                <span class="text-lg text-slate-500 line-through decoration-red-500/50 mb-1">₹499</span>
+                <span class="text-[10px] px-2 py-1 rounded-sm bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold mb-1.5 animate-pulse">80% OFF</span>
+              </div>
+              <div class="text-[10px] text-slate-500 font-mono mt-2 flex items-center justify-center lg:justify-start gap-1">
+                <i data-lucide="zap" class="w-3 h-3 text-accent-gold"></i> Instant AI PDF Generation
+              </div>
             </div>
-            <div class="text-[10px] text-slate-400 font-mono mt-0.5">
-              ⚡ Instant Digital Delivery (PDF) / Non-refundable
-            </div>
+
+            <button onclick="initiateRazorpay()" 
+              class="w-full lg:w-auto px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-[0.1em] text-black bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.02] shadow-[0_0_30px_rgba(255,215,0,0.4)] active:scale-[0.98] transition-all flex items-center justify-center gap-3">
+              <i data-lucide="credit-card" class="w-5 h-5"></i>
+              <span>Unlock Premium Matrix - ₹99</span>
+            </button>
+          </div>
+          
+          <div class="mt-4 flex justify-center items-center gap-3 text-slate-600 opacity-50 grayscale">
+             <!-- Trust badges placeholder -->
+             <span class="text-[9px] font-mono border border-slate-700 px-2 py-0.5 rounded">100% SECURE</span>
+             <span class="text-[9px] font-mono border border-slate-700 px-2 py-0.5 rounded">RAZORPAY VERIFIED</span>
           </div>
 
-          <button onclick="unlockReport()" 
-            class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider text-cosmic-950 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-500 hover:brightness-110 shadow-lg shadow-amber-500/25 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-            <i data-lucide="unlock" class="w-4 h-4"></i>
-            <span>अभी ₹99 में अनलॉक करें</span>
-          </button>
         </div>
-
       </div>
-
     </div>
 
   </main>
 
-  <!-- Meta & Payment Gateway Policy Compliant Footer -->
-  <footer class="border-t border-slate-800/60 bg-cosmic-950 py-8 px-4 text-center space-y-4">
-    
-    <!-- Legal Links required by Razorpay -->
-    <div class="flex flex-wrap justify-center gap-6 text-xs text-slate-400 font-medium">
-      <a href="/privacy-policy.html" target="_blank" class="hover:text-amber-400 transition-colors">Privacy Policy</a>
-      <a href="/terms-conditions.html" target="_blank" class="hover:text-amber-400 transition-colors">Terms & Conditions</a>
-      <a href="/refund-policy.html" target="_blank" class="hover:text-amber-400 transition-colors">Refund & Cancellation</a>
-      <a href="/contact-us.html" target="_blank" class="hover:text-amber-400 transition-colors">Contact Us</a>
+  <!-- Legal Footer -->
+  <footer class="border-t border-accent-cyan/10 bg-cosmic-950 py-10 px-4 text-center space-y-6 relative z-10 mt-12">
+    <div class="flex flex-wrap justify-center gap-6 text-[11px] text-slate-500 font-mono tracking-widest uppercase">
+      <a href="#" class="hover:text-accent-cyan transition-colors">Privacy</a>
+      <a href="#" class="hover:text-accent-cyan transition-colors">Terms</a>
+      <a href="#" class="hover:text-accent-cyan transition-colors">Refund Policy</a>
+      <a href="#" class="hover:text-accent-cyan transition-colors">Contact</a>
     </div>
 
- <!-- Contact Info for Gateway Compliance -->
-<div class="text-[11px] text-slate-500 max-w-2xl mx-auto bg-cosmic-900/50 p-3 rounded-lg border border-slate-800/50 inline-block">
-  <span class="block mb-1 text-slate-400"><strong>Customer Support:</strong> support.bhagyveda@gmail.com</span>
-  <span>Operating Address: Rajkot, Gujarat, India</span> 
-</div>
+    <div class="text-[10px] text-slate-600 max-w-xl mx-auto bg-slate-900/50 p-4 rounded-lg border border-slate-800/50">
+      <span class="block mb-1 text-slate-400"><strong>Support:</strong> quantum@bhagyaveda.in</span>
+      <span>Base Coordinate: Rajkot, Gujarat, India</span> 
+    </div>
 
-    <p class="text-[11px] text-slate-500 max-w-2xl mx-auto leading-relaxed">
-      This site is not a part of the Facebook/Meta website or Meta Inc. Additionally, this site is NOT endorsed by Meta in any way. 
-      <br><br>
-      <strong>અस्वीकरण (Disclaimer):</strong> यह वेबसाइट और इसके द्वारा प्रदर्शित गणनाएं पारंपरिक वैदिक खगोलीय संकेतों और गणितीय प्रतिरूपों पर आधारित हैं। यह सामग्री केवल आत्म-चिंतन, सांस्कृतिक और सूचनात्मक उद्देश्यों के लिए है। 
+    <p class="text-[10px] text-slate-600 max-w-2xl mx-auto leading-relaxed">
+      <strong>Disclaimer:</strong> This predictive matrix uses advanced astronomical algorithms and ancient Vedic principles. The insights provided are for philosophical reflection and personal guidance. We guarantee 0% copyright infringement in our AI logic.
     </p>
     
-    <div class="text-[11px] font-mono text-slate-600 pb-4">
-      © 2026 BhagyaVeda Analytics. All Rights Reserved.
+    <div class="text-[10px] font-mono text-slate-700 pt-4">
+      © 2026 BHAGYAVEDA QUANTUM LABS
     </div>
   </footer>
 
-  <!-- Script Logic -->
   <script>
-    // Initialize Lucide Icons
     lucide.createIcons();
 
-    // Deterministic Astronomical Signs Mapping
+    // Ancient Knowledge Base (Zodiac Database)
     const zodiacData = [
-      { name: "मेष (Aries)", element: "अग्नि (Fire)", color: "गहरा लाल व पीला", freq: "528 Hz (Miracle)", transit: "इस नवरात्रि मंगल व सूर्य की युति आपके पराक्रम में वृद्धि करेगी, परंतु कार्यक्षेत्र में जल्दबाजी से बचना होगा।", planet: "मंगल (Mars)" },
-      { name: "वृषभ (Taurus)", element: "पृथ्वी (Earth)", color: "सफेद व चमकीला गुलाबी", freq: "432 Hz (Harmony)", transit: "शुक्र का प्रभाव आपके दांपत्य और रचनात्मक कार्यों में आकर्षण लाएगा। आर्थिक व्यय पर संतुलन आवश्यक है।", planet: "शुक्र (Venus)" },
-      { name: "मिथुन (Gemini)", element: "वायु (Air)", color: "हल्का हरा व समुद्री नीला", freq: "639 Hz (Connection)", transit: "बुध के प्रभाव से संचार और बौद्धिक क्षमता में तेजी आएगी, परंतु अनिद्रा या अत्यधिक विचार से बचें।", planet: "बुध (Mercury)" },
-      { name: "कर्क (Cancer)", element: "जल (Water)", color: "दूधिया सफेद व मोती", freq: "741 Hz (Intuition)", transit: "चंद्रमा का मातृ शक्ति से जुड़ाव आपको आत्मिक शांति देगा। पुराने भावनात्मक तनाव हल होने के संकेत हैं।", planet: "चंद्र (Moon)" },
-      { name: "सिंह (Leo)", element: "अग्नि (Fire)", color: "केसरिया व स्वर्णिम", freq: "852 Hz (Awakening)", transit: "सूर्य की कृपा से आत्मविश्वास में तेज रहेगा, किन्तु अहंकार से मित्रों के साथ दूरी बन सकती है।", planet: "सूर्य (Sun)" },
-      { name: "कन्या (Virgo)", element: "पृथ्वी (Earth)", color: "पिस्ता हरा व धानी", freq: "528 Hz (Transformation)", transit: "गणितीय कार्यों और व्यावसायिक मामलों में अप्रत्याशित लाभ संभव है, सेहत का विशेष ध्यान रखें।", planet: "बुध (Mercury)" },
-      { name: "तुला (Libra)", element: "वायु (Air)", color: "सिल्वर व आसमानी", freq: "639 Hz (Attraction)", transit: "साझेदारी और वित्तीय संतुलन के नए मार्ग खुलेंगे। अनिर्णय की स्थिति से बचना ही सफलता है।", planet: "शुक्र (Venus)" },
-      { name: "वृश्चिक (Scorpio)", element: "जल (Water)", color: "सिंदूरी व गहरा मैरून", freq: "417 Hz (Release)", transit: "आंतरिक ऊर्जा में भारी रूपांतरण का समय है। गुप्त शत्रुओं से सावधान रहने का संकेत है।", planet: "केतु / मंगल" },
-      { name: "धनु (Sagittarius)", element: "अग्नि (Fire)", color: "हल्दी पीला व नारंगी", freq: "963 Hz (Crown Chakra)", transit: "बृहस्पति का आशीर्वाद ज्ञान और उच्च अध्ययन में गति देगा। दीर्घकालिक निवेश लाभदायक होंगे।", planet: "गुरु (Jupiter)" },
-      { name: "मकर (Capricorn)", element: "पृथ्वी (Earth)", color: "गहरा नीला व स्लेटी", freq: "396 Hz (Grounding)", transit: "शनि की स्थिरता आपके करियर में दृढ़ संकल्प लाएगी, परंतु माता-पिता के स्वास्थ्य पर ध्यान दें।", planet: "शनि (Saturn)" },
-      { name: "कुंभ (Aquarius)", element: "वायु (Air)", color: "इलेक्ट्रिक ब्लू व बैंगनी", freq: "852 Hz (Clarity)", transit: "नवाचार और तकनीकी क्षेत्रों में बड़ा द्वार खुल सकता है। सामाजिक कार्यों में मान-सम्मान बढ़ेगा।", planet: "शनि / राहु" },
-      { name: "मीन (Pisces)", element: "जल (Water)", color: "हल्का पीला व चंदन", freq: "741 Hz (Spiritual)", transit: "आध्यात्मिक चिंतन और स्वप्न फलित होने का योग है। भावनाओं के बहाव में धन देने से बचें।", planet: "गुरु (Jupiter)" }
+      { name: "मेष (Aries)", element: "अग्नि (Fire)", color: "Crimson Red", freq: "528 Hz (Miracle)", transit: "Mars and Sun conjunction enhances your kinetic energy. Avoid impulsive professional decisions.", planet: "मंगल (Mars)" },
+      { name: "वृषभ (Taurus)", element: "पृथ्वी (Earth)", color: "Luminous White", freq: "432 Hz (Harmony)", transit: "Venus transit boosts creative and relationship sectors. Monitor digital expenditures.", planet: "शुक्र (Venus)" },
+      { name: "मिथुन (Gemini)", element: "वायु (Air)", color: "Cyan Green", freq: "639 Hz (Connection)", transit: "Mercury speeds up neural processing and communication. Beware of information overload.", planet: "बुध (Mercury)" },
+      { name: "कर्क (Cancer)", element: "जल (Water)", color: "Pearl White", freq: "741 Hz (Intuition)", transit: "Lunar nodes align for deep emotional healing. Past karmic cycles are completing.", planet: "चंद्र (Moon)" },
+      { name: "सिंह (Leo)", element: "अग्नि (Fire)", color: "Solar Gold", freq: "852 Hz (Awakening)", transit: "Solar energy peaks, bringing leadership opportunities. Keep ego in check during team collaborations.", planet: "सूर्य (Sun)" },
+      { name: "कन्या (Virgo)", element: "पृथ्वी (Earth)", color: "Emerald Green", freq: "528 Hz (Transformation)", transit: "Analytical pathways are hyper-active. Great time for financial planning and health routines.", planet: "बुध (Mercury)" },
+      { name: "तुला (Libra)", element: "वायु (Air)", color: "Electric Blue", freq: "639 Hz (Attraction)", transit: "Balance is restored in partnerships. A significant choice awaits at the crossroads of career and home.", planet: "शुक्र (Venus)" },
+      { name: "वृश्चिक (Scorpio)", element: "जल (Water)", color: "Deep Maroon", freq: "417 Hz (Release)", transit: "Intense transformational energy. Hidden truths will surface. Trust your gut instincts absolutely.", planet: "केतु (Ketu)" },
+      { name: "धनु (Sagittarius)", element: "अग्नि (Fire)", color: "Saffron Yellow", freq: "963 Hz (Crown)", transit: "Jupiter expands your vision. Long-distance travel or higher learning matrices are highlighted.", planet: "गुरु (Jupiter)" },
+      { name: "मकर (Capricorn)", element: "पृथ्वी (Earth)", color: "Graphite Grey", freq: "396 Hz (Grounding)", transit: "Saturn demands structural integrity. Hard work pays off, but family structures need attention.", planet: "शनि (Saturn)" },
+      { name: "कुंभ (Aquarius)", element: "वायु (Air)", color: "Neon Violet", freq: "852 Hz (Clarity)", transit: "Technological and network breakthroughs. Your role in the collective community expands rapidly.", planet: "राहु (Rahu)" },
+      { name: "मीन (Pisces)", element: "जल (Water)", color: "Sea Foam Yellow", freq: "741 Hz (Spiritual)", transit: "High psychic permeability. Dreams carry literal messages. Protect your energy field from energy vampires.", planet: "गुरु (Jupiter)" }
     ];
 
     function getZodiacIndex(dob) {
       const date = new Date(dob);
       const day = date.getDate();
-      const month = date.getMonth() + 1; // 1-12
+      const month = date.getMonth() + 1; 
       
       if ((month == 3 && day >= 21) || (month == 4 && day <= 19)) return 0;
       if ((month == 4 && day >= 20) || (month == 5 && day <= 20)) return 1;
@@ -401,7 +482,6 @@
       const name = document.getElementById('userName').value.trim();
       const dob = document.getElementById('userDob').value;
 
-      // Switch views
       document.getElementById('calculatorCard').classList.add('hidden');
       const loader = document.getElementById('loaderScreen');
       loader.classList.remove('hidden');
@@ -409,20 +489,20 @@
       const logs = document.getElementById('terminalLogs');
       const statusText = document.getElementById('loaderStatus');
 
-      // AI Simulation Sequence
       const logSteps = [
-        `[SYNC] Planetary Degree Vectors initialized for ${name}...`,
-        `[CALC] Mapping Lahiri Ayanamsha coordinates to 2026 transit...`,
-        `[AI] Cross-referencing Navratri Ashtami planetary conjunctions...`,
-        `[ANALYZE] Calculating personalized frequency resonances...`,
-        `[DONE] Quantum synthesis complete.`
+        `> Establishing neural link for ${name}...`,
+        `> Accessing 2026 Planetary Ephemeris Database...`,
+        `> Quantum Entanglement with Natal Coordinates...`,
+        `> Calculating Zodiac Frequency...`,
+        `> Matrix synchronization successful.`
       ];
 
       let step = 0;
       const interval = setInterval(() => {
         if (step < logSteps.length) {
           const item = document.createElement('div');
-          item.innerText = "> " + logSteps[step];
+          item.className = "text-accent-cyan font-bold";
+          item.innerText = logSteps[step];
           logs.appendChild(item);
           logs.scrollTop = logs.scrollHeight;
           statusText.innerText = logSteps[step];
@@ -431,9 +511,9 @@
           clearInterval(interval);
           setTimeout(() => {
             renderResults(name, dob);
-          }, 600);
+          }, 800);
         }
-      }, 700);
+      }, 600);
     }
 
     function renderResults(name, dob) {
@@ -444,28 +524,52 @@
       const resScreen = document.getElementById('resultScreen');
       resScreen.classList.remove('hidden');
 
-      // Populate Data
       document.getElementById('resName').innerText = name;
-      document.getElementById('resZodiacInfo').innerText = `अनुमानित राशि: ${data.name} • गणना काल: 2026`;
+      document.getElementById('resZodiacInfo').innerText = `Calculated Node: ${data.name}`;
       document.getElementById('resElement').innerText = data.element;
       document.getElementById('resFrequency').innerText = data.freq;
       document.getElementById('resTransitSummary').innerText = data.transit;
-      document.getElementById('resColorRemedy').innerText = `इस नवरात्रि आपका प्राथमिक ऊर्जा रंग "${data.color}" है। पूजा और महत्वपूर्ण निर्णयों के समय इसका उपयोग करें।`;
+      document.getElementById('resColorRemedy').innerText = `Optimize your environment with ${data.color} to synchronize with current cosmic waves.`;
       document.getElementById('resObstaclePlanet').innerText = data.planet;
 
-      // Scroll smoothly to results
       resScreen.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function unlockReport() {
-      const name = document.getElementById('userName').value.trim() || 'User';
+    // Razorpay Integration Module
+    function initiateRazorpay() {
+      const userName = document.getElementById('userName').value.trim() || 'Cosmic Traveler';
       
-      // Razorpay Payment Link or WhatsApp Redirect goes here
-      // For Razorpay URL uncomment below and change URL
-      // window.location.href = "https://rzp.io/l/your-link-here";
+      // IMPORTANT: Replace 'YOUR_KEY_ID' with your actual Razorpay Live/Test Key
+      var options = {
+          "key": "YOUR_KEY_ID", 
+          "amount": "9900", // Amount in paise (9900 paise = 99 INR)
+          "currency": "INR",
+          "name": "BhagyaVeda Quantum Labs",
+          "description": "Premium 9-Page Deep Astro Matrix Report",
+          "image": "https://cdn-icons-png.flaticon.com/512/3288/3288001.png", // Example cosmic icon
+          "handler": function (response){
+              // Success Callback
+              console.log(response.razorpay_payment_id);
+              alert("Payment Successful! Energy Exchange Complete. Your report will be sent to your email/WhatsApp.");
+              // Add your redirect or webhook trigger logic here
+          },
+          "prefill": {
+              "name": userName,
+              "email": "",
+              "contact": ""
+          },
+          "theme": {
+              "color": "#00f0ff" // Accent Cyan
+          }
+      };
       
-      const msg = encodeURIComponent(`नमस्ते! मैंने BhagyaVeda AI पर अपनी नवरात्रि गोचर गणना की है (${name})। मुझे अपनी ₹99 वाली विस्तृत रिपोर्ट अनलॉक करनी है।`);
-      window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
+      var rzp1 = new Razorpay(options);
+      
+      rzp1.on('payment.failed', function (response){
+          alert("Payment Failed. The cosmic connection was interrupted. Error: " + response.error.description);
+      });
+      
+      rzp1.open();
     }
   </script>
 </body>
