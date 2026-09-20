@@ -103,7 +103,7 @@
         આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ગ્રહોની દિશા અને દશા!
       </h1>
       <p class="text-slate-300 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
-        સમય વગર પણ ૧૦૦% શાસ્ત્રોક્ત પરિણામ. પ્રાચીન વૈદિક સૂર્ય સિદ્ધાંત દ્વારા તમારા જીવનનું સચોટ માર્ગદર્શન.
+        સમય વગર પણ ૧૦૦% શાસ્ત્રોક્ત પરિણામ. પ્રાચીન વૈદિક સૂર્ય સિદ્ધાંત દ્વારા તમારા જીવનનું સચોટ વિશ્લેષણ અને માર્ગદર્શન.
       </p>
     </div>
 
@@ -263,11 +263,14 @@
 
   <footer class="border-t border-accent-red/10 bg-cosmic-950 py-10 px-4 text-center text-[10px] text-slate-600 font-mono mt-16 relative z-10">
     <p class="text-slate-500 mb-2 uppercase tracking-widest">૧૦૦% સચોટ • શાસ્ત્રોક્ત વૈદિક ગણતરી • આધાર: પ્રાચીન સૂર્ય કુંડળી</p>
-    © 2026 Bhagyaveda Instant Labs. All prediction data is based on astrological calculations and is for guidance purposes only.
+    © 2026 Bhagyaveda Labs. All prediction data is based on astrological calculations and is for guidance purposes only.
   </footer>
 
   <script>
     lucide.createIcons();
+
+    // લાઈવ સર્વરનું URL અહીં આવશે (Render લાઈવ થયા પછી આ લાઈન બદલીશું)
+    const BACKEND_URL = "http://localhost:5000";
 
     function startTimer(duration) {
       let timer = duration, minutes, seconds;
@@ -282,137 +285,73 @@
       }, 1000);
     }
 
-    function generateSeed(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        let char = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-      }
-      return Math.abs(hash);
-    }
-
-    function seededRandom(seed) {
-      var x = Math.sin(seed++) * 10000;
-      return x - Math.floor(x);
-    }
-
-    const traitsArr = [
-      "તમારું વ્યક્તિત્વ ખૂબ જ મજબૂત અને સ્પષ્ટ છે. તમે જે વિચારો છો તે જ બોલો છો, જેને કારણે ક્યારેક લોકો તમને ખોટા સમજી લે છે, પરંતુ હકીકતમાં તમારું હૃદય ખૂબ સાફ છે. પરિવાર અને માતાજી પ્રત્યે તમારું સમર્પણ અદભુત છે.",
-      "તમે સ્વભાવે અત્યંત બુદ્ધિશાળી અને થોડા રિઝર્વ રહેવા વાળા વ્યક્તિ છો. તમારી કલ્પના શક્તિ અને આંતરિક જ્ઞાન બહુ મજબૂત છે. ઘણીવાર તમે તમારી લાગણીઓ કોઈને કહી શકતા નથી, છતાં તમે અંદરથી ખૂબ સમજદાર વ્યક્તિ છો.",
-      "તમારામાં નેતૃત્વ (Leadership) લેવાની અદભુત ક્ષમતા જન્મજાત રહેલી છે. તમે કોઈ પણ કામ હાથમાં લો તેને મા શક્તિના આશીર્વાદથી પૂરું કરીને જ દમ લો છો. જોકે, ક્યારેક ઉતાવળ તમારા કામમાં અવરોધ લાવે છે.",
-      "તમે સ્વભાવે ખૂબ જ લાગણીશીલ અને બીજાને મદદ કરવા વાળા વ્યક્તિ છો. તમને શાંતિ અને ભક્તિ પસંદ છે. તમે વારંવાર લોકો પર જલ્દી વિશ્વાસ કરી લો છો, જેના કારણે ભૂતકાળમાં તમને કડવા અનુભવો થયા છે."
-    ];
-
-    const navratriArr = [
-      "હાલની નવગ્રહ સ્થિતિ મુજબ, ગુરુ અને શનિનો પ્રભાવ તમારા જીવનમાં નવરાત્રિ પછી એક મોટું પરિવર્તન લાવી રહ્યો છે. છેલ્લા કેટલાક સમયથી જે માનસિક તણાવ કે કામમાં અટકાવ હતો, તે હવે માની કૃપાથી ધીમે ધીમે દૂર થઈ રહ્યો છે.",
-      "અત્યારે બ્રહ્માંડમાં શુક્ર અને ચંદ્રની સ્થિતિ તમારા માટે નવી તકો ઊભી કરી રહી છે. આ નવરાત્રિમાં નાણાકીય બાબતોમાં અને નવા સંબંધોમાં એક પોઝિટિવ ઉર્જાનો સંચાર થઈ રહ્યો છે. તમારા અટકેલા કામો પાર પડશે.",
-      "વર્તમાન સમયમાં રાહુ અને મંગળની દ્રષ્ટિ તમારી કુંડળી પર પ્રભાવ પાડી રહી છે. આ નવરાત્રિનો સમયગાળો થોડો સંઘર્ષમય રહી શકે છે, પરંતુ માની સાધનાથી આ જ સંઘર્ષ તમને મોટી સફળતા તરફ દોરી જશે.",
-      "અત્યારનો સમય તમારા માટે આત્મમંથન અને ભક્તિનો છે. બુધ ગ્રહની સ્થિતિ દર્શાવે છે કે તમારા મગજમાં હાલ ઘણા બધા નવા વિચારો ચાલી રહ્યા છે. યોગ્ય દિશા પકડશો તો મોટો આર્થિક લાભ થશે."
-    ];
-
-    const freeDangerArr = [
-      "પરંતુ એક સૌથી મોટો 'સાવચેતી દોષ' શાસ્ત્રોક્ત ગણતરીમાં દેખાઈ રહ્યો છે. આવનારા ૪૫ થી ૬૦ દિવસોમાં તમારે કોઈ પર આંધળો વિશ્વાસ કરવાથી કે મોટા નાણાકીય રોકાણ કરવાથી બચવું પડશે. એક છૂપો વિરોધી તમને નુકસાન પહોંચાડી શકે છે.",
-      "ધ્યાન રાખજો! તમારા ૮મા ભાવમાં ગ્રહોની ચાલ સૂચવે છે કે કોઈ જૂની સ્વાસ્થ્ય સમસ્યા અથવા પારિવારિક વિવાદ અચાનક મોટું સ્વરૂપ લઈ શકે છે. સમયસર દેવી સાધના કરવી આવશ્યક છે.",
-      "સાવધાન! તમારી કુંડળીમાં એક 'અવરોધક ગ્રહ' એક્ટિવ થયો છે. આ ગ્રહ તમારી સફળતાની બિલકુલ નજીક આવીને તમારા કામ અટકાવી રહ્યો છે. હાથમાં આવેલી તક છીનવાઈ ન જાય તેનું ધ્યાન રાખજો.",
-      "ધ્યાન રાખજો, એક નકારાત્મક ઉર્જા તમારા કરિયર અને પૈસાની બાબતોને બ્લોક કરી રહી છે. જો આ દોષનું યોગ્ય સમયે નિવારણ કરવામાં ન આવે, તો આવનારું વર્ષ આર્થિક રીતે મોટું નુકસાન કરાવી શકે છે."
-    ];
-
-    const premiumCareerArr = [
-      "તમારી કુંડળીમાં નવરાત્રિ પછી નોકરી કે વ્યવસાયમાં મોટું પરિવર્તન દેખાઈ રહ્યું છે. અત્યારે જે જગ્યાએ છો, તેના કરતા તમને વધુ સારો લાભ અને પદ મળી શકે છે. નવરાત્રિના પાંચમા નોરતે લીધેલો નિર્ણય તમારા કરિયરને નવી દિશા આપશે.",
-      "કરિયરના માર્ગમાં શનિની ચાલની અસર અત્યારે દેખાઈ રહી છે. આનો અર્થ એ નથી કે તમે સફળ નહિ થાઓ, પણ તમારે મહેનત ચાલુ રાખવી પડશે. વ્યવસાયમાં નવા ભાગીદાર બનાવતા પહેલા વિચારી લેજો. નવરાત્રિ પછી આર્થિક સ્થિતિમાં સુધારો થશે.",
-      "તમારી રાશિ પર ગ્રહોની નકારાત્મક દ્રષ્ટિ અત્યારે તમારી પ્રગતિને અટકાવી રહી છે. આ નકારાત્મક ઉર્જા દૂર કરવા વિશેષ અનુષ્ઠાનથી નવરાત્રિ પછી આર્થિક માર્ગ ખુલશે.",
-      "બ્રહ્માંડમાં બુધ અને ગુરુની યુતિ તમારા માટે વ્યવસાયિક ક્ષેત્રમાં મોટી સફળતાના દ્વાર ખોલી રહી છે. નવો ધંધો કે નોકરી બદલવા ઈચ્છો છો, તો નવરાત્રિ પછીનો સમય અત્યંત શુભ છે."
-    ];
-
-    const premiumLoveArr = [
-      "પ્રેમ સંબંધો અને પારિવારિક મામલામાં માની કૃપાથી એક અદભુત શાંતિ અને મધુરતા આવવાની છે. અત્યાર સુધી જે મતભેદ ચાલતા હતા, તે હવે દૂર થશે.",
-      "શુક્ર ગ્રહની સ્થિતિ દર્શાવે છે કે તમારા પારિવારિક સંબંધોમાં સંવાદનો અભાવ છે. આ નવરાત્રિ દરમિયાન વિશેષ આરાધનાથી પરિવારમાં એકતા વધશે.",
-      "તમારા જીવનમાં એક નવા સંબંધનો શુભ યોગ બની રહ્યો છે. જેઓ વિવાહ યોગ્ય છે, તેમના માટે આ સમય અત્યંત શુભ ફળદાયી રહેશે.",
-      "તમારી કુંડળીમાં ચંદ્ર અને મંગળની અસરથી વાણી પર સંયમ રાખવો પડશે. પ્રેમ અને સંબંધોમાં કડવા શબ્દો ન બોલવાની સલાહ છે."
-    ];
-
-    const premiumRemediesArr = [
-      "૧. મા શૈલપુત્રીનું ધ્યાન અને પૂજા - પ્રથમ નોરતે વિશેષ અર્ચના.<br>૨. શુભ રત્ન: 'મોતી' રત્ન ધારણ કરવાથી મનની શાંતિ મળશે.<br>૩. મંત્ર: 'ઓમ દૂં દુર્ગાયૈ નમઃ' (૧૦૮ વાર જાપ).<br>૪. રુદ્રાક્ષ: ૨ મુખી રુદ્રાક્ષ શુભ ફળ આપશે.",
-      "૧. મા સ્કાન્દમાતાની આરાધના - પાંચમા નોરતે વિશેષ.<br>૨. શુભ રત્ન: 'પન્ના' રત્ન પહેરવાથી બુદ્ધિ અને વેપારમાં વૃદ્ધિ થશે.<br>૩. મંત્ર: 'ઓમ ઐં હ્રીં ક્લીં ચામુંડાયૈ વિચ્ચે' (૧૦૮ વાર).<br>૪. રુદ્રાક્ષ: ૫ મુખી રુદ્રાક્ષ ધારણ કરવો.",
-      "૧. મા મહાગૌરીનું પૂજન - આઠમા નોરતે હવન અને આરતી.<br>૨. શનિ અને રાહુની શાંતિ માટે કાળા તલનું દાન કરવું.<br>૩. મંત્ર: 'ઓમ શ્રીં હ્રીં ક્લીં ભુવનેશ્વર્યૈ નમઃ'.<br>૪. રુદ્રાક્ષ: ૭ મુખી રુદ્રાક્ષ ઉત્તમ રહેશે.",
-      "૧. મા બ્રહ્મચારિણીનું ધ્યાન - બીજા નોરતે ઘીનો દીવો કરવો.<br>૨. શુભ રત્ન: પોખરાજ અથવા પીળો પોખરાજ.<br>૩. મંત્ર: 'ઓમ ગં ગણપતયે નમઃ' સાથે દેવી સ્તુતિ કરવી.<br>૪. રુદ્રાક્ષ: ૪ મુખી રુદ્રાક્ષ ધારણ કરવો."
-    ];
-
     function runQuantumCalculation(e) {
       e.preventDefault();
 
       const name = document.getElementById('userName').value.trim();
       const dob = document.getElementById('userDob').value;
       const time = document.getElementById('userTimePeriod').value;
+      const gender = document.getElementById('userGender').value;
 
       document.getElementById('heroSection').style.display = 'none';
       document.getElementById('calculatorCard').classList.add('hidden');
       
       const loader = document.getElementById('loaderScreen');
       loader.classList.remove('hidden');
+      document.getElementById('loaderStatus').innerText = "નક્ષત્ર અને ગ્રહ ગણતરી ચાલી રહી છે...";
 
-      const logs = [
-        `> મા શક્તિ સાથે જોડાણ ચાલુ છે (${name})...`,
-        `> નવરાત્રિ મહા ગ્રહ પરિવર્તન ગણતરી ચાલુ છે...`,
-        `> શાસ્ત્રોક્ત વૈદિક સૂર્ય સિદ્ધાંત લાગુ થાય છે...`,
-        `> કુંડળી વિશ્લેષણ સફળતાપૂર્વક પૂર્ણ.`
-      ];
-
-      let step = 0;
-      const interval = setInterval(() => {
-        if (step < logs.length) {
-          document.getElementById('loaderStatus').innerText = logs[step];
-          step++;
-        } else {
-          clearInterval(interval);
-          setTimeout(() => {
-            generateReading(name, dob, time);
-          }, 400);
-        }
-      }, 700);
+      callBackendServer(name, dob, time, gender);
     }
 
-    function generateReading(name, dob, time) {
-      document.getElementById('loaderScreen').classList.add('hidden');
-      const resScreen = document.getElementById('resultScreen');
-      resScreen.classList.remove('hidden');
+    async function callBackendServer(name, dob, time, gender) {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/get-prediction`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, dob, time, gender })
+        });
 
-      const uniqueString = name.toLowerCase() + dob + time;
-      let seed = generateSeed(uniqueString);
+        const resData = await response.json();
 
-      const p1Index = Math.floor(seededRandom(seed) * traitsArr.length);
-      const p2Index = Math.floor(seededRandom(seed + 1) * navratriArr.length);
-      const p3Index = Math.floor(seededRandom(seed + 2) * freeDangerArr.length);
+        if (!resData.success) {
+          throw new Error(resData.message || 'ગણતરીમાં અવરોધ આવ્યો');
+        }
 
-      const premCIndex = Math.floor(seededRandom(seed + 3) * premiumCareerArr.length);
-      const premLIndex = Math.floor(seededRandom(seed + 4) * premiumLoveArr.length);
-      const premRIndex = Math.floor(seededRandom(seed + 5) * premiumRemediesArr.length);
+        const aiData = resData.data;
 
-      document.getElementById('resTitle').innerText = `${name}, તમારો નવરાત્રિ રિપોર્ટ તૈયાર છે!`;
-      document.getElementById('para1').innerText = traitsArr[p1Index];
-      document.getElementById('para2').innerText = navratriArr[p2Index];
-      document.getElementById('para3').innerText = freeDangerArr[p3Index];
+        document.getElementById('loaderScreen').classList.add('hidden');
+        const resScreen = document.getElementById('resultScreen');
+        resScreen.classList.remove('hidden');
 
-      document.getElementById('premiumCareer').innerHTML = premiumCareerArr[premCIndex];
-      document.getElementById('premiumLove').innerHTML = premiumLoveArr[premLIndex];
-      document.getElementById('premiumRemedies').innerHTML = premiumRemediesArr[premRIndex];
+        document.getElementById('resTitle').innerText = `${name}, તમારો નવરાત્રિ રિપોર્ટ તૈયાર છે!`;
+        document.getElementById('para1').innerText = aiData.freeIntro;
+        document.getElementById('para2').innerText = aiData.freeTransit;
+        document.getElementById('para3').innerText = aiData.freeDanger;
 
-      if (time === 'unknown') {
-        document.getElementById('resMethod').innerText = "પ્રાચીન સૂર્ય કુંડળી (૧૦૦% સચોટ)";
-      } else {
-        document.getElementById('resMethod').innerText = "શાસ્ત્રોક્ત વૈદિક જ્યોતિષ";
+        document.getElementById('premiumCareer').innerHTML = aiData.premCareer;
+        document.getElementById('premiumLove').innerHTML = aiData.premLove;
+        document.getElementById('premiumRemedies').innerHTML = aiData.premRemedies;
+
+        if (time === 'unknown') {
+          document.getElementById('resMethod').innerText = "પ્રાચીન સૂર્ય કુંડળી (૧૦૦% સચોટ)";
+        } else {
+          document.getElementById('resMethod').innerText = "શાસ્ત્રોક્ત વૈદિક જ્યોતિષ";
+        }
+
+        startTimer(15 * 60);
+        resScreen.scrollIntoView({ behavior: 'smooth' });
+        lucide.createIcons();
+
+      } catch (error) {
+        console.error("Backend Error:", error);
+        document.getElementById('loaderStatus').innerText = "નક્ષત્ર ગણતરીમાં અવરોધ આવ્યો છે. કૃપા કરીને થોડી વાર પછી ફરી પ્રયાસ કરો.";
       }
-
-      startTimer(15 * 60);
-      resScreen.scrollIntoView({ behavior: 'smooth' });
-      lucide.createIcons();
     }
 
     function initiateRazorpay() {
       const name = document.getElementById('userName').value || 'Customer';
       var options = {
-        "key": "rzp_test_placeholder", // તમારી અસલી Razorpay Key ID અહીં મુકવી
+        "key": "rzp_test_placeholder", // તમારી Razorpay Key ID
         "amount": "9900",
         "currency": "INR",
         "name": "Bhagyaveda Instant Navratri",
