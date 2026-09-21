@@ -113,7 +113,7 @@
         આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ગ્રહોની દિશા અને દશા!
       </h1>
       <p class="text-slate-300 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
-        નામ, જન્મ તારીખ અને તમારા પસંદ કરેલા જીવન ક્ષેત્રો પર આધારિત ૧૦૦% સચોટ વિશ્લેષણ.
+        નામ, જન્મ તારીખ અને તમારા પસંદ કરેલા જીવન ક્ષેત્રો પર આધારિત ૧૦૦% સચોટ શાસ્ત્રોક્ત વિશ્લેષણ.
       </p>
     </div>
 
@@ -249,7 +249,6 @@
           </div>
         </div>
 
-        <!-- Safe Button (type="button" prevents accidental page reload) -->
         <button type="button" onclick="runQuantumCalculation(event)" class="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-lg shadow-accent-amber/20 transition-all flex items-center justify-center gap-3 cursor-pointer mt-4">
           <i data-lucide="scan-line" class="w-5 h-5"></i>
           મારું ભાગ્ય સ્કેન કરો (મફત પ્રિવ્યૂ)
@@ -257,7 +256,7 @@
       </form>
     </div>
 
-    <!-- Scientific Vedic Simulation Loader -->
+    <!-- Simulation Loader -->
     <div id="loaderScreen" class="hidden shakti-border rounded-2xl p-8 text-center space-y-5 my-6 max-w-lg mx-auto backdrop-blur-3xl">
       <div class="relative w-20 h-20 mx-auto">
         <div class="w-20 h-20 border-4 border-accent-gold/20 border-t-accent-gold rounded-full animate-spin"></div>
@@ -311,7 +310,7 @@
         <div class="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed font-light relative z-10">
           <p id="paraIntro" class="text-white font-medium"></p>
 
-          <!-- 3 Dynamic Pillars -->
+          <!-- 3 Pillars -->
           <div id="pillarsBox" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2"></div>
 
           <div class="flex gap-4 p-4 bg-accent-amber/10 border border-accent-amber/30 rounded-xl mt-4">
@@ -364,7 +363,7 @@
         <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું ગાણિતિક સંકલન થઈ રહ્યું છે (૩-૪ સેકન્ડ)...</p>
       </div>
 
-      <!-- Premium Unlocked Section -->
+      <!-- Premium Unlocked Section (MASSIVE DEEP REPORT) -->
       <div id="premiumUnlokedSection" class="hidden space-y-8 mt-12 scroll-mt-20">
          <div class="shakti-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
              
@@ -406,7 +405,7 @@
                <div class="flex items-center gap-2 text-accent-gold font-bold text-sm uppercase tracking-wider">
                  <i data-lucide="crown" class="w-4 h-4"></i> મહા કુંડળી સારાંશ (Executive Summary)
                </div>
-               <p id="executiveSummaryText" class="text-slate-200 text-sm leading-relaxed"></p>
+               <div id="executiveSummaryText" class="text-slate-200 text-sm leading-relaxed space-y-2"></div>
              </div>
              
              <!-- Selected Areas Deep Stack -->
@@ -587,7 +586,7 @@
       }, 1000);
     }
 
-    // MAIN SAFE CALCULATION FUNCTION
+    // Main Safe Calculation
     function runQuantumCalculation(e) {
       if (e && e.preventDefault) e.preventDefault();
 
@@ -613,7 +612,6 @@
         const gender = document.getElementById('userGender')?.value || 'male';
         const bhagyank = calculateBhagyank(dob);
 
-        // કયા ક્ષેત્રો પસંદ કર્યા?
         const checkedBoxes = document.querySelectorAll('#areasContainer input[type="checkbox"]:checked');
         let selectedAreas = Array.from(checkedBoxes).map(cb => cb.value);
 
@@ -636,10 +634,9 @@
           localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
         } catch(err){}
 
-        // બેકગ્રાઉન્ડ AI કોલ
+        // બેકગ્રાઉન્ડ જનરેશન શરુ કરો
         startBackgroundAIGeneration(clientData);
 
-        // સ્ક્રીન ટ્રાન્ઝિશન
         const hero = document.getElementById('heroSection');
         const card = document.getElementById('calculatorCard');
         const loader = document.getElementById('loaderScreen');
@@ -651,7 +648,7 @@
         if (card) card.classList.add('hidden');
         if (loader) loader.classList.remove('hidden');
 
-        // લાઈવ સુપરકમ્પ્યુટર સિમ્યુલેશન પ્રોસેસ (~3.5 સેકન્ડ)
+        // લાઈવ સિમ્યુલેશન પ્રોસેસ
         let progress = 0;
         const steps = [
           { at: 20, text: "સૂર્ય-ચંદ્ર ક્રાંતિવૃત્ત અને અક્ષાંશ-રેખાંશ કોઓર્ડિનેટ્સ મેપિંગ..." },
@@ -684,7 +681,6 @@
 
       } catch (err) {
         console.error("runQuantumCalculation error:", err);
-        // જો કોઈ એરર આવે તો પણ રિઝલ્ટ સીધું બતાવી દો
         displayFreePrediction();
       }
 
@@ -786,7 +782,6 @@
     }
 
     function initiateRazorpay() {
-      // અહીં તમારી Live કી અથવા Test કી રાખો
       const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH";
 
       var options = {
@@ -842,7 +837,7 @@
         luckyNumber: `${clientData.bhagyank || '૭'}`,
         luckyDevi: "માં ભગવતી દુર્ગા",
         luckyRudra: "૫ મુખી રુદ્રાક્ષ",
-        executiveSummary: `${clientData.name || 'જાતક'}જી, તમારી કુંડળીમાં ગ્રહોનું ગોચર સૂચવે છે કે આ નવરાત્રિ તમારા માટે કર્મ અને ભાગ્યનું વિશેષ સંગમ લઈને આવી રહી છે.`,
+        executiveSummary: `<p><b>${clientData.name || 'જાતક'}જી</b>, તમારી કુંડળીમાં ગ્રહોનું ગોચર સૂચવે છે કે આ નવરાત્રિ તમારા માટે કર્મ અને ભાગ્યનું વિશેષ સંગમ લઈને આવી રહી છે.</p>`,
         areaReports: [],
         planetaryDosha: "શનિ અને રાહુના સંક્રમણથી બચવા માટે શાંતિ જાળવવી જરૂરી છે.",
         specialRemedies: []
@@ -865,14 +860,14 @@
       const elSum = document.getElementById('executiveSummaryText');
       if (elSum) elSum.innerHTML = data.executiveSummary || "";
 
-      // ૩. પસંદ કરેલા ક્ષેત્રોનું લિસ્ટ
+      // ૩. પસંદ કરેલા ક્ષેત્રોનું ડીપ રેન્ડરિંગ
       const areaContainer = document.getElementById('dynamicAreaReportsContainer');
       if (areaContainer) {
         areaContainer.innerHTML = '';
         if (data.areaReports && data.areaReports.length > 0) {
           data.areaReports.forEach((rep, index) => {
             const areaCard = document.createElement('div');
-            areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-6 rounded-xl space-y-3 shadow-lg";
+            areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-7 rounded-xl space-y-4 shadow-lg";
             areaCard.innerHTML = `
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
                 <div class="flex items-center gap-2.5 font-bold text-base text-white">
@@ -884,21 +879,21 @@
                 </span>
               </div>
               
-              <div class="text-slate-300 text-sm leading-relaxed pt-1 space-y-2">
+              <div class="text-slate-300 text-sm leading-relaxed space-y-3 pt-1">
                 ${rep.deepAnalysis}
               </div>
 
               ${rep.timeline ? `
-                <div class="p-3 rounded-lg bg-cosmic-950 border border-accent-gold/20 text-xs text-accent-gold space-y-1">
-                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> અપેક્ષિત ટાઈમલાઈન:</span>
-                  <p class="text-slate-300 font-light">${rep.timeline}</p>
+                <div class="p-3.5 rounded-lg bg-cosmic-950 border border-accent-gold/20 text-xs text-accent-gold space-y-1">
+                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> અપેક્ષિત ટાઈમલાઈન & ફેરફારો:</span>
+                  <p class="text-slate-300 font-light leading-relaxed">${rep.timeline}</p>
                 </div>
               ` : ''}
 
               ${rep.actionAdvice ? `
-                <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-xs text-emerald-300 space-y-1">
-                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> શાસ્ત્રોક્ત સલાહ & સાવચેતી:</span>
-                  <p class="text-slate-300 font-light">${rep.actionAdvice}</p>
+                <div class="p-3.5 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-xs text-emerald-300 space-y-1">
+                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> શાસ્ત્રોક્ત સાવચેતી & ડુઝ/ડોન્ટ્સ:</span>
+                  <p class="text-slate-300 font-light leading-relaxed">${rep.actionAdvice}</p>
                 </div>
               ` : ''}
             `;
@@ -924,8 +919,8 @@
                 <span class="w-5 h-5 rounded-full bg-accent-gold text-cosmic-950 text-xs flex items-center justify-center font-bold">${idx + 1}</span>
                 ${rem.title}
               </div>
-              <p class="text-xs text-slate-300"><b>વિધિ:</b> ${rem.vidhi}</p>
-              ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/30 p-2 rounded border border-amber-500/20"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
+              <p class="text-xs text-slate-300 leading-relaxed"><b>વિધિ:</b> ${rem.vidhi}</p>
+              ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/30 p-2.5 rounded border border-amber-500/20"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
               <p class="text-[11px] text-emerald-400"><b>ફળશ્રુતિ:</b> ${rem.benefit}</p>
             `;
             remediesContainer.appendChild(remCard);
