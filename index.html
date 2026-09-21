@@ -14,23 +14,21 @@
       theme: {
         extend: {
           colors: {
-            cosmic: { 950: '#02040a', 900: '#070b16', 850: '#0c1222', 800: '#111827', 700: '#1e293b' },
+            cosmic: { 950: '#02040a', 900: '#060a14', 850: '#0b1120', 800: '#111827', 700: '#1e293b' },
             accent: { gold: '#ffd700', amber: '#f59e0b', red: '#ff3344', cyan: '#00f0ff', violet: '#a855f7' }
           },
           fontFamily: { mono: ['Courier New', 'monospace', 'ui-monospace'] },
           animation: {
-            'orbit-slow': 'orbit 60s linear infinite',
-            'orbit-reverse': 'orbitRev 45s linear infinite',
-            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
-            'radar-sweep': 'radarSweep 4s linear infinite'
+            'orbit-slow': 'orbit 55s linear infinite',
+            'orbit-reverse': 'orbitRev 40s linear infinite',
+            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite'
           },
           keyframes: {
             orbit: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
             orbitRev: { '0%': { transform: 'rotate(360deg)' }, '100%': { transform: 'rotate(0deg)' } },
-            radarSweep: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
             pulseGlow: {
-              '0%, 100%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(255, 51, 68, 0.4))' },
-              '50%': { opacity: '0.85', filter: 'drop-shadow(0 0 35px rgba(255, 215, 0, 0.6))' }
+              '0%, 100%': { opacity: '0.35', filter: 'drop-shadow(0 0 15px rgba(255, 51, 68, 0.35))' },
+              '50%': { opacity: '0.8', filter: 'drop-shadow(0 0 35px rgba(255, 215, 0, 0.55))' }
             }
           }
         }
@@ -51,7 +49,7 @@
     }
     .font-cinzel { font-family: 'Cinzel', serif; }
     
-    /* Cosmic Planetary Orbital Rings Background */
+    /* Visceral Celestial Orbital Simulation */
     .cosmic-field {
       position: fixed;
       top: 50%;
@@ -63,7 +61,7 @@
       max-height: 1600px;
       pointer-events: none;
       z-index: -1;
-      opacity: 0.28;
+      opacity: 0.32;
     }
     .orbital-ring {
       position: absolute;
@@ -71,25 +69,25 @@
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      border: 1px dashed rgba(255, 215, 0, 0.22);
+      border: 1px dashed rgba(255, 215, 0, 0.2);
     }
-    .ring-1 { width: 90%; height: 90%; border-color: rgba(255, 51, 68, 0.15); animation: orbit 90s linear infinite; }
-    .ring-2 { width: 70%; height: 70%; border-color: rgba(0, 240, 255, 0.18); animation: orbitRev 65s linear infinite; }
-    .ring-3 { width: 50%; height: 50%; border-color: rgba(255, 215, 0, 0.25); animation: orbit 45s linear infinite; }
-    .ring-4 { width: 30%; height: 30%; border-color: rgba(168, 85, 247, 0.3); border-style: dotted; animation: orbitRev 30s linear infinite; }
+    .ring-1 { width: 92%; height: 92%; border-color: rgba(255, 51, 68, 0.18); animation: orbit 80s linear infinite; }
+    .ring-2 { width: 72%; height: 72%; border-color: rgba(0, 240, 255, 0.22); animation: orbitRev 55s linear infinite; }
+    .ring-3 { width: 52%; height: 52%; border-color: rgba(255, 215, 0, 0.28); animation: orbit 38s linear infinite; }
+    .ring-4 { width: 32%; height: 32%; border-color: rgba(168, 85, 247, 0.35); border-style: dotted; animation: orbitRev 26s linear infinite; }
 
     .planet-dot {
       position: absolute;
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      box-shadow: 0 0 10px currentColor;
+      box-shadow: 0 0 12px currentColor;
     }
 
     .shakti-glass {
-      background: rgba(7, 11, 22, 0.82);
-      backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 215, 0, 0.18);
+      background: rgba(6, 10, 20, 0.85);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 215, 0, 0.03);
     }
 
@@ -100,7 +98,6 @@
       box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
     }
 
-    /* Terminal Scan Line Effect */
     .scanline {
       position: absolute;
       top: 0; left: 0; right: 0; height: 2px;
@@ -116,15 +113,15 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white relative">
 
-  <!-- Planetary Celestial Simulation Background -->
+  <!-- Celestial Celestial Orbits -->
   <div class="cosmic-field">
     <div class="orbital-ring ring-1">
-      <div class="planet-dot bg-amber-400 text-amber-400" style="top: 15%; left: 15%;"></div>
-      <div class="planet-dot bg-cyan-400 text-cyan-400" style="bottom: 20%; right: 20%;"></div>
+      <div class="planet-dot bg-amber-400 text-amber-400" style="top: 18%; left: 18%;"></div>
+      <div class="planet-dot bg-cyan-400 text-cyan-400" style="bottom: 22%; right: 22%;"></div>
     </div>
     <div class="orbital-ring ring-2">
-      <div class="planet-dot bg-red-500 text-red-500" style="top: 10%; right: 30%;"></div>
-      <div class="planet-dot bg-purple-400 text-purple-400" style="bottom: 15%; left: 25%;"></div>
+      <div class="planet-dot bg-red-500 text-red-500" style="top: 12%; right: 28%;"></div>
+      <div class="planet-dot bg-purple-400 text-purple-400" style="bottom: 16%; left: 22%;"></div>
     </div>
     <div class="orbital-ring ring-3">
       <div class="planet-dot bg-yellow-300 text-yellow-300" style="top: 50%; right: 0%;"></div>
@@ -143,7 +140,7 @@
           <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-accent-red shadow-[0_0_10px_#ff3344]"></span>
         </span>
         <span class="text-xs font-mono text-slate-200 uppercase tracking-widest font-bold">
-          ભાગ્યવેદ <span class="text-accent-gold">શાસ્ત્રોક્ત AI</span> • ન્યુરલ પંચાંગ v6.2
+          ભાગ્યવેદ <span class="text-accent-gold">શાસ્ત્રોક્ત AI</span> • ન્યુરલ પંચાંગ v6.5
         </span>
       </div>
       <div class="text-[10px] font-mono text-accent-cyan bg-accent-cyan/10 px-3.5 py-1.5 rounded-full border border-accent-cyan/30 flex items-center gap-1.5 shadow-[0_0_12px_rgba(0,240,255,0.2)]">
@@ -160,13 +157,13 @@
     <div class="text-center space-y-4 relative" id="heroSection">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-amber/40 bg-accent-amber/10 text-accent-gold text-xs font-bold uppercase tracking-widest shadow-lg">
         <i data-lucide="compass" class="w-4 h-4 text-accent-gold animate-spin-slow"></i> 
-        સૂર્ય સિદ્ધાંત × ક્વોન્ટમ એસ્ટ્રો કમ્પ્યુટેશન
+        સૂર્ય સિદ્ધાંત ગાણિતિક અલ્ગોરિધમ
       </div>
       <h1 class="text-3xl sm:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-accent-gold via-white to-accent-red leading-tight drop-shadow-2xl">
         આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ભાગ્યની દિશા અને દશા!
       </h1>
       <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
-        નવરાત્રિ દરમિયાન થતાં મુખ્ય ગ્રહ ગોચર અને નક્ષત્ર પરિવર્તનનું ૧૦૦% સચોટ શાસ્ત્રોક્ત વિશ્લેષણ.
+        નવરાત્રિ મહા ગ્રહ સંક્રમણ અને ૨૭ નક્ષત્રોની ગણતરી પર આધારિત ૧૦૦% શાસ્ત્રોક્ત કુંડળી વિશ્લેષણ.
       </p>
     </div>
 
@@ -310,11 +307,11 @@
       </form>
     </div>
 
-    <!-- Visceral 1-Minute Cosmic Supercomputer Simulation Screen -->
+    <!-- 20-Second Visceral Free Scan Simulator -->
     <div id="loaderScreen" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-6 my-6 max-w-xl mx-auto shadow-2xl relative overflow-hidden">
       <div class="scanline"></div>
 
-      <!-- Radar Spinning Core -->
+      <!-- Radar Core -->
       <div class="relative w-28 h-28 mx-auto">
         <div class="absolute inset-0 rounded-full border-2 border-accent-gold/20 animate-ping"></div>
         <div class="w-28 h-28 border-4 border-slate-800 border-t-accent-gold border-r-accent-cyan rounded-full animate-spin"></div>
@@ -330,7 +327,7 @@
           <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold animate-pulse"></i>
           નવરાત્રિ મહા ગોચર ગણતરી ચાલુ છે...
         </h3>
-        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all duration-300">
+        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all duration-200">
           સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...
         </p>
       </div>
@@ -351,27 +348,23 @@
         </div>
       </div>
 
-      <!-- Real Progress Bar -->
+      <!-- 20-Second Progress Bar -->
       <div class="space-y-1.5">
         <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-700/80">
           <div id="progressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-200"></div>
         </div>
         <div class="flex justify-between text-[10px] font-mono text-slate-400">
-          <span>સમય બાકી: <b id="timeRemainingText" class="text-white">૫૫ સેકન્ડ</b></span>
+          <span>સમય બાકી: <b id="timeRemainingText" class="text-white">૨૦ સેકન્ડ</b></span>
           <span>ચોક્કસાઈ: ૧૦૦% શાસ્ત્રોક્ત</span>
         </div>
       </div>
-      
-      <p class="text-[11px] text-slate-400 italic">
-        * સંપૂર્ણ સચોટ ગણતરી માટે સુપરકમ્પ્યુટર અંદાજે <b>૧ મિનિટ</b> નો સમય લેશે. કૃપા કરીને બેક ન કરશો.
-      </p>
     </div>
 
     <!-- Results Container -->
     <div id="resultScreen" class="hidden space-y-10 mt-4">
       
       <!-- Free Reading Box -->
-      <div class="bg-cosmic-900/80 border border-accent-gold/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
+      <div class="bg-cosmic-900/85 border border-accent-gold/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
         <div class="border-b border-white/10 pb-4 mb-4 relative z-10">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h2 class="text-2xl md:text-3xl font-bold font-cinzel text-accent-gold" id="resTitle">વૈદિક ગણતરી પરિણામ</h2>
@@ -434,15 +427,15 @@
               </div>
             </div>
 
-            <div class="p-3 bg-cosmic-950/80 rounded-lg border border-accent-gold/20 text-xs text-slate-300 leading-relaxed">
+            <div class="p-3 bg-cosmic-950/90 rounded-lg border border-accent-gold/20 text-xs text-slate-300 leading-relaxed">
               🔮 <strong>વિશેષ સૂચના:</strong> કયો સમય તમારા માટે સુવર્ણ સાબિત થશે અને કયા ક્ષેત્રમાં તમારે તાત્કાલિક સાવચેતી રાખવી પડશે, તેની <strong class="text-accent-gold">ચોક્કસ મહિનાવાર ટાઈમલાઈન અને શાસ્ત્રોક્ત ઉપાયો</strong> નીચેના ગુપ્ત અહેવાલમાં વિસ્તારપૂર્વક આપેલા છે.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- High-Converting Paywall Section -->
-      <div id="paywallBox" class="relative shakti-glass rounded-2xl p-1 border-2 border-accent-red shadow-[0_0_50px_rgba(255,51,68,0.4)] overflow-hidden animate-pulse-glow">
+      <!-- High-Conversion Irresistible Paywall Section -->
+      <div id="paywallBox" class="relative shakti-glass rounded-2xl p-1 border-2 border-accent-red shadow-[0_0_50px_rgba(255,51,68,0.45)] overflow-hidden animate-pulse-glow">
         <div class="relative bg-cosmic-950 rounded-xl p-6 sm:p-10 space-y-6">
           <div class="text-center space-y-3">
              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-red/20 border border-accent-red/50 text-accent-gold text-xs font-bold animate-pulse">
@@ -452,26 +445,32 @@
                આ નવરાત્રિમાં તમારા બંધ ભાગ્યના તાળા ખોલો!
              </h3>
              <p class="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-               તમે પસંદ કરેલા <strong class="text-accent-gold" id="userAreasCount">બધા જ ક્ષેત્રો</strong> પર ગ્રહોની વર્તમાન ચાલ, કયા મહિનામાં શું થશે તેની <strong class="text-white">ચોક્કસ ટાઈમલાઈન</strong>, દોષ નિવારણ અને <strong class="text-emerald-400">સિદ્ધ નવરાત્રિ પૂજન વિધિ</strong> નો સંપૂર્ણ વિસ્તૃત અહેવાલ મેળવો.
+               નવરાત્રિમાં થતાં ગ્રહ પલટા તમારા જીવનના કયા ક્ષેત્રને હચમચાવશે અને ક્યાં ભાગ્યોદય લાવશે? <br>
+               <strong class="text-white">માત્ર ₹૯૯ માં</strong> નીચે મુજબનો સંપૂર્ણ વૈયક્તિક મહા અહેવાલ ત્વરિત અનલૉક કરો:
              </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-xs text-slate-300 pt-1">
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
-              <span>પસંદ કરેલા ક્ષેત્રોનું <b>૨-૩ પાનાનું ઊંડાણપૂર્વકનું</b> વિશ્લેષણ</span>
+          <!-- Bulleted Deliverables -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl mx-auto text-xs text-slate-200 pt-1">
+            <div class="flex items-start gap-2.5 bg-cosmic-900/90 p-3 rounded-lg border border-accent-gold/20 shadow-md">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-gold flex-shrink-0 mt-0.5"></i>
+              <span>તમે પસંદ કરેલા તમામ <b class="text-white">જીવન ક્ષેત્રોનું ૨-૩ મોટા ફકરાનું ગહન વિશ્લેષણ</b></span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
-              <span>આગામી <b>૩ થી ૬ મહિનાની ચોક્કસ ટાઈમલાઈન</b> (લાભના દિવસો)</span>
+            <div class="flex items-start gap-2.5 bg-cosmic-900/90 p-3 rounded-lg border border-emerald-500/20 shadow-md">
+              <i data-lucide="calendar" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+              <span>આગામી <b class="text-white">૩ થી ૬ મહિનાની મહિને-મહિને ચોક્કસ ટાઈમલાઈન</b> (સુવર્ણ તકો & સંકટના દિવસો)</span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
-              <span>તમારા નામ મુજબ <b>શુભ રંગ, અંક, રુદ્રાક્ષ & આરાધ્ય દેવી</b></span>
+            <div class="flex items-start gap-2.5 bg-cosmic-900/90 p-3 rounded-lg border border-accent-red/20 shadow-md">
+              <i data-lucide="flame" class="w-4 h-4 text-accent-red flex-shrink-0 mt-0.5"></i>
+              <span>નવરાત્રિ મહા ગ્રહ દોષ શાંતિ માટે <b class="text-white">સિદ્ધ શક્તિ મંત્ર અને પૂજન અનુષ્ઠાન વિધિ</b></span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
-              <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
-              <span>શનિ-રાહુ દોષ શાંતિ માટે <b>સિદ્ધ નવરાત્રિ મંત્ર સાધના</b></span>
+            <div class="flex items-start gap-2.5 bg-cosmic-900/90 p-3 rounded-lg border border-cyan-500/20 shadow-md">
+              <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5"></i>
+              <span>તમારા નામ અને ભાગ્યાંક મુજબ <b class="text-white">શુભ રંગ, અંક, રુદ્રાક્ષ & વિશેષ આરાધ્ય દેવી</b></span>
+            </div>
+            <div class="flex items-start gap-2.5 bg-cosmic-900/90 p-3 rounded-lg border border-amber-500/20 shadow-md sm:col-span-2">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"></i>
+              <span>શનિ, રાહુ-કેતુના અશુભ પ્રભાવથી બચવા માટે <b class="text-white">ઔષધીય શક્તિ સ્નાન અને વાસ્તુ દીપદાન ઉપાય</b></span>
             </div>
           </div>
 
@@ -500,11 +499,32 @@
         </div>
       </div>
 
-      <!-- Paid Post-Payment AI Decoding Loader -->
-      <div id="aiPaidLoader" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl shadow-2xl">
-        <div class="w-16 h-16 border-4 border-emerald-400 border-t-accent-gold rounded-full animate-spin mx-auto"></div>
-        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! Gemini AI કુંડળી વિશ્લેષણ ડીકોડ કરે છે...</h3>
-        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">નવરાત્રિ શક્તિ ચક્ર અને તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું સંકલન થઈ રહ્યું છે (૩-૪ સેકન્ડ)...</p>
+      <!-- Paid Post-Payment 1-Minute Cinematic Astrological Decoding Loader -->
+      <div id="aiPaidLoader" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-5 my-6 max-w-lg mx-auto border border-accent-gold/40 bg-cosmic-950/95 backdrop-blur-3xl shadow-[0_0_50px_rgba(255,215,0,0.25)] relative overflow-hidden">
+        <div class="scanline"></div>
+        
+        <div class="relative w-20 h-20 mx-auto">
+          <div class="w-20 h-20 border-4 border-slate-800 border-t-accent-gold border-r-emerald-400 rounded-full animate-spin mx-auto"></div>
+          <div class="absolute inset-0 flex items-center justify-center font-mono text-xs font-bold text-accent-gold" id="paidLoaderPct">0%</div>
+        </div>
+
+        <div class="space-y-1.5">
+          <h3 class="text-lg font-cinzel font-bold text-white tracking-wide">
+            પેમેન્ટ સફળ! વૈદિક સુપરકમ્પ્યુટર કુંડળી ડીકોડ કરે છે...
+          </h3>
+          <p id="aiPaidStatus" class="text-xs font-mono text-accent-amber transition-all">
+            નવરાત્રિ શક્તિ ચક્ર અને તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું સંકલન થઈ રહ્યું છે...
+          </p>
+        </div>
+
+        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-700">
+          <div id="paidProgressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <div class="text-[11px] font-mono text-slate-400 flex justify-between">
+          <span>અંદાજિત સમય: <b class="text-white" id="paidRemainingText">૫૦ સેકન્ડ</b></span>
+          <span class="text-accent-cyan">શાસ્ત્રોક્ત ચોકસાઈ ચકાસણી</span>
+        </div>
       </div>
 
       <!-- Premium Unlocked Section -->
@@ -729,7 +749,7 @@
       }, 1000);
     }
 
-    // Visceral 1-Minute Quantum Calculation Simulation
+    // 20-Second Simulation Execution
     function runQuantumCalculation(e) {
       if (e && e.preventDefault) e.preventDefault();
 
@@ -777,7 +797,6 @@
           localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
         } catch(err){}
 
-        // Switch to Simulator Screen
         const hero = document.getElementById('heroSection');
         const card = document.getElementById('calculatorCard');
         const loader = document.getElementById('loaderScreen');
@@ -794,31 +813,26 @@
         if (card) card.classList.add('hidden');
         if (loader) loader.classList.remove('hidden');
 
-        // Total duration: 55-60 seconds simulation
+        // Exactly 20 Seconds Simulation (20000ms / 200 ticks = 100ms per tick)
         let progress = 0;
-        let totalSeconds = 55;
-        let remainingSec = totalSeconds;
+        let totalSeconds = 20;
 
         const dynamicStages = [
-          { at: 12, text: "સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...", nakshatra: "અશ્વિની - ભરણી - કૃત્તિકા", ayanamsha: "૨૪° ૧૨' ૧૫\"", shakti: "પ્રથમ શૈલપુત્રી ઉર્જા પદ" },
-          { at: 25, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની કોણીય ડિગ્રી ગણતરી (Mathematical Ephemeris)...", nakshatra: "રોહિણી - મૃગશીર્ષ - આર્દ્રા", ayanamsha: "૨૪° ૧૩' ૦૦\"", shakti: "દ્વિતીય બ્રહ્મચારિણી આભા મંડળ" },
-          { at: 40, text: "નવરાત્રિ મહા ગ્રહ સંક્રમણ: ગુરુ-શનિ-રાહુ વક્રી ગોચર મેપિંગ...", nakshatra: "પુનર્વસુ - પુષ્ય - આશ્લેષા", ayanamsha: "૨૪° ૧૩' ૪૫\"", shakti: "તૃતીય ચંદ્રઘંટા શંખનાદ આવૃત્તિ" },
-          { at: 55, text: "અષ્ટકવર્ગ બિંદુઓ અને ષડ્બળ શક્તિ સિમ્યુલેશન...", nakshatra: "મઘા - પૂર્વા ફાલ્ગુની - ઉત્તરા", ayanamsha: "૨૪° ૧૪' ૧૦\"", shakti: "કુષ્માંડા બ્રહ્માંડ ગર્ભ કેન્દ્ર" },
-          { at: 70, text: "તમારા પસંદ કરેલા ક્ષેત્રો પર ક્રાંતિવૃત્ત ગોચર પ્રોજેક્શન...", nakshatra: "હસ્ત - ચિત્રા - સ્વાતિ", ayanamsha: "૨૪° ૧૪' ૨૨\"", shakti: "સ્કંદમાતા રક્ષા કવચ સિંક" },
-          { at: 85, text: "ન્યુરલ કુંડળી વિશ્લેષણ અને દશા ફળાદેશ સિન્થેસિસ...", nakshatra: "વિશાખા - અનુરાધા - જ્યેષ્ઠા", ayanamsha: "૨૪° ૧૪' ૩૮\"", shakti: "કાત્યાયની મહા દ્રષ્ટિ સક્રિય" },
-          { at: 96, text: "શાસ્ત્રોક્ત ગાણિતિક પરિણામોનું અંતિમ ડીકોડિંગ...", nakshatra: "મૂળ - પૂર્વાષાઢા - ઉત્તરાષાઢા", ayanamsha: "૨૪° ૧૪' ૫૦\"", shakti: "મહાગૌરી પૂર્ણ સિદ્ધિ સાકાર" },
-          { at: 100, text: "વૈદિક સુપરકમ્પ્યુટર ગણતરી સફળ: પરિણામ તૈયાર!", nakshatra: "શ્રવણ - ધનિષ્ઠા - રેવતી", ayanamsha: "૨૪° ૧૫' ૦૦\"", shakti: "સિદ્ધિદાત્રી વરદાન મંડલ" }
+          { at: 15, text: "સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...", nakshatra: "અશ્વિની - ભરણી - કૃત્તિકા", ayanamsha: "૨૪° ૧૨' ૧૫\"", shakti: "પ્રથમ શૈલપુત્રી ઉર્જા પદ" },
+          { at: 35, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની ડિગ્રી ગણતરી...", nakshatra: "રોહિણી - મૃગશીર્ષ - આર્દ્રા", ayanamsha: "૨૪° ૧૩' ૦૦\"", shakti: "દ્વિતીય બ્રહ્મચારિણી આભા મંડળ" },
+          { at: 60, text: "નવરાત્રિ મહા ગ્રહ સંક્રમણ: ગુરુ-શનિ-રાહુ વક્રી ગોચર મેપિંગ...", nakshatra: "પુનર્વસુ - પુષ્ય - આશ્લેષા", ayanamsha: "૨૪° ૧૩' ૪૫\"", shakti: "તૃતીય ચંદ્રઘંટા શંખનાદ આવૃત્તિ" },
+          { at: 80, text: "અષ્ટકવર્ગ બિંદુઓ અને ષડ્બળ શક્તિ સિમ્યુલેશન...", nakshatra: "મઘા - પૂર્વા ફાલ્ગુની - ઉત્તરા", ayanamsha: "૨૪° ૧૪' ૧૦\"", shakti: "કુષ્માંડા બ્રહ્માંડ ગર્ભ કેન્દ્ર" },
+          { at: 95, text: "તમારા પસંદ કરેલા ક્ષેત્રો પર ક્રાંતિવૃત્ત ગોચર પ્રોજેક્શન...", nakshatra: "હસ્ત - ચિત્રા - સ્વાતિ", ayanamsha: "૨૪° ૧૪' ૨૨\"", shakti: "સ્કંદમાતા રક્ષા કવચ સિંક" },
+          { at: 100, text: "વૈદિક સુપરકમ્પ્યુટર ગણતરી પૂર્ણ: પરિણામ તૈયાર!", nakshatra: "શ્રવણ - ધનિષ્ઠા - રેવતી", ayanamsha: "૨૪° ૧૫' ૦૦\"", shakti: "સિદ્ધિદાત્રી વરદાન મંડલ" }
         ];
 
-        // 55 seconds interval (55000ms / ~550 ticks = 100ms per tick)
         const simInterval = setInterval(() => {
-          progress += 0.2;
+          progress += 0.5;
           if (progress > 100) progress = 100;
 
           if (progressBar) progressBar.style.width = Math.floor(progress) + '%';
           if (percentageText) percentageText.innerText = Math.floor(progress) + '%';
 
-          // Update remaining time
           const currentRemaining = Math.max(0, Math.ceil(totalSeconds * (1 - progress / 100)));
           if (timeRemainingText) timeRemainingText.innerText = `${currentRemaining} સેકન્ડ`;
 
@@ -835,9 +849,9 @@
             setTimeout(() => {
               if (loader) loader.classList.add('hidden');
               displayFreePrediction();
-            }, 400);
+            }, 300);
           }
-        }, 110);
+        }, 100);
 
       } catch (err) {
         console.error("Simulation error:", err);
@@ -863,9 +877,6 @@
 
         const bBhag = document.getElementById('badgeBhagyank');
         if (bBhag) bBhag.innerText = `અંક ${bhagyank || 1}`;
-
-        const areasCountEl = document.getElementById('userAreasCount');
-        if (areasCountEl) areasCountEl.innerText = `${areasCount} જીવન ક્ષેત્રો`;
 
         const timeMethodText = (time === 'unknown' || !time) 
           ? "(સૂર્ય કુંડળી પદ્ધતિ મુજબ ૧૦૦% સચોટ)" 
@@ -920,6 +931,7 @@
       }
     }
 
+    // Razorpay Integration with 1-Minute Astrological Decoding Loader
     function initiateRazorpay() {
       const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH";
 
@@ -939,22 +951,69 @@
             paidLoader.scrollIntoView({ behavior: 'smooth' });
           }
 
-          // પેમેન્ટ પછી જ Gemini API કોલ થશે (૧૦૦% ક્રેડિટ સેવિંગ)
-          try {
-            const apiRes = await fetch(`${BACKEND_URL}/api/get-prediction`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(clientData)
-            });
-            const resData = await apiRes.json();
+          // 50-second cinematic post-payment simulation timer
+          let paidProgress = 0;
+          const paidBar = document.getElementById('paidProgressBar');
+          const paidPct = document.getElementById('paidLoaderPct');
+          const paidRemText = document.getElementById('paidRemainingText');
+          const paidStatus = document.getElementById('aiPaidStatus');
+
+          const paidStages = [
+            { at: 20, text: "૧૨ ભાવોમાં ગ્રહોના નક્ષત્ર પદનું ગાણિતિક સંકલન..." },
+            { at: 45, text: "નવરાત્રિ મહા ગોચર શક્તિ ચક્ર અને દોષ નિવારણ મેપિંગ..." },
+            { at: 70, text: "આગામી ૬ મહિનાની ચોક્કસ ટાઈમલાઈન ફળાદેશ સિન્થેસિસ..." },
+            { at: 90, text: "સિદ્ધ નવરાત્રિ મંત્ર અને શાસ્ત્રોક્ત ઉપાયોનું અલ્ટીમેટ ડીકોડિંગ..." },
+            { at: 100, text: "અહેવાલ પૂર્ણ: સ્ક્રીન પર અનલૉક થઈ રહ્યો છે..." }
+          ];
+
+          let isApiFetched = false;
+
+          // Start Background API Fetch immediately
+          fetch(`${BACKEND_URL}/api/get-prediction`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(clientData)
+          })
+          .then(res => res.json())
+          .then(resData => {
             if (resData.success && resData.data) {
               preGeneratedData = resData.data;
             }
-          } catch (err) {
-            console.error("Payment API Error:", err);
-          } finally {
-            renderUnlockedSection();
-          }
+          })
+          .catch(err => console.error("API err:", err))
+          .finally(() => {
+            isApiFetched = true;
+          });
+
+          // Smooth progress over ~45-50 seconds
+          const paidTimer = setInterval(() => {
+            paidProgress += 1;
+            if (paidProgress > 100) paidProgress = 100;
+
+            if (paidBar) paidBar.style.width = paidProgress + '%';
+            if (paidPct) paidPct.innerText = paidProgress + '%';
+            
+            const remSeconds = Math.max(0, Math.ceil(50 * (1 - paidProgress / 100)));
+            if (paidRemText) paidRemText.innerText = `${remSeconds} સેકન્ડ`;
+
+            const stage = paidStages.find(s => paidProgress <= s.at);
+            if (stage && paidStatus) paidStatus.innerText = stage.text;
+
+            // If API finished and we reached >= 85%, accelerate to 100%
+            if (isApiFetched && paidProgress >= 80) {
+              paidProgress = 100;
+              clearInterval(paidTimer);
+              setTimeout(() => {
+                renderUnlockedSection();
+              }, 600);
+            } else if (paidProgress >= 100) {
+              clearInterval(paidTimer);
+              setTimeout(() => {
+                renderUnlockedSection();
+              }, 600);
+            }
+          }, 450);
+
         },
         "prefill": {
           "name": clientData.name || "User"
@@ -983,7 +1042,7 @@
       const data = preGeneratedData || {
         luckyColor: "સોનેરી પીળો અને કેસરી",
         luckyNumber: `${clientData.bhagyank || '૭'}`,
-        luckyDevi: "માં ભગવતી દુર્ગા",
+        luckyDevi: "માં આદિશક્તિ ભગવતી દુર્ગા",
         luckyRudra: "૫ મુખી રુદ્રાક્ષ",
         executiveSummary: `<p><b>${clientData.name || 'જાતક'}જી</b>, તમારી કુંડળીમાં નવરાત્રિ મહા ગોચર સ્પષ્ટ સંકેત આપે છે કે આ સમય તમારા માટે ભાગ્યોદયનું વિશેષ સંગમ લઈને આવી રહ્યો છે.</p>`,
         areaReports: [],
@@ -991,7 +1050,7 @@
         specialRemedies: []
       };
 
-      // ૧. લકી મેટ્રિક્સ
+      // 1. Lucky Parameters
       const elColor = document.getElementById('luckyColor');
       if (elColor) elColor.innerText = data.luckyColor || "પીળો અને કેસરી";
 
@@ -1004,11 +1063,11 @@
       const elRudra = document.getElementById('luckyRudra');
       if (elRudra) elRudra.innerText = data.luckyRudra || "૫ મુખી રુદ્રાક્ષ";
 
-      // ૨. એક્ઝિક્યુટિવ સમરી
+      // 2. Executive Summary
       const elSum = document.getElementById('executiveSummaryText');
       if (elSum) elSum.innerHTML = data.executiveSummary || "";
 
-      // ૩. પસંદ કરેલા ક્ષેત્રોનું ડીપ રેન્ડરિંગ
+      // 3. Selected Areas Stack
       const areaContainer = document.getElementById('dynamicAreaReportsContainer');
       if (areaContainer) {
         areaContainer.innerHTML = '';
@@ -1050,11 +1109,11 @@
         }
       }
 
-      // ૪. ગ્રહ દોષ
+      // 4. Planetary Dosha
       const elDosha = document.getElementById('premiumDosha');
       if (elDosha) elDosha.innerHTML = data.planetaryDosha || "ગ્રહોનું સંતુલન જાળવવું.";
 
-      // ૫. ઉપાયો
+      // 5. Authentic Remedies
       const remediesContainer = document.getElementById('premiumRemediesContainer');
       if (remediesContainer) {
         remediesContainer.innerHTML = '';
