@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ભાગ્યવેદ (Bhagyaveda) - નવરાત્રિ મહા ગ્રહ પરિવર્તન સ્કેન</title>
+  <title>ભાગ્યવેદ (Bhagyaveda) - નવરાત્રિ મહા ગ્રહ પરિવર્તન સુપરકમ્પ્યુટર</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
@@ -14,18 +14,23 @@
       theme: {
         extend: {
           colors: {
-            cosmic: { 950: '#02040a', 900: '#0a0f1d', 800: '#111827', 700: '#1f293d' },
-            accent: { gold: '#ffd700', amber: '#f59e0b', red: '#ee4444', violet: '#b026ff' }
+            cosmic: { 950: '#02040a', 900: '#070b16', 850: '#0c1222', 800: '#111827', 700: '#1e293b' },
+            accent: { gold: '#ffd700', amber: '#f59e0b', red: '#ff3344', cyan: '#00f0ff', violet: '#a855f7' }
           },
           fontFamily: { mono: ['Courier New', 'monospace', 'ui-monospace'] },
           animation: {
-            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-            'spin-slow': 'spin 24s linear infinite'
+            'orbit-slow': 'orbit 60s linear infinite',
+            'orbit-reverse': 'orbitRev 45s linear infinite',
+            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
+            'radar-sweep': 'radarSweep 4s linear infinite'
           },
           keyframes: {
+            orbit: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+            orbitRev: { '0%': { transform: 'rotate(360deg)' }, '100%': { transform: 'rotate(0deg)' } },
+            radarSweep: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
             pulseGlow: {
-              '0%, 100%': { opacity: '0.3', filter: 'drop-shadow(0 0 15px rgba(238, 68, 68, 0.3))' },
-              '50%': { opacity: '0.7', filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 0.5))' }
+              '0%, 100%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(255, 51, 68, 0.4))' },
+              '50%': { opacity: '0.85', filter: 'drop-shadow(0 0 35px rgba(255, 215, 0, 0.6))' }
             }
           }
         }
@@ -36,67 +41,114 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&display=swap');
     
     body {
       font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
       background-color: #02040a;
-      color: #f3f4f6;
-      background-image: radial-gradient(circle at 15% 45%, rgba(238, 68, 68, 0.07), transparent 25%),
-                        radial-gradient(circle at 85% 25%, rgba(255, 215, 0, 0.05), transparent 25%);
+      color: #f1f5f9;
+      overflow-x: hidden;
     }
     .font-cinzel { font-family: 'Cinzel', serif; }
     
-    .shakti-border {
-      position: relative;
-      background: rgba(10, 15, 29, 0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(238, 68, 68, 0.25);
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.05);
-    }
-    .shakti-border::before {
-      content: '';
-      position: absolute;
-      top: -1px; left: -1px; right: -1px; bottom: -1px;
-      background: linear-gradient(45deg, transparent 35%, rgba(255, 215, 0, 0.25), transparent 65%);
-      z-index: -1;
-      border-radius: inherit;
-    }
-
-    .ancient-mandala {
+    /* Cosmic Planetary Orbital Rings Background */
+    .cosmic-field {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100vw; height: 100vw;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,215,0,0.03)" stroke-width="0.2"/><circle cx="50" cy="50" r="32" fill="none" stroke="rgba(238,68,68,0.02)" stroke-width="0.2"/></svg>');
-      background-size: contain; z-index: -10; opacity: 0.35;
+      width: 140vw;
+      height: 140vw;
+      max-width: 1600px;
+      max-height: 1600px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.28;
+    }
+    .orbital-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 215, 0, 0.22);
+    }
+    .ring-1 { width: 90%; height: 90%; border-color: rgba(255, 51, 68, 0.15); animation: orbit 90s linear infinite; }
+    .ring-2 { width: 70%; height: 70%; border-color: rgba(0, 240, 255, 0.18); animation: orbitRev 65s linear infinite; }
+    .ring-3 { width: 50%; height: 50%; border-color: rgba(255, 215, 0, 0.25); animation: orbit 45s linear infinite; }
+    .ring-4 { width: 30%; height: 30%; border-color: rgba(168, 85, 247, 0.3); border-style: dotted; animation: orbitRev 30s linear infinite; }
+
+    .planet-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px currentColor;
+    }
+
+    .shakti-glass {
+      background: rgba(7, 11, 22, 0.82);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 215, 0, 0.03);
     }
 
     .area-chip input:checked + label {
       border-color: #ffd700;
-      background-color: rgba(255, 215, 0, 0.12);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 51, 68, 0.12));
       color: #ffffff;
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+      box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Terminal Scan Line Effect */
+    .scanline {
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
+      animation: scanAnim 3s linear infinite;
+    }
+    @keyframes scanAnim {
+      0% { top: 0; opacity: 0; }
+      50% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white relative">
 
-  <div class="ancient-mandala animate-spin-slow"></div>
+  <!-- Planetary Celestial Simulation Background -->
+  <div class="cosmic-field">
+    <div class="orbital-ring ring-1">
+      <div class="planet-dot bg-amber-400 text-amber-400" style="top: 15%; left: 15%;"></div>
+      <div class="planet-dot bg-cyan-400 text-cyan-400" style="bottom: 20%; right: 20%;"></div>
+    </div>
+    <div class="orbital-ring ring-2">
+      <div class="planet-dot bg-red-500 text-red-500" style="top: 10%; right: 30%;"></div>
+      <div class="planet-dot bg-purple-400 text-purple-400" style="bottom: 15%; left: 25%;"></div>
+    </div>
+    <div class="orbital-ring ring-3">
+      <div class="planet-dot bg-yellow-300 text-yellow-300" style="top: 50%; right: 0%;"></div>
+    </div>
+    <div class="orbital-ring ring-4">
+      <div class="planet-dot bg-emerald-400 text-emerald-400" style="top: 0%; left: 50%;"></div>
+    </div>
+  </div>
 
   <!-- Header -->
-  <header class="w-full border-b border-accent-red/20 bg-cosmic-950/85 backdrop-blur-xl sticky top-0 z-50">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-red"></span>
+  <header class="w-full border-b border-accent-gold/20 bg-cosmic-950/90 backdrop-blur-2xl sticky top-0 z-50 shadow-2xl">
+    <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-2.5">
+        <span class="relative flex h-3.5 w-3.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-80"></span>
+          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-accent-red shadow-[0_0_10px_#ff3344]"></span>
         </span>
-        <span class="text-xs font-mono text-accent-red uppercase tracking-widest font-bold">ભાગ્યવેદ શાસ્ત્રોક્ત • સુપરકમ્પ્યુટર AI</span>
+        <span class="text-xs font-mono text-slate-200 uppercase tracking-widest font-bold">
+          ભાગ્યવેદ <span class="text-accent-gold">શાસ્ત્રોક્ત AI</span> • ન્યુરલ પંચાંગ v6.2
+        </span>
       </div>
-      <div class="text-[10px] font-mono text-accent-gold bg-accent-gold/10 px-3 py-1 rounded-full border border-accent-gold/20 flex items-center gap-1">
-        <i data-lucide="cpu" class="w-3 h-3 text-accent-gold"></i> એસ્ટ્રો ન્યુરલ નેટવર્ક v5.0
+      <div class="text-[10px] font-mono text-accent-cyan bg-accent-cyan/10 px-3.5 py-1.5 rounded-full border border-accent-cyan/30 flex items-center gap-1.5 shadow-[0_0_12px_rgba(0,240,255,0.2)]">
+        <i data-lucide="satellite" class="w-3 h-3 text-accent-cyan animate-pulse"></i>
+        <span>લાઈવ એફેમરીસ સિંક</span>
       </div>
     </div>
   </header>
@@ -106,34 +158,36 @@
     
     <!-- Hero Section -->
     <div class="text-center space-y-4 relative" id="heroSection">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-amber/30 bg-accent-amber/10 text-accent-gold text-xs font-bold uppercase tracking-widest shadow-lg">
-        <i data-lucide="sparkles" class="w-4 h-4 animate-pulse text-accent-gold"></i> પ્રાચીન વૈદિક ગણિત × અલ્ગોરિધમિક વિશ્લેષણ
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-amber/40 bg-accent-amber/10 text-accent-gold text-xs font-bold uppercase tracking-widest shadow-lg">
+        <i data-lucide="compass" class="w-4 h-4 text-accent-gold animate-spin-slow"></i> 
+        સૂર્ય સિદ્ધાંત × ક્વોન્ટમ એસ્ટ્રો કમ્પ્યુટેશન
       </div>
-      <h1 class="text-3xl md:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-br from-accent-gold via-white to-accent-red leading-tight drop-shadow-lg">
-        આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ગ્રહોની દિશા અને દશા!
+      <h1 class="text-3xl sm:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-accent-gold via-white to-accent-red leading-tight drop-shadow-2xl">
+        આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ભાગ્યની દિશા અને દશા!
       </h1>
-      <p class="text-slate-300 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
-        નામ, જન્મ તારીખ અને તમારા પસંદ કરેલા જીવન ક્ષેત્રો પર આધારિત ૧૦૦% સચોટ શાસ્ત્રોક્ત વિશ્લેષણ.
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-light leading-relaxed">
+        નવરાત્રિ દરમિયાન થતાં મુખ્ય ગ્રહ ગોચર અને નક્ષત્ર પરિવર્તનનું ૧૦૦% સચોટ શાસ્ત્રોક્ત વિશ્લેષણ.
       </p>
     </div>
 
     <!-- The Input Form -->
-    <div id="calculatorCard" class="shakti-border rounded-2xl p-6 sm:p-8 shadow-2xl relative transition-all duration-500">
+    <div id="calculatorCard" class="shakti-glass rounded-2xl p-6 sm:p-9 shadow-2xl relative transition-all duration-500 overflow-hidden">
+      <div class="scanline"></div>
+      
       <form id="astroForm" onsubmit="event.preventDefault(); runQuantumCalculation(event); return false;" class="space-y-6">
         
-        <!-- Basic Info -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="group">
-            <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">તમારું પૂરૂં નામ *</label>
-            <input type="text" id="userName" required placeholder="દા.ત. રાહુલ શર્મા" autocomplete="off" class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all placeholder:text-slate-600">
+            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">તમારું પૂરૂં નામ *</label>
+            <input type="text" id="userName" required placeholder="દા.ત. રાહુલ શર્મા" autocomplete="off" class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-all">
           </div>
           <div class="group">
-            <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">જન્મ તારીખ *</label>
-            <input type="date" id="userDob" required class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all">
+            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">જન્મ તારીખ *</label>
+            <input type="date" id="userDob" required class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-all">
           </div>
           <div class="group">
-            <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">જન્મ સમય (જો ખબર હોય તો)</label>
-            <select id="userTimePeriod" class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all appearance-none">
+            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">જન્મ સમય (જો ખબર હોય તો)</label>
+            <select id="userTimePeriod" class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold transition-all appearance-none cursor-pointer">
               <option value="unknown">સમય ખબર નથી (સૂર્ય કુંડળી પદ્ધતિ - ૧૦૦% સચોટ)</option>
               <option value="morning">સવાર (04:00 - 12:00)</option>
               <option value="afternoon">બપોર (12:00 - 17:00)</option>
@@ -142,8 +196,8 @@
             </select>
           </div>
           <div class="group">
-            <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">લિંગ *</label>
-            <select id="userGender" required class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all appearance-none">
+            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">લિંગ *</label>
+            <select id="userGender" required class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold transition-all appearance-none cursor-pointer">
               <option value="male">પુરુષ</option>
               <option value="female">મહિલા</option>
             </select>
@@ -151,24 +205,24 @@
         </div>
 
         <!-- 10 Life Areas Selection -->
-        <div class="border-t border-white/10 pt-5 space-y-3">
+        <div class="border-t border-white/10 pt-5 space-y-3.5">
           <div class="flex items-center justify-between">
             <div>
-              <label class="block text-xs font-mono text-accent-gold uppercase tracking-widest font-bold">
+              <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider font-bold">
                 તમે કયા ક્ષેત્રોનું વિશ્લેષણ જાણવા માંગો છો? *
               </label>
-              <p class="text-[11px] text-slate-400">તમે એક, અનેક અથવા બધા જ ક્ષેત્રો પસંદ કરી શકો છો</p>
+              <p class="text-[11px] text-slate-400">એક કરતાં વધુ ક્ષેત્રો પસંદ કરી શકો છો</p>
             </div>
-            <button type="button" onclick="toggleSelectAllAreas()" id="btnSelectAll" class="text-[11px] text-accent-gold border border-accent-gold/40 px-2.5 py-1 rounded bg-accent-gold/10 hover:bg-accent-gold/20 transition-all font-mono cursor-pointer">
+            <button type="button" onclick="toggleSelectAllAreas()" id="btnSelectAll" class="text-[11px] text-accent-gold border border-accent-gold/40 px-3 py-1.5 rounded-lg bg-accent-gold/10 hover:bg-accent-gold/20 transition-all font-mono cursor-pointer">
               બધા પસંદ કરો
             </button>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1" id="areasContainer">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1" id="areasContainer">
             
             <div class="area-chip">
               <input type="checkbox" id="area_career" value="નોકરી અને કરિયર ગ્રોથ" checked class="hidden">
-              <label for="area_career" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_career" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="briefcase" class="w-4 h-4 text-accent-gold"></i>
                 <span>💼 નોકરી અને કરિયર ગ્રોથ (Job & Promotion)</span>
               </label>
@@ -176,7 +230,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_business" value="ધનલાભ, વેપાર અને આર્થિક સ્થિતિ" checked class="hidden">
-              <label for="area_business" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_business" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
                 <span>💰 ધનલાભ, વેપાર અને રોકાણ (Wealth & Business)</span>
               </label>
@@ -184,7 +238,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_love" value="પ્રેમ, ક્રશ અને રિલેશનશિપનું સત્ય" checked class="hidden">
-              <label for="area_love" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_love" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="heart" class="w-4 h-4 text-accent-red"></i>
                 <span>💖 પ્રેમ, આકર્ષણ અને ક્રશનું સત્ય (Love & Connection)</span>
               </label>
@@ -192,7 +246,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_marriage" value="લગ્ન, જીવનસાથી અને દાંપત્ય સુખ" checked class="hidden">
-              <label for="area_marriage" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_marriage" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="sparkles" class="w-4 h-4 text-pink-400"></i>
                 <span>💍 લગ્ન યોગ અને દાંપત્ય સુખ (Marriage & Partner)</span>
               </label>
@@ -200,7 +254,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_family" value="પરિવાર અને માનસિક શાંતિ" checked class="hidden">
-              <label for="area_family" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_family" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="home" class="w-4 h-4 text-blue-400"></i>
                 <span>🏡 પરિવાર અને માનસિક શાંતિ (Family Harmony)</span>
               </label>
@@ -208,7 +262,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_health" value="આરોગ્ય, ઉર્જા અને આયુષ્ય" checked class="hidden">
-              <label for="area_health" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_health" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="activity" class="w-4 h-4 text-teal-400"></i>
                 <span>🌿 આરોગ્ય અને શારીરિક ઉર્જા (Health & Fitness)</span>
               </label>
@@ -216,7 +270,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_child" value="સંતાન સુખ અને અભ્યાસ/વિદ્યા" class="hidden">
-              <label for="area_child" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_child" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="graduation-cap" class="w-4 h-4 text-yellow-300"></i>
                 <span>👶 સંતાન સુખ અને વિદ્યા/અભ્યાસ (Education & Kids)</span>
               </label>
@@ -224,7 +278,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_foreign" value="વિદેશ યાત્રા, વિઝા અને સ્થળાંતર" class="hidden">
-              <label for="area_foreign" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_foreign" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="plane" class="w-4 h-4 text-sky-400"></i>
                 <span>✈️ વિદેશ યાત્રા, વિઝા અને પી.આર. (Foreign Travel)</span>
               </label>
@@ -232,7 +286,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_property" value="મકાન, જમીન-મિલકત અને વાહન સુખ" class="hidden">
-              <label for="area_property" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_property" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="key-round" class="w-4 h-4 text-amber-300"></i>
                 <span>🚗 મકાન, જમીન અને વાહન સુખ (Property & Assets)</span>
               </label>
@@ -240,7 +294,7 @@
 
             <div class="area-chip">
               <input type="checkbox" id="area_debt" value="દેવું મુક્તિ, શત્રુ બાધા અને કાનૂની અડચણો" class="hidden">
-              <label for="area_debt" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+              <label for="area_debt" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
                 <i data-lucide="shield-check" class="w-4 h-4 text-red-400"></i>
                 <span>🛡️ દેવું મુક્તિ અને શત્રુ બાધા (Debt & Legal Relief)</span>
               </label>
@@ -249,58 +303,94 @@
           </div>
         </div>
 
-        <button type="button" onclick="runQuantumCalculation(event)" class="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-lg shadow-accent-amber/20 transition-all flex items-center justify-center gap-3 cursor-pointer mt-4">
-          <i data-lucide="scan-line" class="w-5 h-5"></i>
-          મારું ભાગ્ય સ્કેન કરો (મફત પ્રિવ્યૂ)
+        <button type="button" onclick="runQuantumCalculation(event)" class="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-[0_0_30px_rgba(255,215,0,0.35)] transition-all flex items-center justify-center gap-3 cursor-pointer mt-4 font-cinzel">
+          <i data-lucide="cpu" class="w-5 h-5 text-cosmic-950 animate-pulse"></i>
+          વૈદિક સુપરકમ્પ્યુટર સ્કેન શરૂ કરો (મફત પ્રિવ્યૂ)
         </button>
       </form>
     </div>
 
-    <!-- Simulation Loader -->
-    <div id="loaderScreen" class="hidden shakti-border rounded-2xl p-8 text-center space-y-5 my-6 max-w-lg mx-auto backdrop-blur-3xl">
-      <div class="relative w-20 h-20 mx-auto">
-        <div class="w-20 h-20 border-4 border-accent-gold/20 border-t-accent-gold rounded-full animate-spin"></div>
-        <div class="absolute inset-0 flex items-center justify-center font-mono text-xs text-accent-gold font-bold" id="loaderPercentage">0%</div>
+    <!-- Visceral 1-Minute Cosmic Supercomputer Simulation Screen -->
+    <div id="loaderScreen" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-6 my-6 max-w-xl mx-auto shadow-2xl relative overflow-hidden">
+      <div class="scanline"></div>
+
+      <!-- Radar Spinning Core -->
+      <div class="relative w-28 h-28 mx-auto">
+        <div class="absolute inset-0 rounded-full border-2 border-accent-gold/20 animate-ping"></div>
+        <div class="w-28 h-28 border-4 border-slate-800 border-t-accent-gold border-r-accent-cyan rounded-full animate-spin"></div>
+        <div class="absolute inset-2 border-2 border-accent-red/30 rounded-full animate-orbit-reverse"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center font-mono">
+          <span class="text-xs font-bold text-accent-gold" id="loaderPercentage">0%</span>
+          <span class="text-[9px] text-slate-400 uppercase tracking-widest">ગણતરી</span>
+        </div>
       </div>
+
       <div class="space-y-2">
-        <h3 class="text-lg font-cinzel font-bold text-white tracking-wide">વૈદિક સુપરકમ્પ્યુટર ગણતરી ચાલુ છે...</h3>
-        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all">સૂર્ય-ચંદ્ર ક્રાંતિવૃત્ત અને અક્ષાંશ-રેખાંશ કોઓર્ડિનેટ્સ મેપિંગ...</p>
+        <h3 class="text-lg sm:text-xl font-cinzel font-bold text-white tracking-wide flex items-center justify-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold animate-pulse"></i>
+          નવરાત્રિ મહા ગોચર ગણતરી ચાલુ છે...
+        </h3>
+        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all duration-300">
+          સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...
+        </p>
       </div>
       
-      <div class="w-full bg-slate-800/80 rounded-full h-2 overflow-hidden border border-slate-700">
-        <div id="progressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-300"></div>
+      <!-- Telemetry Box -->
+      <div class="bg-cosmic-950/90 border border-slate-800 p-3.5 rounded-xl font-mono text-[11px] text-left space-y-1.5 shadow-inner">
+        <div class="flex justify-between text-slate-400">
+          <span>● નક્ષત્ર મેપિંગ:</span>
+          <span class="text-accent-cyan" id="telemNakshatra">ચિત્રા - સ્વાતિ - વિશાખા</span>
+        </div>
+        <div class="flex justify-between text-slate-400">
+          <span>● અયનાંશ ડિગ્રી:</span>
+          <span class="text-accent-gold" id="telemAyanamsha">લાહિરી ૨૪° ૧૪' ૦૨"</span>
+        </div>
+        <div class="flex justify-between text-slate-400">
+          <span>● નવદુર્ગા ઉર્જા આવૃત્તિ:</span>
+          <span class="text-emerald-400" id="telemShakti">૪૩૨ Hz (પ્રથમ શૈલપુત્રી કવચ)</span>
+        </div>
       </div>
-      <div class="flex justify-between text-[10px] font-mono text-slate-400 pt-1">
-        <span>સૂર્ય સિદ્ધાંત ડેટાબેઝ</span>
-        <span>ગોચર ડિગ્રી એનાલિસિસ</span>
-        <span>ન્યુરલ કુંડળી મેચ</span>
+
+      <!-- Real Progress Bar -->
+      <div class="space-y-1.5">
+        <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-700/80">
+          <div id="progressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-200"></div>
+        </div>
+        <div class="flex justify-between text-[10px] font-mono text-slate-400">
+          <span>સમય બાકી: <b id="timeRemainingText" class="text-white">૫૫ સેકન્ડ</b></span>
+          <span>ચોક્કસાઈ: ૧૦૦% શાસ્ત્રોક્ત</span>
+        </div>
       </div>
+      
+      <p class="text-[11px] text-slate-400 italic">
+        * સંપૂર્ણ સચોટ ગણતરી માટે સુપરકમ્પ્યુટર અંદાજે <b>૧ મિનિટ</b> નો સમય લેશે. કૃપા કરીને બેક ન કરશો.
+      </p>
     </div>
 
     <!-- Results Container -->
     <div id="resultScreen" class="hidden space-y-10 mt-4">
       
       <!-- Free Reading Box -->
-      <div class="bg-cosmic-900/70 border border-accent-red/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+      <div class="bg-cosmic-900/80 border border-accent-gold/30 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
         <div class="border-b border-white/10 pb-4 mb-4 relative z-10">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h2 class="text-2xl md:text-3xl font-bold font-cinzel text-accent-gold" id="resTitle">વૈદિક ગણતરી પરિણામ</h2>
-            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full self-start">
-              ● ૧૦૦% ગાણિતિક અને શાસ્ત્રોક્ત મેચ
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full self-start flex items-center gap-1">
+              <i data-lucide="check-circle" class="w-3 h-3"></i> ૧૦૦% ગાણિતિક અને શાસ્ત્રોક્ત મેચ
             </span>
           </div>
           
           <!-- Badges -->
           <div class="grid grid-cols-3 gap-2.5 mt-4">
-            <div class="bg-cosmic-950/80 border border-accent-gold/30 p-2.5 rounded-lg text-center sm:text-left">
+            <div class="bg-cosmic-950/90 border border-accent-gold/30 p-3 rounded-xl text-center sm:text-left">
               <p class="text-[9px] text-slate-400 uppercase tracking-widest font-mono">નામ રાશિ</p>
               <p class="text-sm sm:text-base font-bold text-white" id="badgeNaamRashi">--</p>
             </div>
-            <div class="bg-cosmic-950/80 border border-accent-red/30 p-2.5 rounded-lg text-center sm:text-left">
+            <div class="bg-cosmic-950/90 border border-accent-red/30 p-3 rounded-xl text-center sm:text-left">
               <p class="text-[9px] text-slate-400 uppercase tracking-widest font-mono">સૂર્ય રાશિ</p>
               <p class="text-sm sm:text-base font-bold text-white" id="badgeSuryaRashi">--</p>
             </div>
-            <div class="bg-cosmic-950/80 border border-emerald-500/30 p-2.5 rounded-lg text-center sm:text-left">
+            <div class="bg-cosmic-950/90 border border-emerald-500/30 p-3 rounded-xl text-center sm:text-left">
               <p class="text-[9px] text-slate-400 uppercase tracking-widest font-mono">ભાગ્યાંક</p>
               <p class="text-sm sm:text-base font-bold text-emerald-400 font-mono" id="badgeBhagyank">--</p>
             </div>
@@ -325,7 +415,6 @@
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <!-- Positive Impact Side -->
               <div class="bg-emerald-950/30 border border-emerald-500/30 p-3.5 rounded-lg space-y-1">
                 <p class="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                   <i data-lucide="trending-up" class="w-4 h-4"></i> ક્યાં થશે મોટો ભાગ્યોદય? (શુભ અસરો)
@@ -335,7 +424,6 @@
                 </p>
               </div>
 
-              <!-- Negative Impact Side -->
               <div class="bg-accent-red/15 border border-accent-red/30 p-3.5 rounded-lg space-y-1">
                 <p class="text-xs font-bold text-accent-red flex items-center gap-1.5">
                   <i data-lucide="shield-alert" class="w-4 h-4"></i> ક્યાં સંભાળવું પડશે? (અશુભ અસરો)
@@ -347,14 +435,14 @@
             </div>
 
             <div class="p-3 bg-cosmic-950/80 rounded-lg border border-accent-gold/20 text-xs text-slate-300 leading-relaxed">
-              🔮 <strong>ખાસ ચેતવણી:</strong> કયો સમય તમારા માટે સુવર્ણ સાબિત થશે અને કયા ક્ષેત્રમાં તમારે તાત્કાલિક સાવચેતી રાખવી પડશે, તેની <strong class="text-accent-gold">ચોક્કસ મહિનાવાર ટાઈમલાઈન અને શાસ્ત્રોક્ત ઉપાયો</strong> નીચેના ગુપ્ત અહેવાલમાં વિસ્તારપૂર્વક આપેલા છે.
+              🔮 <strong>વિશેષ સૂચના:</strong> કયો સમય તમારા માટે સુવર્ણ સાબિત થશે અને કયા ક્ષેત્રમાં તમારે તાત્કાલિક સાવચેતી રાખવી પડશે, તેની <strong class="text-accent-gold">ચોક્કસ મહિનાવાર ટાઈમલાઈન અને શાસ્ત્રોક્ત ઉપાયો</strong> નીચેના ગુપ્ત અહેવાલમાં વિસ્તારપૂર્વક આપેલા છે.
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Paywall Section -->
-      <div id="paywallBox" class="relative shakti-border rounded-2xl p-1 border-2 border-accent-red shadow-[0_0_50px_rgba(238,68,68,0.4)] overflow-hidden animate-pulse-glow">
+      <!-- High-Converting Paywall Section -->
+      <div id="paywallBox" class="relative shakti-glass rounded-2xl p-1 border-2 border-accent-red shadow-[0_0_50px_rgba(255,51,68,0.4)] overflow-hidden animate-pulse-glow">
         <div class="relative bg-cosmic-950 rounded-xl p-6 sm:p-10 space-y-6">
           <div class="text-center space-y-3">
              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-red/20 border border-accent-red/50 text-accent-gold text-xs font-bold animate-pulse">
@@ -369,19 +457,19 @@
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-xs text-slate-300 pt-1">
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-white/10">
+            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
               <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
               <span>પસંદ કરેલા ક્ષેત્રોનું <b>૨-૩ પાનાનું ઊંડાણપૂર્વકનું</b> વિશ્લેષણ</span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-white/10">
+            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
               <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
               <span>આગામી <b>૩ થી ૬ મહિનાની ચોક્કસ ટાઈમલાઈન</b> (લાભના દિવસો)</span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-white/10">
+            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
               <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
               <span>તમારા નામ મુજબ <b>શુભ રંગ, અંક, રુદ્રાક્ષ & આરાધ્ય દેવી</b></span>
             </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-white/10">
+            <div class="flex items-center gap-2 bg-cosmic-900/90 p-3 rounded-lg border border-white/10">
               <i data-lucide="check" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
               <span>શનિ-રાહુ દોષ શાંતિ માટે <b>સિદ્ધ નવરાત્રિ મંત્ર સાધના</b></span>
             </div>
@@ -391,7 +479,7 @@
             <div class="text-center md:text-left">
               <div class="text-xs text-accent-red font-bold mb-1 flex items-center justify-center md:justify-start gap-1.5">
                 <i data-lucide="clock" class="w-3.5 h-3.5 animate-spin"></i>
-                વિશેષ દક્ષિણા છૂટ માત્ર <span id="fomoTimer" class="font-mono text-white text-sm bg-accent-red px-1.5 py-0.5 rounded">૧૪:૫૯</span> મિનિટ માટે!
+                વિશેષ દક્ષિણા છૂટ માત્ર <span id="fomoTimer" class="font-mono text-white text-sm bg-accent-red px-2 py-0.5 rounded">૧૪:૫૯</span> મિનિટ માટે!
               </div>
               <div class="flex items-end gap-3 justify-center md:justify-start mt-2.5">
                 <span class="text-lg text-slate-500 line-through decoration-slate-500 mb-1">₹૨,૧૦૦</span>
@@ -399,8 +487,8 @@
                 <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold mb-2 animate-pulse">૯૫% છૂટ</span>
               </div>
             </div>
-            <button id="payBtn" onclick="initiateRazorpay()" class="group w-full md:w-auto px-10 py-5 rounded-xl font-bold text-base uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.04] shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all flex items-center justify-center gap-3 overflow-hidden relative cursor-pointer">
-               <div class="absolute inset-0 bg-white/15 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+            <button id="payBtn" onclick="initiateRazorpay()" class="group w-full md:w-auto px-10 py-5 rounded-xl font-bold text-base uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.04] shadow-[0_0_40px_rgba(255,215,0,0.4)] transition-all flex items-center justify-center gap-3 overflow-hidden relative cursor-pointer font-cinzel">
+              <div class="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
               <i data-lucide="unlock" class="w-5 h-5 animate-pulse"></i>
               <span id="payBtnText">મારો સંપૂર્ણ રિપોર્ટ ખોલો - ₹૯૯</span>
             </button>
@@ -412,16 +500,16 @@
         </div>
       </div>
 
-      <!-- Paid Post-Payment Loader -->
-      <div id="aiPaidLoader" class="hidden shakti-border rounded-2xl p-8 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl">
+      <!-- Paid Post-Payment AI Decoding Loader -->
+      <div id="aiPaidLoader" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl shadow-2xl">
         <div class="w-16 h-16 border-4 border-emerald-400 border-t-accent-gold rounded-full animate-spin mx-auto"></div>
-        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! કુંડળી વિશ્લેષણ ડીકોડ થઈ રહ્યું છે...</h3>
-        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું ગાણિતિક સંકલન થઈ રહ્યું છે (૩-૪ સેકન્ડ)...</p>
+        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! Gemini AI કુંડળી વિશ્લેષણ ડીકોડ કરે છે...</h3>
+        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">નવરાત્રિ શક્તિ ચક્ર અને તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું સંકલન થઈ રહ્યું છે (૩-૪ સેકન્ડ)...</p>
       </div>
 
       <!-- Premium Unlocked Section -->
       <div id="premiumUnlokedSection" class="hidden space-y-8 mt-12 scroll-mt-20">
-         <div class="shakti-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
+         <div class="shakti-glass rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
              
              <!-- Header -->
              <div class="border-b border-white/10 pb-6 mb-6 flex items-center gap-4">
@@ -493,7 +581,7 @@
              </div>
 
              <!-- Start New Scan Button -->
-             <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer">
+             <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer font-cinzel">
                <i data-lucide="user-plus" class="w-4 h-4"></i>
                પરિવારના અન્ય સભ્ય માટે નવો સ્કેન કરો
              </button>
@@ -503,8 +591,8 @@
     </div>
   </main>
 
-  <footer class="border-t border-accent-red/10 bg-cosmic-950 py-10 px-4 text-center text-[10px] text-slate-600 font-mono mt-16 relative z-10">
-    <p class="text-slate-500 mb-2 uppercase tracking-widest">પ્રાચીન સૂર્ય કુંડળી સિદ્ધાંત અને આધુનિક ગોચર ગણતરી</p>
+  <footer class="border-t border-accent-gold/10 bg-cosmic-950 py-10 px-4 text-center text-[10px] text-slate-500 font-mono mt-16 relative z-10">
+    <p class="text-slate-400 mb-2 uppercase tracking-widest">પ્રાચીન સૂર્ય કુંડળી સિદ્ધાંત • ક્વોન્ટમ એસ્ટ્રો લેબ્સ</p>
     © 2026 Bhagyaveda Labs. All rights reserved.
   </footer>
 
@@ -641,6 +729,7 @@
       }, 1000);
     }
 
+    // Visceral 1-Minute Quantum Calculation Simulation
     function runQuantumCalculation(e) {
       if (e && e.preventDefault) e.preventDefault();
 
@@ -688,38 +777,57 @@
           localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
         } catch(err){}
 
-        // નોંધ: અહીં Gemini કોલ નથી થતો જેથી મફત યુઝર પાછળ ક્રેડિટ ન વેડફાય.
-
+        // Switch to Simulator Screen
         const hero = document.getElementById('heroSection');
         const card = document.getElementById('calculatorCard');
         const loader = document.getElementById('loaderScreen');
         const status = document.getElementById('loaderStatus');
         const progressBar = document.getElementById('progressBar');
         const percentageText = document.getElementById('loaderPercentage');
+        const timeRemainingText = document.getElementById('timeRemainingText');
+
+        const telemNakshatra = document.getElementById('telemNakshatra');
+        const telemAyanamsha = document.getElementById('telemAyanamsha');
+        const telemShakti = document.getElementById('telemShakti');
 
         if (hero) hero.style.display = 'none';
         if (card) card.classList.add('hidden');
         if (loader) loader.classList.remove('hidden');
 
+        // Total duration: 55-60 seconds simulation
         let progress = 0;
-        const steps = [
-          { at: 20, text: "સૂર્ય-ચંદ્ર ક્રાંતિવૃત્ત અને અક્ષાંશ-રેખાંશ કોઓર્ડિનેટ્સ મેપિંગ..." },
-          { at: 45, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની ડિગ્રી ગણતરી (Mathematical Ephemeris)..." },
-          { at: 70, text: "અષ્ટકવર્ગ બિંદુ અને વિંશોત્તરી દશા ભ્રમણ કેલ્ક્યુલેશન..." },
-          { at: 90, text: "તમારા પસંદ કરેલા " + selectedAreas.length + " ક્ષેત્રોનું ન્યુરલ ગોચર સિમ્યુલેશન..." },
-          { at: 100, text: "વૈદિક અલ્ગોરિધમ સક્સેસ: કુંડળી વિશ્લેષણ તૈયાર!" }
+        let totalSeconds = 55;
+        let remainingSec = totalSeconds;
+
+        const dynamicStages = [
+          { at: 12, text: "સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...", nakshatra: "અશ્વિની - ભરણી - કૃત્તિકા", ayanamsha: "૨૪° ૧૨' ૧૫\"", shakti: "પ્રથમ શૈલપુત્રી ઉર્જા પદ" },
+          { at: 25, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની કોણીય ડિગ્રી ગણતરી (Mathematical Ephemeris)...", nakshatra: "રોહિણી - મૃગશીર્ષ - આર્દ્રા", ayanamsha: "૨૪° ૧૩' ૦૦\"", shakti: "દ્વિતીય બ્રહ્મચારિણી આભા મંડળ" },
+          { at: 40, text: "નવરાત્રિ મહા ગ્રહ સંક્રમણ: ગુરુ-શનિ-રાહુ વક્રી ગોચર મેપિંગ...", nakshatra: "પુનર્વસુ - પુષ્ય - આશ્લેષા", ayanamsha: "૨૪° ૧૩' ૪૫\"", shakti: "તૃતીય ચંદ્રઘંટા શંખનાદ આવૃત્તિ" },
+          { at: 55, text: "અષ્ટકવર્ગ બિંદુઓ અને ષડ્બળ શક્તિ સિમ્યુલેશન...", nakshatra: "મઘા - પૂર્વા ફાલ્ગુની - ઉત્તરા", ayanamsha: "૨૪° ૧૪' ૧૦\"", shakti: "કુષ્માંડા બ્રહ્માંડ ગર્ભ કેન્દ્ર" },
+          { at: 70, text: "તમારા પસંદ કરેલા ક્ષેત્રો પર ક્રાંતિવૃત્ત ગોચર પ્રોજેક્શન...", nakshatra: "હસ્ત - ચિત્રા - સ્વાતિ", ayanamsha: "૨૪° ૧૪' ૨૨\"", shakti: "સ્કંદમાતા રક્ષા કવચ સિંક" },
+          { at: 85, text: "ન્યુરલ કુંડળી વિશ્લેષણ અને દશા ફળાદેશ સિન્થેસિસ...", nakshatra: "વિશાખા - અનુરાધા - જ્યેષ્ઠા", ayanamsha: "૨૪° ૧૪' ૩૮\"", shakti: "કાત્યાયની મહા દ્રષ્ટિ સક્રિય" },
+          { at: 96, text: "શાસ્ત્રોક્ત ગાણિતિક પરિણામોનું અંતિમ ડીકોડિંગ...", nakshatra: "મૂળ - પૂર્વાષાઢા - ઉત્તરાષાઢા", ayanamsha: "૨૪° ૧૪' ૫૦\"", shakti: "મહાગૌરી પૂર્ણ સિદ્ધિ સાકાર" },
+          { at: 100, text: "વૈદિક સુપરકમ્પ્યુટર ગણતરી સફળ: પરિણામ તૈયાર!", nakshatra: "શ્રવણ - ધનિષ્ઠા - રેવતી", ayanamsha: "૨૪° ૧૫' ૦૦\"", shakti: "સિદ્ધિદાત્રી વરદાન મંડલ" }
         ];
 
+        // 55 seconds interval (55000ms / ~550 ticks = 100ms per tick)
         const simInterval = setInterval(() => {
-          progress += 4;
+          progress += 0.2;
           if (progress > 100) progress = 100;
 
-          if (progressBar) progressBar.style.width = progress + '%';
-          if (percentageText) percentageText.innerText = progress + '%';
+          if (progressBar) progressBar.style.width = Math.floor(progress) + '%';
+          if (percentageText) percentageText.innerText = Math.floor(progress) + '%';
 
-          const curStep = steps.find(s => progress <= s.at);
-          if (curStep && status) {
-            status.innerText = curStep.text;
+          // Update remaining time
+          const currentRemaining = Math.max(0, Math.ceil(totalSeconds * (1 - progress / 100)));
+          if (timeRemainingText) timeRemainingText.innerText = `${currentRemaining} સેકન્ડ`;
+
+          const curStage = dynamicStages.find(s => progress <= s.at);
+          if (curStage) {
+            if (status) status.innerText = curStage.text;
+            if (telemNakshatra) telemNakshatra.innerText = curStage.nakshatra;
+            if (telemAyanamsha) telemAyanamsha.innerText = curStage.ayanamsha;
+            if (telemShakti) telemShakti.innerText = curStage.shakti;
           }
 
           if (progress >= 100) {
@@ -727,12 +835,12 @@
             setTimeout(() => {
               if (loader) loader.classList.add('hidden');
               displayFreePrediction();
-            }, 300);
+            }, 400);
           }
-        }, 80);
+        }, 110);
 
       } catch (err) {
-        console.error("runQuantumCalculation error:", err);
+        console.error("Simulation error:", err);
         displayFreePrediction();
       }
 
@@ -765,7 +873,7 @@
 
         const para = document.getElementById('paraIntro');
         if (para) {
-          para.innerHTML = `<b>${name || 'જાતક'}જી</b>, તમારી જન્મ તારીખ પરથી સૂર્ય રાશિ <b>'${suryaRashi || 'મેષ'}'</b>, નામ પરથી વૈદિક રાશિ <b>'${naamRashi || 'મેષ'}'</b> અને ભાગ્યાંક <b>'${bhagyank || 1}'</b> બને છે ${timeMethodText}. તમે પસંદ કરેલા <b>${areasCount} ક્ષેત્રો</b> પર નવરાત્રિ મહા ગોચર દરમિયાન નીચે મુજબના સંકેતો સ્પષ્ટ થઈ રહ્યા છે:`;
+          para.innerHTML = `<b>${name || 'જાતક'}જી</b>, તમારી જન્મ તારીખ પરથી સૂર્ય રાશિ <b>'${suryaRashi || 'મેષ'}'</b>, નામ પરથી વૈદિક રાશિ <b>'${naamRashi || 'મેષ'}'</b> અને ભાગ્યાંક <b>'${bhagyank || 1}'</b> બને છે ${timeMethodText}. તમે પસંદ કરેલા <b>${areasCount} ક્ષેત્રો</b> પર આ નવરાત્રિ મહા ગોચર દરમિયાન નીચે મુજબના સંકેતો સ્પષ્ટ થઈ રહ્યા છે:`;
         }
 
         const careerText = careerInsightsBySurya[suryaRashi] || careerInsightsBySurya["મેષ"];
@@ -775,21 +883,21 @@
         const pillarsBox = document.getElementById('pillarsBox');
         if (pillarsBox) {
           pillarsBox.innerHTML = `
-            <div class="bg-cosmic-950/60 border border-white/10 p-4 rounded-xl space-y-1">
+            <div class="bg-cosmic-950/80 border border-white/10 p-4 rounded-xl space-y-1.5 shadow-lg">
               <div class="text-accent-gold flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
                 <i data-lucide="coins" class="w-4 h-4 text-accent-gold"></i> ધન અને કરિયર (${suryaRashi || 'સૂર્ય'} પ્રભાવ)
               </div>
               <p class="text-xs text-slate-300 leading-relaxed">${careerText}</p>
             </div>
 
-            <div class="bg-cosmic-950/60 border border-accent-red/30 p-4 rounded-xl space-y-1 bg-accent-red/5">
+            <div class="bg-cosmic-950/80 border border-accent-red/40 p-4 rounded-xl space-y-1.5 bg-accent-red/5 shadow-lg">
               <div class="text-accent-red flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
                 <i data-lucide="heart" class="w-4 h-4 text-accent-red"></i> પ્રેમ અને લાગણીઓનું સત્ય (${naamRashi || 'નામ'} પ્રભાવ)
               </div>
               <p class="text-xs text-slate-200 leading-relaxed">${loveText}</p>
             </div>
 
-            <div class="bg-cosmic-950/60 border border-white/10 p-4 rounded-xl space-y-1">
+            <div class="bg-cosmic-950/80 border border-white/10 p-4 rounded-xl space-y-1.5 shadow-lg">
               <div class="text-amber-400 flex items-center gap-2 font-bold text-xs uppercase tracking-wider">
                 <i data-lucide="shield-alert" class="w-4 h-4 text-amber-400"></i> વિશેષ સંક્રમણ ચેતવણી (અંક ${bhagyank || 1})
               </div>
@@ -819,8 +927,8 @@
         "key": myRazorpayKey,
         "amount": "9900",
         "currency": "INR",
-        "name": "Bhagyaveda",
-        "description": "Vedic Astrology Deep Scan",
+        "name": "Bhagyaveda Labs",
+        "description": "Navratri Vedic Deep Scan",
         "handler": async function (response) {
           isUserPaid = true;
           document.getElementById('paywallBox').classList.add('hidden');
@@ -831,7 +939,7 @@
             paidLoader.scrollIntoView({ behavior: 'smooth' });
           }
 
-          // પેમેન્ટ સફળ થયા પછી જ જેમિની લાઈવ રિક્વેસ્ટ જશે
+          // પેમેન્ટ પછી જ Gemini API કોલ થશે (૧૦૦% ક્રેડિટ સેવિંગ)
           try {
             const apiRes = await fetch(`${BACKEND_URL}/api/get-prediction`, {
               method: 'POST',
@@ -877,7 +985,7 @@
         luckyNumber: `${clientData.bhagyank || '૭'}`,
         luckyDevi: "માં ભગવતી દુર્ગા",
         luckyRudra: "૫ મુખી રુદ્રાક્ષ",
-        executiveSummary: `<p><b>${clientData.name || 'જાતક'}જી</b>, તમારી કુંડળીમાં ગ્રહોનું ગોચર સૂચવે છે કે આ નવરાત્રિ તમારા માટે કર્મ અને ભાગ્યનું વિશેષ સંગમ લઈને આવી રહી છે.</p>`,
+        executiveSummary: `<p><b>${clientData.name || 'જાતક'}જી</b>, તમારી કુંડળીમાં નવરાત્રિ મહા ગોચર સ્પષ્ટ સંકેત આપે છે કે આ સમય તમારા માટે ભાગ્યોદયનું વિશેષ સંગમ લઈને આવી રહ્યો છે.</p>`,
         areaReports: [],
         planetaryDosha: "શનિ અને રાહુના સંક્રમણથી બચવા માટે શાંતિ જાળવવી જરૂરી છે.",
         specialRemedies: []
@@ -891,7 +999,7 @@
       if (elNum) elNum.innerText = data.luckyNumber || `${clientData.bhagyank || '૭'}`;
 
       const elDevi = document.getElementById('luckyDevi');
-      if (elDevi) elDevi.innerText = data.luckyDevi || "માં ભગવતી";
+      if (elDevi) elDevi.innerText = data.luckyDevi || "માં ભગવતી દુર્ગા";
 
       const elRudra = document.getElementById('luckyRudra');
       if (elRudra) elRudra.innerText = data.luckyRudra || "૫ મુખી રુદ્રાક્ષ";
@@ -907,7 +1015,7 @@
         if (data.areaReports && data.areaReports.length > 0) {
           data.areaReports.forEach((rep, index) => {
             const areaCard = document.createElement('div');
-            areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-7 rounded-xl space-y-4 shadow-lg";
+            areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-7 rounded-xl space-y-4 shadow-xl";
             areaCard.innerHTML = `
               <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
                 <div class="flex items-center gap-2.5 font-bold text-base text-white">
@@ -953,14 +1061,14 @@
         if (data.specialRemedies && data.specialRemedies.length > 0) {
           data.specialRemedies.forEach((rem, idx) => {
             const remCard = document.createElement('div');
-            remCard.className = "p-4 rounded-xl bg-cosmic-950 border border-accent-gold/20 space-y-2";
+            remCard.className = "p-4 rounded-xl bg-cosmic-950 border border-accent-gold/20 space-y-2 shadow-lg";
             remCard.innerHTML = `
               <div class="font-bold text-accent-gold text-sm flex items-center gap-2">
                 <span class="w-5 h-5 rounded-full bg-accent-gold text-cosmic-950 text-xs flex items-center justify-center font-bold">${idx + 1}</span>
                 ${rem.title}
               </div>
               <p class="text-xs text-slate-300 leading-relaxed"><b>વિધિ:</b> ${rem.vidhi}</p>
-              ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/30 p-2.5 rounded border border-amber-500/20"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
+              ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/40 p-2.5 rounded border border-amber-500/25"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
               <p class="text-[11px] text-emerald-400"><b>ફળશ્રુતિ:</b> ${rem.benefit}</p>
             `;
             remediesContainer.appendChild(remCard);
