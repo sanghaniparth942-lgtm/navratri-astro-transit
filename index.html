@@ -521,7 +521,6 @@
     let clientData = {};
     let isUserPaid = false;
     let preGeneratedData = null;
-    let isAIFinished = false;
 
     // Toggle Select All Areas
     let allSelected = false;
@@ -689,7 +688,7 @@
           localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
         } catch(err){}
 
-        startBackgroundAIGeneration(clientData);
+        // નોંધ: અહીં Gemini કોલ નથી થતો જેથી મફત યુઝર પાછળ ક્રેડિટ ન વેડફાય.
 
         const hero = document.getElementById('heroSection');
         const card = document.getElementById('calculatorCard');
@@ -738,30 +737,6 @@
       }
 
       return false;
-    }
-
-    async function startBackgroundAIGeneration(data) {
-      preGeneratedData = null;
-      isAIFinished = false;
-
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/get-prediction`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        const resData = await response.json();
-        if (resData.success && resData.data) {
-          preGeneratedData = resData.data;
-        }
-      } catch (e) {
-        console.error("Background AI fetch error:", e);
-      } finally {
-        isAIFinished = true;
-        if (isUserPaid) {
-          renderUnlockedSection();
-        }
-      }
     }
 
     function displayFreePrediction() {
@@ -846,7 +821,7 @@
         "currency": "INR",
         "name": "Bhagyaveda",
         "description": "Vedic Astrology Deep Scan",
-        "handler": function (response) {
+        "handler": async function (response) {
           isUserPaid = true;
           document.getElementById('paywallBox').classList.add('hidden');
 
@@ -856,18 +831,22 @@
             paidLoader.scrollIntoView({ behavior: 'smooth' });
           }
 
-          setTimeout(() => {
-            if (isAIFinished && preGeneratedData) {
-              renderUnlockedSection();
-            } else {
-              const checkInterval = setInterval(() => {
-                if (isAIFinished) {
-                  clearInterval(checkInterval);
-                  renderUnlockedSection();
-                }
-              }, 400);
+          // પેમેન્ટ સફળ થયા પછી જ જેમિની લાઈવ રિક્વેસ્ટ જશે
+          try {
+            const apiRes = await fetch(`${BACKEND_URL}/api/get-prediction`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(clientData)
+            });
+            const resData = await apiRes.json();
+            if (resData.success && resData.data) {
+              preGeneratedData = resData.data;
             }
-          }, 1500);
+          } catch (err) {
+            console.error("Payment API Error:", err);
+          } finally {
+            renderUnlockedSection();
+          }
         },
         "prefill": {
           "name": clientData.name || "User"
@@ -1003,7 +982,6 @@
       isUserPaid = false;
       clientData = {};
       preGeneratedData = null;
-      isAIFinished = false;
       try { localStorage.removeItem('bhagya_client_data'); } catch(e){}
       
       const nameIn = document.getElementById('userName');
