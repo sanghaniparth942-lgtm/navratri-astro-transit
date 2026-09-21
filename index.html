@@ -839,9 +839,17 @@
     }
 
     function initiateRazorpay() {
-      const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH
-";
+      // ✅ સાચું (એક જ લાઇનમાં)
+function initiateRazorpay() {
+  const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH";
 
+  var options = {
+    "key": myRazorpayKey,
+    "amount": "9900",
+    "currency": "INR",
+    "name": "Bhagyaveda",
+    "description": "Vedic Astrology Deep Scan",
+    // બાકીનો કોડ જેમ છે તેમ...
       var options = {
         "key": myRazorpayKey,
         "amount": "9900",
