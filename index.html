@@ -72,6 +72,14 @@
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,215,0,0.03)" stroke-width="0.2"/><circle cx="50" cy="50" r="32" fill="none" stroke="rgba(238,68,68,0.02)" stroke-width="0.2"/></svg>');
       background-size: contain; z-index: -10; opacity: 0.35;
     }
+
+    /* Custom Checkbox Pill Style */
+    .area-chip input:checked + label {
+      border-color: #ffd700;
+      background-color: rgba(255, 215, 0, 0.12);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white relative">
@@ -86,10 +94,10 @@
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-75"></span>
           <span class="relative inline-flex rounded-full h-3 w-3 bg-accent-red"></span>
         </span>
-        <span class="text-xs font-mono text-accent-red uppercase tracking-widest font-bold">ભાગ્યવેદ શાસ્ત્રોક્ત • AI લેબ્સ</span>
+        <span class="text-xs font-mono text-accent-red uppercase tracking-widest font-bold">ભાગ્યવેદ શાસ્ત્રોક્ત • સુપરકમ્પ્યુટર AI</span>
       </div>
       <div class="text-[10px] font-mono text-accent-gold bg-accent-gold/10 px-3 py-1 rounded-full border border-accent-gold/20 flex items-center gap-1">
-        <i data-lucide="cpu" class="w-3 h-3 text-accent-gold"></i> ન્યુરલ વૈદિક એલ્ગોરિધમ v4.2
+        <i data-lucide="cpu" class="w-3 h-3 text-accent-gold"></i> એસ્ટ્રો ન્યુરલ નેટવર્ક v5.0
       </div>
     </div>
   </header>
@@ -100,19 +108,21 @@
     <!-- Hero Section -->
     <div class="text-center space-y-4 relative" id="heroSection">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-amber/30 bg-accent-amber/10 text-accent-gold text-xs font-bold uppercase tracking-widest shadow-lg">
-        <i data-lucide="sparkles" class="w-4 h-4 animate-pulse text-accent-gold"></i> વૈદિક જ્યોતિષ × સુપરકમ્પ્યુટેશનલ વિશ્લેષણ
+        <i data-lucide="sparkles" class="w-4 h-4 animate-pulse text-accent-gold"></i> પ્રાચીન વૈદિક ગણિત × અલ્ગોરિધમિક વિશ્લેષણ
       </div>
       <h1 class="text-3xl md:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-br from-accent-gold via-white to-accent-red leading-tight drop-shadow-lg">
         આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ગ્રહોની દિશા અને દશા!
       </h1>
       <p class="text-slate-300 text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed">
-        પ્રાચીન સૂર્ય સિદ્ધાંત અને આધુનિક ગણતરીનું ૧૦૦% સાચું વિશ્લેષણ. જાણો પ્રેમ, કરિયર, પૈસા અને ભાગ્ય પર ગ્રહોની વાસ્તવિક અસર.
+        નામ, જન્મ તારીખ અને તમારા પસંદ કરેલા જીવન ક્ષેત્રો પર આધારિત ૧૦૦% સચોટ વિશ્લેષણ.
       </p>
     </div>
 
     <!-- The Input Form -->
     <div id="calculatorCard" class="shakti-border rounded-2xl p-6 sm:p-8 shadow-2xl relative transition-all duration-500">
       <form id="astroForm" onsubmit="runQuantumCalculation(event)" class="space-y-6">
+        
+        <!-- Basic Info -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div class="group">
             <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">તમારું પૂરૂં નામ *</label>
@@ -125,7 +135,7 @@
           <div class="group">
             <label class="block text-xs font-mono text-accent-gold/80 uppercase tracking-widest mb-2">જન્મ સમય (જો ખબર હોય તો)</label>
             <select id="userTimePeriod" class="w-full bg-cosmic-950/80 border border-slate-700/80 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-accent-amber transition-all appearance-none">
-              <option value="unknown">સમય ખબર નથી (સૂર્ય કુંડળી મેથડ - ૧૦૦% સચોટ)</option>
+              <option value="unknown">સમય ખબર નથી (સૂર્ય કુંડળી પદ્ધતિ - ૧૦૦% સચોટ)</option>
               <option value="morning">સવાર (04:00 - 12:00)</option>
               <option value="afternoon">બપોર (12:00 - 17:00)</option>
               <option value="evening">સાંજ (17:00 - 21:00)</option>
@@ -140,18 +150,133 @@
             </select>
           </div>
         </div>
-        <button type="submit" class="w-full py-4 rounded-lg font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-lg shadow-accent-amber/20 transition-all flex items-center justify-center gap-3 cursor-pointer">
+
+        <!-- NEW: 10 Life Areas Selection -->
+        <div class="border-t border-white/10 pt-5 space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <label class="block text-xs font-mono text-accent-gold uppercase tracking-widest font-bold">
+                તમે કયા ક્ષેત્રોનું વિશ્લેષણ જાણવા માંગો છો? (પસંદ કરો) *
+              </label>
+              <p class="text-[11px] text-slate-400">તમે એક, અનેક અથવા બધા જ ક્ષેત્રો પસંદ કરી શકો છો</p>
+            </div>
+            <button type="button" onclick="toggleSelectAllAreas()" id="btnSelectAll" class="text-[11px] text-accent-gold border border-accent-gold/40 px-2.5 py-1 rounded bg-accent-gold/10 hover:bg-accent-gold/20 transition-all font-mono">
+              બધા પસંદ કરો
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1" id="areasContainer">
+            
+            <div class="area-chip">
+              <input type="checkbox" id="area_career" value="નોકરી અને કરિયર ગ્રોથ" checked class="hidden">
+              <label for="area_career" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="briefcase" class="w-4 h-4 text-accent-gold"></i>
+                <span>💼 નોકરી અને કરિયર ગ્રોથ (Job & Promotion)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_business" value="ધનલાભ, વેપાર અને આર્થિક સ્થિતિ" checked class="hidden">
+              <label for="area_business" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
+                <span>💰 ધનલાભ, વેપાર અને રોકાણ (Wealth & Business)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_love" value="પ્રેમ, ક્રશ અને રિલેશનશિપનું સત્ય" checked class="hidden">
+              <label for="area_love" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="heart" class="w-4 h-4 text-accent-red"></i>
+                <span>💖 પ્રેમ, આકર્ષણ અને ક્રશનું સત્ય (Love & Connection)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_marriage" value="લગ્ન, જીવનસાથી અને દાંપત્ય સુખ" checked class="hidden">
+              <label for="area_marriage" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="sparkles" class="w-4 h-4 text-pink-400"></i>
+                <span>💍 લગ્ન યોગ અને દાંપત્ય સુખ (Marriage & Partner)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_family" value="પરિવાર અને માનસિક શાંતિ" checked class="hidden">
+              <label for="area_family" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="home" class="w-4 h-4 text-blue-400"></i>
+                <span>🏡 પરિવાર અને માનસિક શાંતિ (Family Harmony)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_health" value="આરોગ્ય, ઉર્જા અને આયુષ્ય" checked class="hidden">
+              <label for="area_health" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="activity" class="w-4 h-4 text-teal-400"></i>
+                <span>🌿 આરોગ્ય અને શારીરિક ઉર્જા (Health & Fitness)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_child" value="સંતાન સુખ અને અભ્યાસ/વિદ્યા" class="hidden">
+              <label for="area_child" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-yellow-300"></i>
+                <span>👶 સંતાન સુખ અને વિદ્યા/અભ્યાસ (Education & Kids)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_foreign" value="વિદેશ યાત્રા, વિઝા અને સ્થળાંતર" class="hidden">
+              <label for="area_foreign" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="plane" class="w-4 h-4 text-sky-400"></i>
+                <span>✈️ વિદેશ યાત્રા, વિઝા અને પી.આર. (Foreign Travel)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_property" value="મકાન, જમીન-મિલકત અને વાહન સુખ" class="hidden">
+              <label for="area_property" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="key-round" class="w-4 h-4 text-amber-300"></i>
+                <span>🚗 મકાન, જમીન અને વાહન સુખ (Property & Assets)</span>
+              </label>
+            </div>
+
+            <div class="area-chip">
+              <input type="checkbox" id="area_debt" value="દેવું મુક્તિ, શત્રુ બાધા અને કાનૂની અડચણો" class="hidden">
+              <label for="area_debt" class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 bg-cosmic-950/60 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
+                <i data-lucide="shield-check" class="w-4 h-4 text-red-400"></i>
+                <span>🛡️ દેવું મુક્તિ અને શત્રુ બાધા (Debt & Legal Relief)</span>
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-lg shadow-accent-amber/20 transition-all flex items-center justify-center gap-3 cursor-pointer mt-4">
           <i data-lucide="scan-line" class="w-5 h-5"></i>
           મારું ભાગ્ય સ્કેન કરો (મફત પ્રિવ્યૂ)
         </button>
       </form>
     </div>
 
-    <!-- Scientific Vedic Loader -->
-    <div id="loaderScreen" class="hidden shakti-border rounded-2xl p-8 text-center space-y-4 my-6 max-w-lg mx-auto backdrop-blur-3xl">
-      <div class="w-16 h-16 border-4 border-accent-amber border-t-accent-red rounded-full animate-spin mx-auto"></div>
-      <h3 class="text-lg font-cinzel font-bold text-white">વૈદિક સુપરકમ્પ્યુટર ગણતરી ચાલુ છે...</h3>
-      <p id="loaderStatus" class="text-xs font-mono text-accent-gold animate-pulse">નવગ્રહ સંક્રમણ અને સૂર્ય કોણીય અંતર મપાઈ રહ્યું છે...</p>
+    <!-- Scientific Vedic Supercomputer Simulation Loader -->
+    <div id="loaderScreen" class="hidden shakti-border rounded-2xl p-8 text-center space-y-5 my-6 max-w-lg mx-auto backdrop-blur-3xl">
+      <div class="relative w-20 h-20 mx-auto">
+        <div class="w-20 h-20 border-4 border-accent-gold/20 border-t-accent-gold rounded-full animate-spin"></div>
+        <div class="absolute inset-0 flex items-center justify-center font-mono text-xs text-accent-gold font-bold" id="loaderPercentage">0%</div>
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-lg font-cinzel font-bold text-white tracking-wide">વૈદિક સુપરકમ્પ્યુટર ગણતરી ચાલુ છે...</h3>
+        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all">સૂર્ય-ચંદ્ર ક્રાંતિવૃત્ત અને અક્ષાંશ-રેખાંશ કોઓર્ડિનેટ્સ મેપિંગ...</p>
+      </div>
+      
+      <!-- High Tech Steps Bar -->
+      <div class="w-full bg-slate-800/80 rounded-full h-2 overflow-hidden border border-slate-700">
+        <div id="progressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-300"></div>
+      </div>
+      <div class="flex justify-between text-[10px] font-mono text-slate-400 pt-1">
+        <span>સૂર્ય સિદ્ધાંત ડેટાબેઝ</span>
+        <span>ગોચર ડિગ્રી એનાલિસિસ</span>
+        <span>ન્યુરલ કુંડળી મેચ</span>
+      </div>
     </div>
 
     <!-- Results Container -->
@@ -163,7 +288,7 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <h2 class="text-2xl md:text-3xl font-bold font-cinzel text-accent-gold" id="resTitle">વૈદિક ગણતરી પરિણામ</h2>
             <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full self-start">
-              ● ૧૦૦% સચોટ મેથેમેટિકલ મેચ
+              ● ૧૦૦% ગાણિતિક અને શાસ્ત્રોક્ત મેચ
             </span>
           </div>
           
@@ -187,17 +312,15 @@
         <div class="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed font-light relative z-10">
           <p id="paraIntro" class="text-white font-medium"></p>
 
-          <!-- 3 High Converting Pillars -->
-          <div id="pillarsBox" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-            <!-- Dynamic Content -->
-          </div>
+          <!-- 3 Dynamic High-Converting Pillars -->
+          <div id="pillarsBox" class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2"></div>
 
           <div class="flex gap-4 p-4 bg-accent-amber/10 border border-accent-amber/30 rounded-xl mt-4">
             <div class="mt-0.5 text-accent-gold"><i data-lucide="key" class="w-6 h-6 animate-pulse"></i></div>
             <div class="space-y-1">
               <p class="text-sm font-bold text-white">શાસ્ત્રોક્ત રહસ્ય:</p>
               <p class="text-xs text-slate-300 leading-relaxed">
-                કુંડળીમાં કોઈ ગ્રહ કાયમ માટે શત્રુ હોતો નથી. કયો ગ્રહ તમારા પ્રેમ અને કરિયરની વચ્ચે વિલંબ લાવી રહ્યો છે અને આ નવરાત્રિમાં કયો ચોક્કસ ઉપાય કરવાથી તમારી અડચણો દૂર થશે, તે સંપૂર્ણ અહેવાલમાં વિસ્તારપૂર્વક ગણતરી સાથે આપવામાં આવ્યું છે.
+                કુંડળીમાં કોઈ ગ્રહ કાયમ માટે શત્રુ હોતો નથી. કયો ગ્રહ તમારા પ્રેમ, કરિયર અને ધનલાભની વચ્ચે વિલંબ લાવી રહ્યો છે અને આ નવરાત્રિમાં કયો ચોક્કસ ઉપાય કરવાથી તમારી અડચણો દૂર થશે, તે સંપૂર્ણ અહેવાલમાં વિસ્તારપૂર્વક ગણતરી સાથે આપવામાં આવ્યું છે.
               </p>
             </div>
           </div>
@@ -213,7 +336,7 @@
              </div>
              <h3 class="text-2xl sm:text-3xl font-bold text-white font-cinzel leading-tight">આ નવરાત્રિમાં તમારા ભાગ્યના બંધ તાળા ખોલો!</h3>
              <p class="text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                તમારી કુંડળી મુજબ <strong class="text-accent-gold">સાચો પ્રેમ ક્યારે મળશે, કરિયરમાં અડચણ કેમ આવે છે, અને કઈ દેવીની સાધનાથી ભાગ્યોદય થશે</strong> તેનો સંપૂર્ણ મુદ્દાસર અહેવાલ મેળવો.
+                તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું <strong class="text-accent-gold">ઊંડાણપૂર્વકનું વિશ્લેષણ, આગામી મહિનાઓની ટાઈમલાઈન, ગ્રહ દોષ નિવારણ અને સિદ્ધ પૂજન વિધિ</strong> નો સંપૂર્ણ વિસ્તૃત અહેવાલ મેળવો.
              </p>
           </div>
 
@@ -235,14 +358,14 @@
         </div>
       </div>
 
-      <!-- Instant Waiting Loader -->
+      <!-- Paid Post-Payment Supercomputing Simulation Loader -->
       <div id="aiPaidLoader" class="hidden shakti-border rounded-2xl p-8 text-center space-y-4 my-6 max-w-lg mx-auto border border-emerald-500/50 bg-emerald-950/30 backdrop-blur-3xl">
         <div class="w-16 h-16 border-4 border-emerald-400 border-t-accent-gold rounded-full animate-spin mx-auto"></div>
-        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ!</h3>
-        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">તમારો ઊંડાણપૂર્વકનો વૈદિક રિપોર્ટ તૈયાર થઈ રહ્યો છે (૧-૨ સેકન્ડ)...</p>
+        <h3 class="text-lg font-cinzel font-bold text-white">પેમેન્ટ સફળ! કુંડળી વિશ્લેષણ ડીકોડ થઈ રહ્યું છે...</h3>
+        <p id="aiPaidStatus" class="text-xs font-mono text-emerald-300">તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું ગાણિતિક સંકલન થઈ રહ્યું છે (૩-૪ સેકન્ડ)...</p>
       </div>
 
-      <!-- Premium Unlocked Section (Deep High-Value Executive Report) -->
+      <!-- Premium Unlocked Section (MASSIVE DEEP REPORT) -->
       <div id="premiumUnlokedSection" class="hidden space-y-8 mt-12 scroll-mt-20">
          <div class="shakti-border rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
              
@@ -266,7 +389,7 @@
                    <span class="text-sm font-bold text-accent-gold" id="luckyColor">--</span>
                 </div>
                 <div class="bg-cosmic-950/90 border border-emerald-500/30 p-3.5 rounded-xl text-center">
-                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">શુભ અંક</span>
+                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">ભાગ્યશાળી અંક</span>
                    <span class="text-sm font-bold text-emerald-400 font-mono" id="luckyNumber">--</span>
                 </div>
                 <div class="bg-cosmic-950/90 border border-accent-red/30 p-3.5 rounded-xl text-center">
@@ -278,45 +401,48 @@
                    <span class="text-sm font-bold text-purple-300" id="luckyRudra">--</span>
                 </div>
              </div>
-             
-             <!-- Content Stack (Deep & Rich) -->
-             <div class="space-y-6 text-slate-300 text-sm leading-relaxed">
-                 
-                 <!-- ૧. કરિયર અને નાણાકીય ભવિષ્ય -->
-                 <div class="bg-cosmic-900/90 border border-emerald-500/20 p-6 rounded-xl space-y-3">
-                     <div class="flex items-center gap-2.5 text-base font-bold text-white border-b border-emerald-500/20 pb-3">
-                         <i data-lucide="trending-up" class="w-5 h-5 text-emerald-400"></i> ૧. કરિયર, વેપાર અને નાણાકીય ભવિષ્યનું ઊંડાણપૂર્વક વિશ્લેષણ
-                     </div>
-                     <div id="premiumCareer" class="text-slate-300 leading-relaxed space-y-2"></div>
-                 </div>
-                 
-                 <!-- ૨. પ્રેમ અને સંબંધો -->
-                 <div class="bg-cosmic-900/90 border border-accent-red/20 p-6 rounded-xl space-y-3">
-                     <div class="flex items-center gap-2.5 text-base font-bold text-white border-b border-accent-red/20 pb-3">
-                         <i data-lucide="heart" class="w-5 h-5 text-accent-red"></i> ૨. પ્રેમ, લાગણીઓ, દાંપત્ય અને હૃદય જોડાણનું સત્ય
-                     </div>
-                     <div id="premiumLove" class="text-slate-300 leading-relaxed space-y-2"></div>
-                 </div>
 
-                 <!-- ૩. ગ્રહ દોષ અને સંક્રમણ ચેતવણી -->
-                 <div class="bg-cosmic-900/90 border border-amber-500/20 p-6 rounded-xl space-y-3">
-                     <div class="flex items-center gap-2.5 text-base font-bold text-amber-400 border-b border-amber-500/20 pb-3">
-                         <i data-lucide="shield-alert" class="w-5 h-5 text-amber-400"></i> ૩. ગ્રહ સંક્રમણ, અવરોધો અને કઈ બાબતોમાં સાવધાની રાખવી
-                     </div>
-                     <div id="premiumDosha" class="text-slate-300 leading-relaxed space-y-2"></div>
-                 </div>
-                 
-                 <!-- ૪. નવરાત્રિ વિશેષ ઉપાયો -->
-                 <div class="bg-cosmic-900/90 border border-accent-gold/30 p-6 rounded-xl space-y-3 shadow-2xl">
-                     <div class="flex items-center gap-2.5 text-base font-bold text-accent-gold border-b border-accent-gold/20 pb-3">
-                         <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold"></i> ૪. નવરાત્રિ વિશેષ શાસ્ત્રોક્ત ઉપાયો અને સિદ્ધ પૂજન વિધિ
-                     </div>
-                     <div id="premiumRemedies" class="text-slate-300 leading-relaxed space-y-2"></div>
-                     <p class="text-xs text-accent-gold/90 italic pt-3 border-t border-accent-gold/10">• આ ઉપાયો શ્રદ્ધાપૂર્વક કરવાથી કુંડળીના ગ્રહ દોષો શાંત થશે અને પ્રગતિના દ્વાર ખુલશે.</p>
-                 </div>
+             <!-- Executive Summary Box -->
+             <div class="bg-cosmic-900/90 border border-accent-gold/30 p-5 sm:p-6 rounded-xl space-y-2 mb-8 shadow-xl">
+               <div class="flex items-center gap-2 text-accent-gold font-bold text-sm uppercase tracking-wider">
+                 <i data-lucide="crown" class="w-4 h-4"></i> મહા કુંડળી સારાંશ (Executive Summary)
+               </div>
+               <p id="executiveSummaryText" class="text-slate-200 text-sm leading-relaxed"></p>
+             </div>
+             
+             <!-- Selected Areas Deep Stack -->
+             <div class="space-y-6">
+               <div class="flex items-center gap-2 text-lg font-bold text-white font-cinzel border-b border-white/10 pb-3">
+                 <i data-lucide="layers" class="w-5 h-5 text-accent-amber"></i> તમારા પસંદ કરેલા ક્ષેત્રોનું ઊંડાણપૂર્વકનું વિશ્લેષણ
+               </div>
+               
+               <div id="dynamicAreaReportsContainer" class="space-y-5">
+                 <!-- Generated Dynamically -->
+               </div>
              </div>
 
-             <!-- નવો સ્કેન બટન -->
+             <!-- Planetary Dosha Card -->
+             <div class="bg-cosmic-900/90 border border-amber-500/30 p-6 rounded-xl space-y-3 mt-8">
+               <div class="flex items-center gap-2.5 text-base font-bold text-amber-400 border-b border-amber-500/20 pb-3">
+                 <i data-lucide="shield-alert" class="w-5 h-5 text-amber-400"></i> ગ્રહ સંક્રમણ દોષ અને સાવચેતી ચેતવણી
+               </div>
+               <div id="premiumDosha" class="text-slate-300 text-sm leading-relaxed space-y-2"></div>
+             </div>
+             
+             <!-- Authentic Remedies -->
+             <div class="bg-cosmic-900/90 border border-accent-gold/30 p-6 rounded-xl space-y-4 mt-8 shadow-2xl">
+               <div class="flex items-center gap-2.5 text-base font-bold text-accent-gold border-b border-accent-gold/20 pb-3">
+                 <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold"></i> નવરાત્રિ વિશેષ શાસ્ત્રોક્ત ઉપાયો અને સિદ્ધ પૂજન વિધિ
+               </div>
+               <div id="premiumRemediesContainer" class="space-y-4 text-slate-300 text-sm leading-relaxed">
+                 <!-- Generated Dynamically -->
+               </div>
+               <p class="text-xs text-accent-gold/90 italic pt-3 border-t border-accent-gold/10">
+                 • આ ઉપાયો શ્રદ્ધાપૂર્વક કરવાથી કુંડળીના ગ્રહ દોષો શાંત થશે અને સર્વ કાર્યોમાં પ્રગતિના દ્વાર ખુલશે.
+               </p>
+             </div>
+
+             <!-- Start New Scan Button -->
              <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer">
                <i data-lucide="user-plus" class="w-4 h-4"></i>
                પરિવારના અન્ય સભ્ય માટે નવો સ્કેન કરો
@@ -347,6 +473,15 @@
     let preGeneratedData = null;
     let isAIFinished = false;
 
+    // Toggle Select All Areas
+    let allSelected = false;
+    function toggleSelectAllAreas() {
+      const checkboxes = document.querySelectorAll('#areasContainer input[type="checkbox"]');
+      allSelected = !allSelected;
+      checkboxes.forEach(cb => cb.checked = allSelected);
+      document.getElementById('btnSelectAll').innerText = allSelected ? "બધા રદ કરો" : "બધા પસંદ કરો";
+    }
+
     // ભાગ્યાંક ગણતરી
     function calculateBhagyank(dob) {
       if (!dob) return 1;
@@ -358,7 +493,6 @@
       return sum || 1;
     }
 
-    // ૧. ધન અને કરિયર (Surya Rashi Based - ૧૨ રાશિ)
     const careerInsightsBySurya = {
       "મેષ": "કર્મ ભાવમાં સૂર્ય-મંગળની ઉર્જાથી નવી તકોનું સર્જન થઈ રહ્યું છે, પરંતુ ભાગીદારીમાં ઉતાવળા રોકાણથી બચવું.",
       "વૃષભ": "શુક્રની સ્થિતિ આર્થિક સ્થિરતા આપશે. અટકેલા નાણાં પાછા આવવાના યોગ છે, પરંતુ બિનજરૂરી ખર્ચ રોકવા.",
@@ -374,23 +508,21 @@
       "મીન": "દૂરના સ્થળો કે નવા ક્ષેત્રોમાંથી લાભ થવાના યોગ. ખર્ચાઓ પર નિયંત્રણ રાખવું ખૂબ જ અનિવાર્ય છે."
     };
 
-    // ૨. પ્રેમ, દિલનું જોડાણ અને સંબંધોનું રહસ્ય (Gen-Z + Millennials Hook - Naam Rashi Based)
     const loveInsightsByNaam = {
-      "મેષ": "તમારા દિલમાં કોઈ ખાસ વ્યક્તિ માટે ઊંડી લાગણી છે, પરંતુ તમારી એક જીદ કે ઉતાવળિયો સ્વભાવ સંબંધમાં અંતર લાવી શકે છે. શું એ વ્યક્તિ પણ તમારા વિશે વિચારે છે? તે જાણવું જરૂરી છે.",
-      "વૃષભ": "તમે સંબંધ સાચવવા ૧૦૦% પ્રમાણિકતા આપો છો પણ સામેથી એટલી કદર નથી મળતી. આ નવરાત્રિમાં તમારા પ્રેમ જીવનમાં એક મોટો વળાંક આવવાની તૈયારીમાં છે.",
-      "મિથુન": "વાતચીતનો અભાવ તમારા સંબંધોમાં ગેરસમજ ઊભી કરી રહ્યો છે. મનમાં કોઈ વાત દબાવી રાખવાને બદલે ખુલીને બોલવાનો સમય આવી ગયો છે.",
-      "કર્ક": "તમે કોઈ એક જૂની યાદ કે વ્યક્તિને ભૂલી શકતા નથી અને વારંવાર દિલ દુભાય છે. ગ્રહો સૂચવે છે કે યોગ્ય સાવચેતી રાખશો તો આ નવરાત્રિમાં નવું જોડાણ શક્ય છે.",
-      "સિંહ": "તમારા સંબંધમાં ત્રીજી વ્યક્તિની દખલગીરી અથવા અહંકારનો ટકરાવ જોવા મળી રહ્યો છે. સાચા અને બનાવટી લોકો વચ્ચેનો ભેદ સમજવો પડશે.",
-      "કન્યા": "તમે વધુ પડતું વિચારવાનું (overthinking) બંધ કરો. સામેવાળી વ્યક્તિ તમારી કાળજી રાખે છે પરંતુ પોતાની લાગણીઓ વ્યક્ત કરતાં ખચકાય છે.",
-      "તુલા": "દિલ અને દિમાગ વચ્ચે સંઘર્ષ ચાલી રહ્યો છે. શું તમે સાચી વ્યક્તિ સાથે છો કે માત્ર ટાઈમપાસ? તેનો જવાબ ગ્રહોની ગોચર ચાલમાં છુપાયેલો છે.",
-      "વૃશ્ચિક": "તમારા સંબંધોમાં એક ઊંડો વિશ્વાસઘાત કે વહેમનો પડછાયો છે. મનમાં શંકા રાખવાને બદલે સત્યનો સામનો કરવો તમારા માટે હિતકારી રહેશે.",
-      "ધન": "સ્વતંત્રતા અને સંબંધો વચ્ચે સંતુલન જાળવવું મુશ્કેલ બની રહ્યું છે. નજીકની વ્યક્તિ સાથે આધ્યાત્મિક કે ઊંડું જોડાણ થવાના યોગ છે.",
-      "મકર": "કામના ભારણમાં તમે તમારી અંગત લાગણીઓને દબાવી રહ્યા છો. કોઈ એવી વ્યક્તિ છે જે તમારા સાથની રાહ જોઈ રહી છે, તેની અવગણના ન કરશો.",
-      "કુંભ": "તમે લાગણીઓ વ્યક્ત કરવામાં અચકાઓ છો. આ નવરાત્રિમાં જૂના વિખવાદો સુધરી શકે છે જો તમે પહેલ કરશો તો.",
-      "મીન": "તમે સંબંધમાં વધારે પડતા લાગણીશીલ બની જાવ છો, જેથી લોકો તમારી લાગણીઓનો ફાયદો ઉઠાવી જાય છે. હવે સીમાઓ બાંધવાનો સમય છે."
+      "મેષ": "તમારા દિલમાં કોઈ ખાસ વ્યક્તિ માટે ઊંડી લાગણી છે, પરંતુ તમારી એક જીદ સંબંધમાં અંતર લાવી શકે છે.",
+      "વૃષભ": "તમે સંબંધ સાચવવા ૧૦૦% પ્રમાણિકતા આપો છો પણ સામેથી એટલી કદર નથી મળતી.",
+      "મિથુન": "વાતચીતનો અભાવ તમારા સંબંધોમાં ગેરસમજ ઊભી કરી રહ્યો છે. મનની વાત ખુલીને બોલવાનો સમય છે.",
+      "કર્ક": "તમે કોઈ એક જૂની યાદ કે વ્યક્તિને ભૂલી શકતા નથી અને વારંવાર દિલ દુભાય છે.",
+      "સિંહ": "તમારા સંબંધમાં ત્રીજી વ્યક્તિની દખલગીરી અથવા અહંકારનો ટકરાવ જોવા મળી રહ્યો છે.",
+      "કન્યા": "તમે વધુ પડતું વિચારવાનું (overthinking) બંધ કરો. સામેવાળી વ્યક્તિ તમારી કાળજી રાખે છે.",
+      "તુલા": "દિલ અને દિમાગ વચ્ચે સંઘર્ષ ચાલી રહ્યો છે. શું તમે સાચી વ્યક્તિ સાથે છો કે માત્ર ટાઈમપાસ?",
+      "વૃશ્ચિક": "તમારા સંબંધોમાં એક ઊંડો વિશ્વાસઘાત કે વહેમનો પડછાયો છે. મનમાં શંકા ન રાખવી.",
+      "ધન": "સ્વતંત્રતા અને સંબંધો વચ્ચે સંતુલન જાળવવું મુશ્કેલ બની રહ્યું છે.",
+      "મકર": "કામના ભારણમાં તમે તમારી અંગત લાગણીઓને દબાવી રહ્યા છો. નજીકની વ્યક્તિની અવગણના ન કરશો.",
+      "કુંભ": "તમે લાગણીઓ વ્યક્ત કરવામાં અચકાઓ છો. આ નવરાત્રિમાં જૂના વિખવાદો સુધરી શકે છે.",
+      "મીન": "તમે સંબંધમાં વધારે પડતા લાગણીશીલ બની જાવ છો, જેથી લોકો ફાયદો ઉઠાવી જાય છે."
     };
 
-    // ૩. નવરાત્રિ ગ્રહ સંક્રમણ ચેતવણી (Bhagyank Based - 1 to 9)
     const warningInsightsByBhagyank = {
       1: "સૂર્ય પ્રધાન અંક હોવાથી આ નવરાત્રિમાં અતિ-આત્મવિશ્વાસમાં આવીને કોઈ મોટો સોદો ન કરવો.",
       2: "ચંદ્ર પ્રધાન અંક હોવાથી માનસિક અસ્થિરતા કે ચિંતાથી બચવું; રોજ ધ્યાન અને ઈષ્ટ આરાધના કરવી.",
@@ -468,19 +600,29 @@
       const gender = document.getElementById('userGender').value;
       const bhagyank = calculateBhagyank(dob);
 
+      // કયા ક્ષેત્રો પસંદ કર્યા?
+      const checkedBoxes = document.querySelectorAll('#areasContainer input[type="checkbox"]:checked');
+      const selectedAreas = Array.from(checkedBoxes).map(cb => cb.value);
+
+      if (selectedAreas.length === 0) {
+        alert("કૃપા કરીને ઓછામાં ઓછું ૧ ક્ષેત્ર પસંદ કરો.");
+        return;
+      }
+
       clientData = {
         name: name,
         dob: dob,
         time: time,
         gender: gender,
         bhagyank: bhagyank,
+        selectedAreas: selectedAreas,
         naamRashi: getNaamRashi(name),
         suryaRashi: getSuryaRashi(dob)
       };
 
       localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
 
-      // બેકગ્રાઉન્ડ AI રિક્વેસ્ટ શરૂ કરો
+      // ૧. બેકગ્રાઉન્ડ AI રિક્વેસ્ટ શરૂ કરો
       startBackgroundAIGeneration(clientData);
 
       document.getElementById('heroSection').style.display = 'none';
@@ -488,19 +630,42 @@
       
       const loader = document.getElementById('loaderScreen');
       const status = document.getElementById('loaderStatus');
+      const progressBar = document.getElementById('progressBar');
+      const percentageText = document.getElementById('loaderPercentage');
       loader.classList.remove('hidden');
 
-      setTimeout(() => { status.innerText = "ચંદ્ર નક્ષત્ર અને અષ્ટકવર્ગ કંપાસ મેપિંગ..."; }, 400);
-      setTimeout(() => { status.innerText = "સૂર્ય-શનિ ગોચર કોણીય અંતર ગણતરી..."; }, 800);
-      setTimeout(() => { status.innerText = "ન્યુરલ વૈદિક અહેવાલ ફાઈનલ થઈ રહ્યો છે..."; }, 1200);
+      // ૪.૫ સેકન્ડનો ગાણિતિક અને જ્યોતિષીય સિમ્યુલેશન પ્રોસેસ
+      let progress = 0;
+      const steps = [
+        { at: 15, text: "સૂર્ય-ચંદ્ર ક્રાંતિવૃત્ત અને અક્ષાંશ-રેખાંશ કોઓર્ડિનેટ્સ મેપિંગ..." },
+        { at: 35, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની ડિગ્રી ગણતરી (Mathematical Ephemeris)..." },
+        { at: 60, text: "અષ્ટકવર્ગ બિંદુ અને વિંશોત્તરી દશા ભ્રમણ કેલ્ક્યુલેશન..." },
+        { at: 85, text: "તમારા પસંદ કરેલા " + selectedAreas.length + " ક્ષેત્રોનું ન્યુરલ ગોચર સિમ્યુલેશન..." },
+        { at: 100, text: "વૈદિક અલ્ગોરિધમ સક્સેસ: કુંડળી વિશ્લેષણ તૈયાર!" }
+      ];
 
-      setTimeout(() => {
-        loader.classList.add('hidden');
-        displayFreePrediction();
-      }, 1500);
+      const interval = setInterval(() => {
+        progress += 2;
+        if (progress > 100) progress = 100;
+
+        progressBar.style.width = progress + '%';
+        percentageText.innerText = progress + '%';
+
+        const curStep = steps.find(s => progress <= s.at);
+        if (curStep) {
+          status.innerText = curStep.text;
+        }
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            loader.classList.add('hidden');
+            displayFreePrediction();
+          }, 400);
+        }
+      }, 75); // ~3.8 to 4 seconds total
     }
 
-    // બેકગ્રાઉન્ડ AI રિક્વેસ્ટ
     async function startBackgroundAIGeneration(data) {
       preGeneratedData = null;
       isAIFinished = false;
@@ -526,7 +691,7 @@
     }
 
     function displayFreePrediction() {
-      const { name, dob, time, naamRashi, suryaRashi, bhagyank } = clientData;
+      const { name, dob, time, naamRashi, suryaRashi, bhagyank, selectedAreas } = clientData;
 
       document.getElementById('resTitle').innerText = `${name}જી, તમારો કુંડળી સ્કેન તૈયાર છે!`;
       document.getElementById('badgeNaamRashi').innerText = naamRashi;
@@ -538,7 +703,7 @@
         : "(જન્મ સમય અને સૂર્ય સિદ્ધાંત મુજબ)";
 
       document.getElementById('paraIntro').innerHTML = 
-        `<b>${name}જી</b>, તમારી જન્મ તારીખ પરથી સૂર્ય રાશિ <b>'${suryaRashi}'</b>, નામ પરથી વૈદિક રાશિ <b>'${naamRashi}'</b> અને ભાગ્યાંક <b>'${bhagyank}'</b> બને છે ${timeMethodText}. નવરાત્રિના મહા ગોચર દરમિયાન તમારા ગ્રહો નીચે મુજબના સંકેતો દર્શાવી રહ્યા છે:`;
+        `<b>${name}જી</b>, તમારી જન્મ તારીખ પરથી સૂર્ય રાશિ <b>'${suryaRashi}'</b>, નામ પરથી વૈદિક રાશિ <b>'${naamRashi}'</b> અને ભાગ્યાંક <b>'${bhagyank}'</b> બને છે ${timeMethodText}. તમે પસંદ કરેલા <b>${selectedAreas.length} ક્ષેત્રો</b> પર નવરાત્રિ મહા ગોચર દરમિયાન નીચે મુજબના સંકેતો સ્પષ્ટ થઈ રહ્યા છે:`;
 
       const careerText = careerInsightsBySurya[suryaRashi] || careerInsightsBySurya["મેષ"];
       const loveText = loveInsightsByNaam[naamRashi] || loveInsightsByNaam["સિંહ"];
@@ -575,24 +740,37 @@
     }
 
     function initiateRazorpay() {
-      const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH";
+      // અહીં તમારી Live કી rzp_live_... અથવા Test કી rzp_test_... મૂકો
+      const myRazorpayKey = "rzp_test_5jIskGg0d4Q3mX"; // તમારી ટેસ્ટ કી
 
       var options = {
         "key": myRazorpayKey,
         "amount": "9900",
         "currency": "INR",
         "name": "Bhagyaveda",
-        "description": "Vedic Astrology Scan",
+        "description": "Vedic Astrology Deep Scan",
         "handler": function (response) {
           isUserPaid = true;
           document.getElementById('paywallBox').classList.add('hidden');
 
-          if (isAIFinished && preGeneratedData) {
-            renderUnlockedSection();
-          } else {
-            document.getElementById('aiPaidLoader').classList.remove('hidden');
-            document.getElementById('aiPaidLoader').scrollIntoView({ behavior: 'smooth' });
-          }
+          // પેમેન્ટ પછી પણ ૨ સેકન્ડનું સુપરકમ્પ્યુટર ડીકોડિંગ એનિમેશન બતાવો જેથી ગ્રાહકને વિશ્વાસ બેસે
+          const paidLoader = document.getElementById('aiPaidLoader');
+          paidLoader.classList.remove('hidden');
+          paidLoader.scrollIntoView({ behavior: 'smooth' });
+
+          setTimeout(() => {
+            if (isAIFinished && preGeneratedData) {
+              renderUnlockedSection();
+            } else {
+              // જો હજુ બેકએન્ડ રન થતું હોય તો રાહ જોશે
+              const checkInterval = setInterval(() => {
+                if (isAIFinished) {
+                  clearInterval(checkInterval);
+                  renderUnlockedSection();
+                }
+              }, 500);
+            }
+          }, 2000);
         },
         "prefill": {
           "name": clientData.name || "User"
@@ -614,27 +792,88 @@
       paidLoader.classList.add('hidden');
 
       const data = preGeneratedData || {
-        luckyColor: "સુવર્ણ પીળો",
+        luckyColor: "સોનેરી પીળો અને કેસરી",
         luckyNumber: `${clientData.bhagyank || '૭'}`,
-        luckyDevi: "માં આદિશક્તિ દુર્ગા",
+        luckyDevi: "માં ભગવતી દુર્ગા",
         luckyRudra: "૫ મુખી રુદ્રાક્ષ",
-        premCareer: `<b>નાણાકીય પ્રગતિ:</b> ${clientData.name || 'જાતક'}જી, કુંડળી મુજબ અટકેલા નાણાં પાછા આવવાના યોગ છે. વેપારમાં નવી તકો ખુલશે પરંતુ ઉતાવળા નિર્ણયોથી બચવું.`,
-        premLove: `<b>હૃદય કનેક્શન:</b> વાણીમાં નમ્રતા રાખવાથી નજીકની વ્યક્તિ સાથેના વિવાદો દૂર થશે.`,
-        premDosha: `<b>ગ્રહ દોષ:</b> માનસિક ઉચાટ દૂર કરવા માટે નિયમિત ધ્યાન કરવું.`,
-        premRemedies: `<b>શાસ્ત્રોક્ત ઉપાય:</b> નવરાત્રિમાં દરરોજ સંધ્યાકાળે ઘીનો દીવો કરવો અને દુર્ગા સ્તુતિ કરવી.`
+        executiveSummary: `${clientData.name || 'જાતક'}જી, તમારી કુંડળીમાં ગ્રહોનું ગોચર સૂચવે છે કે આ નવરાત્રિ તમારા માટે કર્મ અને ભાગ્યનું વિશેષ સંગમ લઈને આવી રહી છે.`,
+        areaReports: [],
+        planetaryDosha: "શનિ અને રાહુના સંક્રમણથી બચવા માટે શાંતિ જાળવવી જરૂરી છે.",
+        specialRemedies: []
       };
 
-      // લકી મેટ્રિક્સ પોપ્યુલેટ કરો
+      // ૧. લકી મેટ્રિક્સ
       document.getElementById('luckyColor').innerText = data.luckyColor || "પીળો અને કેસરી";
       document.getElementById('luckyNumber').innerText = data.luckyNumber || `${clientData.bhagyank || '૭'}`;
       document.getElementById('luckyDevi').innerText = data.luckyDevi || "માં ભગવતી";
       document.getElementById('luckyRudra').innerText = data.luckyRudra || "૫ મુખી રુદ્રાક્ષ";
 
-      // ડીપ સેક્શન્સ પોપ્યુલેટ કરો
-      document.getElementById('premiumCareer').innerHTML = data.premCareer;
-      document.getElementById('premiumLove').innerHTML = data.premLove;
-      document.getElementById('premiumDosha').innerHTML = data.premDosha;
-      document.getElementById('premiumRemedies').innerHTML = data.premRemedies;
+      // ૨. એક્ઝિક્યુટિવ સમરી
+      document.getElementById('executiveSummaryText').innerHTML = data.executiveSummary || "";
+
+      // ૩. પસંદ કરેલા તમામ ક્ષેત્રોનું ડીપ રેન્ડરિંગ
+      const areaContainer = document.getElementById('dynamicAreaReportsContainer');
+      areaContainer.innerHTML = '';
+
+      if (data.areaReports && data.areaReports.length > 0) {
+        data.areaReports.forEach((rep, index) => {
+          const areaCard = document.createElement('div');
+          areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-6 rounded-xl space-y-3 shadow-lg";
+          areaCard.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+              <div class="flex items-center gap-2.5 font-bold text-base text-white">
+                <span class="w-6 h-6 rounded-full bg-accent-gold/20 text-accent-gold text-xs flex items-center justify-center font-mono border border-accent-gold/30">${index + 1}</span>
+                <span>${rep.areaName}</span>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full self-start">
+                ● ${rep.status || 'મહત્વપૂર્ણ ગોચર'}
+              </span>
+            </div>
+            
+            <div class="text-slate-300 text-sm leading-relaxed pt-1 space-y-2">
+              ${rep.deepAnalysis}
+            </div>
+
+            ${rep.timeline ? `
+              <div class="p-3 rounded-lg bg-cosmic-950 border border-accent-gold/20 text-xs text-accent-gold space-y-1">
+                <span class="font-bold flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> અપેક્ષિત ટાઈમલાઈન:</span>
+                <p class="text-slate-300 font-light">${rep.timeline}</p>
+              </div>
+            ` : ''}
+
+            ${rep.actionAdvice ? `
+              <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-xs text-emerald-300 space-y-1">
+                <span class="font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> શાસ્ત્રોક્ત સલાહ & સાવચેતી:</span>
+                <p class="text-slate-300 font-light">${rep.actionAdvice}</p>
+              </div>
+            ` : ''}
+          `;
+          areaContainer.appendChild(areaCard);
+        });
+      }
+
+      // ૪. ગ્રહ દોષ કાર્ડ
+      document.getElementById('premiumDosha').innerHTML = data.planetaryDosha || "ગ્રહોનું સંતુલન જાળવવું.";
+
+      // ૫. ઉપાયો
+      const remediesContainer = document.getElementById('premiumRemediesContainer');
+      remediesContainer.innerHTML = '';
+      if (data.specialRemedies && data.specialRemedies.length > 0) {
+        data.specialRemedies.forEach((rem, idx) => {
+          const remCard = document.createElement('div');
+          remCard.className = "p-4 rounded-xl bg-cosmic-950 border border-accent-gold/20 space-y-2";
+          remCard.innerHTML = `
+            <div class="font-bold text-accent-gold text-sm flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-accent-gold text-cosmic-950 text-xs flex items-center justify-center font-bold">${idx + 1}</span>
+              ${rem.title}
+            </div>
+            <p class="text-xs text-slate-300"><b>વિધિ:</b> ${rem.vidhi}</p>
+            ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/30 p-2 rounded border border-amber-500/20"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
+            <p class="text-[11px] text-emerald-400"><b>ફળશ્રુતિ:</b> ${rem.benefit}</p>
+          `;
+          remediesContainer.appendChild(remCard);
+        });
+      }
 
       const premiumSection = document.getElementById('premiumUnlokedSection');
       premiumSection.classList.remove('hidden');
