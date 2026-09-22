@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ભાગ્યવેદ (Bhagyaveda) - નવરાત્રિ મહા ગ્રહ પરિવર્તન સુપરકમ્પ્યુટર</title>
   
+  <!-- Meta Pixel Code - Bhagyaveda -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2545980739242075');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2545980739242075&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
@@ -1040,7 +1058,7 @@
       }
     }
 
-    // Razorpay Integration with 50-60 Seconds Astrological Decoding Loader
+    // Razorpay Integration with Meta Purchase Tracking Event
     function initiateRazorpay() {
       const myRazorpayKey = "rzp_test_TejDX6Yy6zpfFH";
 
@@ -1051,6 +1069,14 @@
         "name": "Bhagyaveda Labs",
         "description": "Navratri Vedic Deep Scan",
         "handler": async function (response) {
+          // --- META PURCHASE EVENT TRACKING ---
+          if (typeof fbq === 'function') {
+            fbq('track', 'Purchase', {
+              value: 99.00,
+              currency: 'INR'
+            });
+          }
+
           isUserPaid = true;
           document.getElementById('paywallBox').classList.add('hidden');
 
