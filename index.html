@@ -5,23 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ભાગ્યવેદ (Bhagyaveda) - નવરાત્રિ મહા ગ્રહ પરિવર્તન સુપરકમ્પ્યુટર</title>
   
- <!-- Meta Pixel Code - Bhagyaveda -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1059933636881514');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1406608134977701');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1406608134977701&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- End Meta Pixel Code -->
 
   <!-- Vercel Web Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
@@ -540,7 +541,7 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
         </div>
       </div>
 
-      <!-- Paid Post-Payment 1-Minute Astrological Decoding Loader (NO GEMINI NAME) -->
+      <!-- Paid Post-Payment 1-Minute Astrological Decoding Loader -->
       <div id="aiPaidLoader" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-5 my-6 max-w-lg mx-auto border border-accent-gold/40 bg-cosmic-950/95 backdrop-blur-3xl shadow-[0_0_50px_rgba(255,215,0,0.25)] relative overflow-hidden">
         <div class="scanline"></div>
         
@@ -682,6 +683,13 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
       checkboxes.forEach(cb => cb.checked = allSelected);
       const btn = document.getElementById('btnSelectAll');
       if (btn) btn.innerText = allSelected ? "બધા રદ કરો" : "બધા પસંદ કરો";
+
+      // Meta Pixel Custom Event: Select All Toggle
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'ToggleSelectAllAreas', {
+          action: allSelected ? 'select_all' : 'deselect_all'
+        });
+      }
     }
 
     // હેશિંગ ફંક્શન - ગણતરીને યુનિક અને સુસંગત રાખવા
@@ -918,6 +926,15 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
           localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
         } catch(err){}
 
+        // --- META PIXEL EVENT: LEAD (ફોર્મ સબમિટ અને સ્કેન શરૂ) ---
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', {
+            content_name: 'Vedic Kundli Scan Form Submitted',
+            content_category: 'Astrology Lead',
+            selected_areas_count: selectedAreas.length
+          });
+        }
+
         const hero = document.getElementById('heroSection');
         const card = document.getElementById('calculatorCard');
         const loader = document.getElementById('loaderScreen');
@@ -1046,6 +1063,26 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
             </div>
           `;
         }
+
+        // --- META PIXEL EVENT: VIEWCONTENT & CUSTOM FREE SCAN EVENT ---
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent', {
+            content_name: 'Navratri Vedic Deep Scan Report Offer',
+            content_category: 'Astrology Report',
+            content_ids: ['bhagyaveda_navratri_report'],
+            content_type: 'product',
+            value: 199.00,
+            currency: 'INR'
+          });
+
+          fbq('trackCustom', 'FreeScanCompleted', {
+            naam_rashi: naamRashi,
+            surya_rashi: suryaRashi,
+            bhagyank: bhagyank,
+            areas_selected: areasCount
+          });
+        }
+
       } catch (err) {
         console.error("displayFreePrediction error:", err);
       } finally {
@@ -1061,9 +1098,30 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
       }
     }
 
-    // Razorpay Integration with Meta Purchase Tracking Event
+    // Razorpay Integration with Full Meta Events Tracking
     function initiateRazorpay() {
       const myRazorpayKey = "rzp_live_TeGqB4epR2sZ2I";
+
+      // --- META PIXEL EVENT: INITIATE CHECKOUT & ADD PAYMENT INFO ---
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: 'Navratri Vedic Deep Scan Report',
+          content_category: 'Astrology',
+          content_ids: ['bhagyaveda_navratri_report'],
+          content_type: 'product',
+          value: 199.00,
+          currency: 'INR',
+          num_items: 1
+        });
+
+        fbq('track', 'AddPaymentInfo', {
+          content_name: 'Navratri Vedic Deep Scan Report',
+          content_ids: ['bhagyaveda_navratri_report'],
+          content_type: 'product',
+          value: 199.00,
+          currency: 'INR'
+        });
+      }
 
       var options = {
         "key": myRazorpayKey,
@@ -1072,9 +1130,14 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
         "name": "Bhagyaveda Labs",
         "description": "Navratri Vedic Deep Scan",
         "handler": async function (response) {
-          // --- META PURCHASE EVENT TRACKING ---
+          
+          // --- META PIXEL EVENT: PURCHASE (સફળ ચુકવણી) ---
           if (typeof fbq === 'function') {
             fbq('track', 'Purchase', {
+              content_name: 'Navratri Vedic Deep Scan Report',
+              content_category: 'Astrology Report',
+              content_ids: ['bhagyaveda_navratri_report'],
+              content_type: 'product',
               value: 199.00,
               currency: 'INR'
             });
@@ -1277,12 +1340,26 @@ src="https://www.facebook.com/tr?id=1059933636881514&ev=PageView&noscript=1"
         premiumSection.classList.remove('hidden');
         premiumSection.scrollIntoView({ behavior: 'smooth' });
       }
+
+      // --- META PIXEL EVENT: CUSTOM PREMIUM UNLOCKED ---
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'PremiumReportUnlocked', {
+          user_name: clientData.name,
+          rashi: clientData.naamRashi
+        });
+      }
+
       if (window.lucide) {
         try { lucide.createIcons(); } catch(e){}
       }
     }
 
     function startNewScan() {
+      // --- META PIXEL EVENT: START NEW SCAN ---
+      if (typeof fbq === 'function') {
+        fbq('trackCustom', 'StartNewScanClicked');
+      }
+
       isUserPaid = false;
       clientData = {};
       preGeneratedData = null;
