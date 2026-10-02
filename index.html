@@ -1,1296 +1,875 @@
 <!DOCTYPE html>
-<html lang="gu" class="scroll-smooth">
+<html lang="gu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ભાગ્યવેદ (Bhagyaveda) - નવરાત્રિ મહા ગ્રહ પરિવર્તન સુપરકમ્પ્યુટર</title>
-  
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1406608134977701');
-    fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1406608134977701&ev=PageView&noscript=1" />
-  </noscript>
-  <!-- End Meta Pixel Code -->
-
-  <!-- Vercel Web Analytics -->
-  <script defer src="/_vercel/insights/script.js"></script>
-
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOHINI — Indian Psychological Attraction Protocol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            cosmic: { 950: '#02040a', 900: '#060a14', 850: '#0b1120', 800: '#111827', 700: '#1e293b' },
-            accent: { gold: '#ffd700', amber: '#f59e0b', red: '#ff3344', cyan: '#00f0ff', violet: '#a855f7' }
-          },
-          fontFamily: { mono: ['Courier New', 'monospace', 'ui-monospace'] },
-          animation: {
-            'orbit-slow': 'orbit 55s linear infinite',
-            'orbit-reverse': 'orbitRev 40s linear infinite',
-            'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite'
-          },
-          keyframes: {
-            orbit: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
-            orbitRev: { '0%': { transform: 'rotate(360deg)' }, '100%': { transform: 'rotate(0deg)' } },
-            pulseGlow: {
-              '0%, 100%': { opacity: '0.35', filter: 'drop-shadow(0 0 15px rgba(255, 51, 68, 0.35))' },
-              '50%': { opacity: '0.8', filter: 'drop-shadow(0 0 35px rgba(255, 215, 0, 0.55))' }
-            }
-          }
-        }
-      }
-    }
-  </script>
-
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+Gujarati:wght@300;400;500;600;700&display=swap');
-    
+    :root {
+      --bg: #060509;
+      --card-bg: rgba(16, 12, 26, 0.94);
+      --card-border: rgba(168, 85, 247, 0.35);
+      --accent-gold: #f59e0b;
+      --gold-glow: rgba(245, 158, 11, 0.4);
+      --accent-purple: #9333ea;
+      --purple-glow: rgba(147, 51, 234, 0.5);
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --chat-user: #7e22ce;
+      --chat-bot: #151022;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
     body {
-      font-family: 'Plus Jakarta Sans', 'Noto Sans Gujarati', sans-serif;
-      background-color: #02040a;
-      color: #f1f5f9;
-      overflow-x: hidden;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.35) 0%, transparent 65%),
+        radial-gradient(circle at 100% 100%, rgba(245, 158, 11, 0.18) 0%, transparent 50%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 14px;
     }
-    .font-cinzel { font-family: 'Cinzel', serif; }
-    
-    .cosmic-field {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 140vw;
-      height: 140vw;
-      max-width: 1600px;
-      max-height: 1600px;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.32;
+
+    .app-container {
+      width: 100%;
+      max-width: 490px;
+      margin: auto;
     }
-    .orbital-ring {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+
+    /* Hero & Traditional Mystic Avatar */
+    .hero-section {
+      text-align: center;
+      padding: 16px 0 10px;
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: rgba(147, 51, 234, 0.2);
+      border: 1px solid var(--accent-purple);
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #f3e8ff;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 12px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      border: 1px dashed rgba(255, 215, 0, 0.2);
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--accent-gold);
+      box-shadow: 0 0 30px var(--purple-glow), 0 0 18px var(--gold-glow);
     }
-    .ring-1 { width: 92%; height: 92%; border-color: rgba(255, 51, 68, 0.18); animation: orbit 80s linear infinite; }
-    .ring-2 { width: 72%; height: 72%; border-color: rgba(0, 240, 255, 0.22); animation: orbitRev 55s linear infinite; }
-    .ring-3 { width: 52%; height: 52%; border-color: rgba(255, 215, 0, 0.28); animation: orbit 38s linear infinite; }
-    .ring-4 { width: 32%; height: 32%; border-color: rgba(168, 85, 247, 0.35); border-style: dotted; animation: orbitRev 26s linear infinite; }
 
-    .planet-dot {
+    .live-pulse {
       position: absolute;
-      width: 8px;
-      height: 8px;
+      bottom: 8px;
+      right: 8px;
+      width: 15px;
+      height: 15px;
+      background: #10b981;
       border-radius: 50%;
-      box-shadow: 0 0 12px currentColor;
+      border: 2px solid var(--bg);
+      animation: pulse 1.5s infinite;
     }
 
-    .shakti-glass {
-      background: rgba(6, 10, 20, 0.88);
-      backdrop-filter: blur(25px);
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      box-shadow: 0 0 35px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 215, 0, 0.03);
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
-    .area-chip input:checked + label {
-      border-color: #ffd700;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 51, 68, 0.15));
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 27px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 40%, #fde68a 75%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
     }
 
-    .scanline {
+    .hero-stats {
+      font-size: 11px;
+      color: #e9d5ff;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pain-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 3px solid var(--danger);
+      padding: 11px 14px;
+      border-radius: 0 12px 12px 0;
+      font-size: 12px;
+      color: #fca5a5;
+      text-align: left;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 22px 18px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.65);
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
+      width: 25%;
+      transition: width 0.3s ease;
+    }
+
+    .question-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 13px 15px;
+      border-radius: 12px;
+      color: var(--text-main);
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+
+    .option-btn:active, .option-btn:hover {
+      background: rgba(147, 51, 234, 0.25);
+      border-color: var(--accent-purple);
+      transform: translateY(-2px);
+    }
+
+    .analyzing-box {
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .spinner {
+      width: 52px;
+      height: 52px;
+      border: 3px solid rgba(147, 51, 234, 0.2);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 18px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Score & Personalized Diagnosis Box */
+    .diagnosis-header {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .score-badge {
+      display: inline-block;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--danger);
+      margin: 4px 0;
+      font-family: 'Cinzel', serif;
+    }
+
+    .archetype-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fde047;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .flaws-box {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #e5e7eb;
+      line-height: 1.5;
+    }
+
+    .flaws-box strong {
+      color: #f87171;
+    }
+
+    .plans-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .plan-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 18px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .plan-card.recommended {
+      border: 2px solid var(--accent-gold);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.09), rgba(147, 51, 234, 0.16));
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.22);
+    }
+
+    .ribbon {
       position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
-      animation: scanAnim 3s linear infinite;
+      top: -10px;
+      right: 14px;
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
     }
-    @keyframes scanAnim {
-      0% { top: 0; opacity: 0; }
-      50% { opacity: 1; }
-      100% { top: 100%; opacity: 0; }
+
+    .plan-title {
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .plan-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .pdf-spotlight {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px dashed var(--accent-gold);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 12px 0;
+    }
+
+    .pdf-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 4px;
+    }
+
+    .pdf-subtext {
+      font-size: 11px;
+      color: #e5e7eb;
+      line-height: 1.4;
+    }
+
+    .features-list {
+      list-style: none;
+      font-size: 12px;
+      color: #d1d5db;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .features-list li::before {
+      content: "✦ ";
+      color: var(--accent-gold);
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pay-btn-primary {
+      background: linear-gradient(90deg, var(--accent-purple), #7e22ce);
+      color: #fff;
+    }
+
+    .pay-btn-gold {
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      color: #000;
+      font-weight: 800;
+    }
+
+    /* Chat Stage */
+    .chat-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bot-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bot-avatar-small {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--accent-gold);
+    }
+
+    .bot-status {
+      font-size: 11px;
+      color: #10b981;
+    }
+
+    .timer-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 8px;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 84%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .msg-bot {
+      align-self: flex-start;
+      background: var(--chat-bot);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f3f4f6;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: var(--chat-user);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 11px 13px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .send-btn {
+      background: var(--accent-purple);
+      border: none;
+      width: 44px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .bonus-card {
+      text-align: center;
+      padding: 24px 10px;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-accent-red selection:text-white relative">
+<body>
 
-  <!-- Celestial Celestial Orbits Background -->
-  <div class="cosmic-field">
-    <div class="orbital-ring ring-1">
-      <div class="planet-dot bg-amber-400 text-amber-400" style="top: 18%; left: 18%;"></div>
-      <div class="planet-dot bg-cyan-400 text-cyan-400" style="bottom: 22%; right: 22%;"></div>
+<div class="app-container">
+  
+  <!-- HERO & MOHINI INDIAN MYSTIC AVATAR (EMBEDDED) -->
+  <header class="hero-section">
+    <div class="ai-badge">✦ Mohini Tantra-Psychology Engine ✦</div>
+    
+    <div class="avatar-wrapper">
+      <img src="data:image/jpeg;base64,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" alt="Mohini" class="avatar-img" />
+      <div class="live-pulse"></div>
     </div>
-    <div class="orbital-ring ring-2">
-      <div class="planet-dot bg-red-500 text-red-500" style="top: 12%; right: 28%;"></div>
-      <div class="planet-dot bg-purple-400 text-purple-400" style="bottom: 16%; left: 22%;"></div>
-    </div>
-    <div class="orbital-ring ring-3">
-      <div class="planet-dot bg-yellow-300 text-yellow-300" style="top: 50%; right: 0%;"></div>
-    </div>
-    <div class="orbital-ring ring-4">
-      <div class="planet-dot bg-emerald-400 text-emerald-400" style="top: 0%; left: 50%;"></div>
-    </div>
-  </div>
 
-  <!-- Header -->
-  <header class="w-full border-b border-accent-gold/20 bg-cosmic-950/90 backdrop-blur-2xl sticky top-0 z-50 shadow-2xl">
-    <div class="max-w-5xl mx-auto px-4 py-3.5 flex items-center justify-between">
-      <div class="flex items-center space-x-2.5">
-        <span class="relative flex h-3.5 w-3.5">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-red opacity-80"></span>
-          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-accent-red shadow-[0_0_10px_#ff3344]"></span>
-        </span>
-        <span class="text-xs font-mono text-slate-200 uppercase tracking-widest font-bold">
-          ભાગ્યવેદ <span class="text-accent-gold">શાસ્ત્રોક્ત AI</span> • ન્યુરલ પંચાંગ v7.0
-        </span>
-      </div>
-      <div class="text-[10px] font-mono text-accent-cyan bg-accent-cyan/10 px-3 py-1.5 rounded-full border border-accent-cyan/30 flex items-center gap-1.5 shadow-[0_0_12px_rgba(0,240,255,0.2)]">
-        <i data-lucide="satellite" class="w-3 h-3 text-accent-cyan animate-pulse"></i>
-        <span>લાઈવ એફેમરીસ સિંક</span>
-      </div>
+    <h1 class="hero-title">MOHINI</h1>
+    <p class="hero-stats">૧,૫૦,૦૦૦+ સ્ત્રી માનસિકતા અને સંમોહન-વશીકરણ સાયકોલોજી પર ટ્રેઇન્ડ</p>
+    
+    <div class="pain-box">
+      <strong>કડવું સત્ય:</strong> સ્ત્રીઓ મોં પર જે કહે છે અને અંદરથી જેનાથી સંમોહિત થાય છે એ બંને અલગ છે. તમે લાંબો મેસેજ કરો છો અને સામેથી માત્ર 'Ok' કે 'Hmm' આવે છે? હવે આ ભીખ માંગવાની રીતો બંધ કરો.
     </div>
   </header>
 
-  <!-- Main Content Area -->
-  <main class="max-w-4xl mx-auto px-4 py-8 w-full flex-grow z-10 space-y-8">
+  <!-- STAGE 1: ASSESSMENT QUIZ -->
+  <section id="quiz-section" class="glass-card">
+    <div class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+    <div id="quiz-content"></div>
+  </section>
+
+  <!-- STAGE 2: ANALYZING -->
+  <section id="analyzing-section" class="glass-card" style="display: none;">
+    <div class="analyzing-box">
+      <div class="spinner"></div>
+      <h3 style="font-size: 15px; margin-bottom: 6px;">તમારા સબકોન્શિયસ પેટર્નનું વિશ્લેષણ થઈ રહ્યું છે...</h3>
+      <p style="font-size: 12px; color: var(--text-muted);">તમે સ્ત્રીઓ સામે કેમ આકર્ષણ ગુમાવો છો તેનું ન્યુરો-એનાલિસિસ ચાલુ છે.</p>
+    </div>
+  </section>
+
+  <!-- STAGE 3: DIRECT PAYWALL WITH DETERMINISTIC SCORE -->
+  <section id="paywall-section" class="glass-card" style="display: none;">
     
-    <!-- Hero Section -->
-    <div class="text-center space-y-3.5 relative" id="heroSection">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent-amber/40 bg-accent-amber/10 text-accent-gold text-xs font-bold uppercase tracking-widest shadow-lg">
-        <i data-lucide="compass" class="w-4 h-4 text-accent-gold animate-spin-slow"></i> 
-        સૂર્ય સિદ્ધાંત ગાણિતિક અલ્ગોરિધમ
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-bold font-cinzel text-transparent bg-clip-text bg-gradient-to-r from-accent-gold via-white to-accent-red leading-tight drop-shadow-2xl">
-        આ નવરાત્રિમાં બદલાઈ રહી છે<br>તમારા ભાગ્યની દિશા અને દશા!
-      </h1>
-      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto font-light leading-relaxed">
-        નવરાત્રિ મહા ગ્રહ સંક્રમણ અને ૨૭ નક્ષત્રોની ગણતરી પર આધારિત ૧૦૦% શાસ્ત્રોક્ત કુંડળી વિશ્લેષણ.
+    <!-- Dynamic Deterministic Diagnosis Box -->
+    <div class="diagnosis-header">
+      <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase;">તમારો અટ્રેક્શન પાવર સ્કોર</div>
+      <div class="score-badge" id="dyn-score">--/100</div>
+      <div class="archetype-title" id="dyn-archetype">વિશ્લેષણ પૂર્ણ</div>
+      
+      <div class="flaws-box" id="dyn-flaws"></div>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 12px;">
+      <h2 style="font-size: 16px; margin-bottom: 4px;">મોહિની સાથે ખાનગી સેશન શરૂ કરો</h2>
+      <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4;">
+        સ્ત્રીના અચેતન મનમાં અસલી પુરુષનું ચુંબકીય વર્ચસ્વ કેમ ઊભું કરવું તે લાઈવ શીખો.
       </p>
     </div>
 
-    <!-- The Input Form -->
-    <div id="calculatorCard" class="shakti-glass rounded-2xl p-6 sm:p-9 shadow-2xl relative transition-all duration-500 overflow-hidden">
-      <div class="scanline"></div>
-      
-      <form id="astroForm" onsubmit="event.preventDefault(); runQuantumCalculation(event); return false;" class="space-y-6">
+    <div class="plans-container">
+      <!-- Plan 1: 30 Mins -->
+      <div class="plan-card" onclick="selectPlan(99, 30)">
+        <div class="plan-title">
+          <span>ઈમર્જન્સી સાયકોલોજી સેશન</span>
+          <span class="plan-price">₹૯૯</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૩૦ મિનિટ લાઈવ વન-ઓન-વન ચેટ</p>
+        <ul class="features-list">
+          <li>ઇગ્નોર થવાનું તુરંત કેવી રીતે અટકાવવું</li>
+          <li>મેસેજનો એવો જવાબ જે તેની ઉત્સુકતા વધારે</li>
+          <li>૧૦૦% ખાનગી અને એન્ક્રિપ્ટેડ વાતચીત</li>
+        </ul>
+        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ સેશન અનલૉક કરો (₹૯૯)</button>
+      </div>
+
+      <!-- Plan 2: 60 Mins (With PDF Spotlight) -->
+      <div class="plan-card recommended" onclick="selectPlan(149, 60)">
+        <div class="ribbon">સૌથી વધુ પસંદ કરાયેલ</div>
+        <div class="plan-title">
+          <span>માસ્ટર અટ્રેક્શન સેશન + PDF</span>
+          <span class="plan-price">₹૧૪૯</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૬૦ મિનિટ ગહન વ્યૂહરચના અને લાઈવ પ્લાનિંગ</p>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div class="group">
-            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">તમારું પૂરૂં નામ *</label>
-            <input type="text" id="userName" required placeholder="દા.ત. રાહુલ શર્મા" autocomplete="off" class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-all">
-          </div>
-          <div class="group">
-            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">જન્મ તારીખ *</label>
-            <input type="date" id="userDob" required class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-all">
-          </div>
-          <div class="group">
-            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">જન્મ સમય (જો ખબર હોય તો)</label>
-            <select id="userTimePeriod" class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold transition-all appearance-none cursor-pointer">
-              <option value="unknown">સમય ખબર નથી (સૂર્ય કુંડળી પદ્ધતિ - ૧૦૦% સચોટ)</option>
-              <option value="morning">સવાર (04:00 - 12:00)</option>
-              <option value="afternoon">બપોર (12:00 - 17:00)</option>
-              <option value="evening">સાંજ (17:00 - 21:00)</option>
-              <option value="night">રાત (21:00 - 04:00)</option>
-            </select>
-          </div>
-          <div class="group">
-            <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider mb-2 font-semibold">લિંગ *</label>
-            <select id="userGender" required class="w-full bg-cosmic-950/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-accent-gold transition-all appearance-none cursor-pointer">
-              <option value="male">પુરુષ</option>
-              <option value="female">મહિલા</option>
-            </select>
+        <!-- PDF Spotlight -->
+        <div class="pdf-spotlight">
+          <div class="pdf-badge">👑 લાઈફટાઈમ બોનસ: ધ મોહિની પ્રોટોકોલ (PDF)</div>
+          <div class="pdf-subtext">
+            <strong>સ્ત્રી-મનના ૧૫ અટૂટ વૈજ્ઞાનિક નિયમો:</strong> "Seen to Craving" ટેકનિક, ફ્રેન્ડઝોન કિલર, અને વાતચીતમાં અદ્રશ્ય રોમેન્ટિક ટેન્શન બનાવવાનો સિક્રેટ બ્લુપ્રિન્ટ (મૂલ્ય ₹૧,૯૯૯ — આ પ્લાન સાથે બિલકુલ મફત).
           </div>
         </div>
 
-        <!-- 10 Life Areas Selection -->
-        <div class="border-t border-white/10 pt-5 space-y-3.5">
-          <div class="flex items-center justify-between">
-            <div>
-              <label class="block text-xs font-mono text-accent-gold uppercase tracking-wider font-bold">
-                તમે કયા ક્ષેત્રોનું વિશ્લેષણ જાણવા માંગો છો? *
-              </label>
-              <p class="text-[11px] text-slate-400">તમારા માટે અગત્યના ક્ષેત્રો પસંદ કરો (ઓછામાં ઓછું ૧)</p>
-            </div>
-            <button type="button" onclick="toggleSelectAllAreas()" id="btnSelectAll" class="text-[11px] text-accent-gold border border-accent-gold/40 px-3 py-1.5 rounded-lg bg-accent-gold/10 hover:bg-accent-gold/20 transition-all font-mono cursor-pointer">
-              બધા પસંદ કરો
-            </button>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1" id="areasContainer">
-            
-            <div class="area-chip">
-              <input type="checkbox" id="area_career" value="નોકરી અને કરિયર ગ્રોથ" class="hidden">
-              <label for="area_career" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="briefcase" class="w-4 h-4 text-accent-gold"></i>
-                <span>💼 નોકરી અને કરિયર ગ્રોથ (Job & Promotion)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_business" value="ધનલાભ, વેપાર અને આર્થિક સ્થિતિ" class="hidden">
-              <label for="area_business" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400"></i>
-                <span>💰 ધનલાભ, વેપાર અને રોકાણ (Wealth & Business)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_love" value="પ્રેમ, ક્રશ અને રિલેશનશિપનું સત્ય" class="hidden">
-              <label for="area_love" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="heart" class="w-4 h-4 text-accent-red"></i>
-                <span>💖 પ્રેમ, આકર્ષણ અને ક્રશનું સત્ય (Love & Connection)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_marriage" value="લગ્ન, જીવનસાથી અને દાંપત્ય સુખ" class="hidden">
-              <label for="area_marriage" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="sparkles" class="w-4 h-4 text-pink-400"></i>
-                <span>💍 લગ્ન યોગ અને દાંપત્ય સુખ (Marriage & Partner)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_family" value="પરિવાર અને માનસિક શાંતિ" class="hidden">
-              <label for="area_family" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="home" class="w-4 h-4 text-blue-400"></i>
-                <span>🏡 પરિવાર અને માનસિક શાંતિ (Family Harmony)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_health" value="આરોગ્ય, ઉર્જા અને આયુષ્ય" class="hidden">
-              <label for="area_health" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="activity" class="w-4 h-4 text-teal-400"></i>
-                <span>🌿 આરોગ્ય અને શારીરિક ઉર્જા (Health & Fitness)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_child" value="સંતાન સુખ અને અભ્યાસ/વિદ્યા" class="hidden">
-              <label for="area_child" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="graduation-cap" class="w-4 h-4 text-yellow-300"></i>
-                <span>👶 સંતાન સુખ અને વિદ્યા/અભ્યાસ (Education & Kids)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_foreign" value="વિદેશ યાત્રા, વિઝા અને સ્થળાંતર" class="hidden">
-              <label for="area_foreign" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="plane" class="w-4 h-4 text-sky-400"></i>
-                <span>✈️ વિદેશ યાત્રા, વિઝા અને પી.આર. (Foreign Travel)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_property" value="મકાન, જમીન-મિલકત અને વાહન સુખ" class="hidden">
-              <label for="area_property" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="key-round" class="w-4 h-4 text-amber-300"></i>
-                <span>🚗 મકાન, જમીન અને વાહન સુખ (Property & Assets)</span>
-              </label>
-            </div>
-
-            <div class="area-chip">
-              <input type="checkbox" id="area_debt" value="દેવું મુક્તિ, શત્રુ બાધા અને કાનૂની અડચણો" class="hidden">
-              <label for="area_debt" class="flex items-center gap-3 p-3.5 rounded-xl border border-slate-700/80 bg-cosmic-950/80 text-slate-300 text-xs font-medium cursor-pointer transition-all hover:border-slate-500">
-                <i data-lucide="shield-check" class="w-4 h-4 text-red-400"></i>
-                <span>🛡️ દેવું મુક્તિ અને શત્રુ બાધા (Debt & Legal Relief)</span>
-              </label>
-            </div>
-
-          </div>
-        </div>
-
-        <button type="button" onclick="runQuantumCalculation(event)" class="w-full py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.01] shadow-[0_0_30px_rgba(255,215,0,0.35)] transition-all flex items-center justify-center gap-3 cursor-pointer mt-4 font-cinzel">
-          <i data-lucide="cpu" class="w-5 h-5 text-cosmic-950 animate-pulse"></i>
-          વૈદિક સુપરકમ્પ્યુટર સ્કેન શરૂ કરો (મફત પ્રિવ્યૂ)
-        </button>
-      </form>
-    </div>
-
-    <!-- 20-Second Calculation Simulator Screen -->
-    <div id="loaderScreen" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-6 my-6 max-w-xl mx-auto shadow-2xl relative overflow-hidden">
-      <div class="scanline"></div>
-
-      <!-- Radar Core -->
-      <div class="relative w-28 h-28 mx-auto">
-        <div class="absolute inset-0 rounded-full border-2 border-accent-gold/20 animate-ping"></div>
-        <div class="w-28 h-28 border-4 border-slate-800 border-t-accent-gold border-r-accent-cyan rounded-full animate-spin"></div>
-        <div class="absolute inset-2 border-2 border-accent-red/30 rounded-full animate-orbit-reverse"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center font-mono">
-          <span class="text-xs font-bold text-accent-gold" id="loaderPercentage">0%</span>
-          <span class="text-[9px] text-slate-400 uppercase tracking-widest">ગણતરી</span>
-        </div>
-      </div>
-
-      <div class="space-y-2">
-        <h3 class="text-lg sm:text-xl font-cinzel font-bold text-white tracking-wide flex items-center justify-center gap-2">
-          <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold animate-pulse"></i>
-          નવરાત્રિ મહા ગોચર ગણતરી ચાલુ છે...
-        </h3>
-        <p id="loaderStatus" class="text-xs font-mono text-accent-amber transition-all duration-200">
-          સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...
-        </p>
-      </div>
-      
-      <!-- Telemetry Box -->
-      <div class="bg-cosmic-950/90 border border-slate-800 p-3.5 rounded-xl font-mono text-[11px] text-left space-y-1.5 shadow-inner">
-        <div class="flex justify-between text-slate-400">
-          <span>● નક્ષત્ર મેપિંગ:</span>
-          <span class="text-accent-cyan" id="telemNakshatra">ચિત્રા - સ્વાતિ - વિશાખા</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>● અયનાંશ ડિગ્રી:</span>
-          <span class="text-accent-gold" id="telemAyanamsha">લાહિરી ૨૪° ૧૪' ૦૨"</span>
-        </div>
-        <div class="flex justify-between text-slate-400">
-          <span>● નવદુર્ગા ઉર્જા આવૃત્તિ:</span>
-          <span class="text-emerald-400" id="telemShakti">૪૩૨ Hz (પ્રથમ શૈલપુત્રી કવચ)</span>
-        </div>
-      </div>
-
-      <!-- 20-Second Progress Bar -->
-      <div class="space-y-1.5">
-        <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-700/80">
-          <div id="progressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-200"></div>
-        </div>
-        <div class="flex justify-between text-[10px] font-mono text-slate-400">
-          <span>સમય બાકી: <b id="timeRemainingText" class="text-white">૨૦ સેકન્ડ</b></span>
-          <span>ચોક્કસાઈ: ૧૦૦% શાસ્ત્રોક્ત</span>
-        </div>
+        <ul class="features-list">
+          <li>તેને સામેથી મેસેજ કરવા મજબૂર કરતી સાયકોલોજી</li>
+          <li>તમારી કદર ન કરતી સ્ત્રીને ગુમાવવાનો ડર (FOMO) આપવાની રીત</li>
+          <li>૬૦ મિનિટ વિગતવાર લાઈવ માર્ગદર્શન</li>
+        </ul>
+        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF માસ્ટર ગાઈડ (₹૧૪૯)</button>
       </div>
     </div>
+  </section>
 
-    <!-- Results Container (Simplified, High-Converting) -->
-    <div id="resultScreen" class="hidden space-y-6 mt-4">
-      
-      <!-- Focused Diagnosis Card (Hook without giving away answers) -->
-      <div class="bg-cosmic-900/90 border border-accent-gold/40 rounded-2xl p-5 sm:p-7 space-y-5 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
-        <div class="border-b border-white/10 pb-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <h2 class="text-xl sm:text-2xl font-bold font-cinzel text-accent-gold" id="resTitle">વૈદિક ગણતરી પરિણામ</h2>
-            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-full self-start flex items-center gap-1">
-              <i data-lucide="check-circle" class="w-3 h-3"></i> ૧૦૦% ગાણિતિક મેચ
-            </span>
-          </div>
-          
-          <!-- Compact Badges -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-3.5">
-            <div class="bg-cosmic-950 border border-accent-gold/25 p-2.5 rounded-lg text-center">
-              <p class="text-[9px] text-slate-400 uppercase font-mono">નામ રાશિ</p>
-              <p class="text-sm font-bold text-white" id="badgeNaamRashi">--</p>
-            </div>
-            <div class="bg-cosmic-950 border border-accent-red/25 p-2.5 rounded-lg text-center">
-              <p class="text-[9px] text-slate-400 uppercase font-mono">સૂર્ય રાશિ</p>
-              <p class="text-sm font-bold text-white" id="badgeSuryaRashi">--</p>
-            </div>
-            <div class="bg-cosmic-950 border border-emerald-500/25 p-2.5 rounded-lg text-center">
-              <p class="text-[9px] text-slate-400 uppercase font-mono">ભાગ્યાંક</p>
-              <p class="text-sm font-bold text-emerald-400 font-mono" id="badgeBhagyank">--</p>
-            </div>
-            <div class="bg-cosmic-950 border border-accent-cyan/25 p-2.5 rounded-lg text-center">
-              <p class="text-[9px] text-accent-cyan uppercase font-mono">સંક્રમણ સ્કોર</p>
-              <p class="text-sm font-bold text-accent-cyan font-mono" id="badgeTransitScore">--</p>
-            </div>
+  <!-- STAGE 4: LIVE CHAT WITH MOHINI -->
+  <section id="chat-section" class="glass-card" style="display: none;">
+    <div class="chat-wrapper">
+      <div class="chat-header">
+        <div class="bot-info">
+          <img src="data:image/jpeg;base64,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" alt="Mohini" class="bot-avatar-small" />
+          <div>
+            <div style="font-weight: 700; font-size: 13.5px;">મોહિની (Mohini)</div>
+            <div class="bot-status">● લાઈવ સંમોહન-કનેક્ટેડ</div>
           </div>
         </div>
-
-        <p id="paraIntro" class="text-slate-200 text-xs sm:text-sm leading-relaxed"></p>
-
-        <!-- 3 Curiosity Teaser Cards (Problems highlighted, solutions blurred) -->
-        <div id="pillarsBox" class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1"></div>
+        <div class="timer-badge" id="session-timer">00:00</div>
       </div>
 
-      <!-- High-Conversion ₹99 Instant Checkout Paywall -->
-      <div id="paywallBox" class="relative shakti-glass rounded-2xl p-1 border-2 border-accent-red shadow-[0_0_40px_rgba(255,51,68,0.4)] overflow-hidden">
-        <div class="relative bg-cosmic-950 rounded-xl p-5 sm:p-8 space-y-5">
-          
-          <div class="text-center space-y-2">
-            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-red/20 border border-accent-red/50 text-accent-gold text-xs font-bold animate-pulse">
-              <i data-lucide="lock" class="w-3.5 h-3.5 text-accent-red"></i> 
-              સંપૂર્ણ વિશ્લેષણ અને ઉપાયો લૉક છે
-            </div>
-            <h3 class="text-xl sm:text-3xl font-bold text-white font-cinzel leading-tight">
-              તમારા બંધ ભાગ્યના તાળા ખોલો
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-              નવરાત્રિ મહા ગ્રહ પરિવર્તનમાં તમારા માટે ક્યારે થશે મોટો ભાગ્યોદય અને ક્યાં સાવચેત રહેવું? <br>
-              <strong class="text-accent-gold font-bold">માત્ર ₹૯૯ માં</strong> સંપૂર્ણ વ્યક્તિગત રિપોર્ટ સ્ક્રીન પર ત્વરિત અનલૉક કરો:
-            </p>
-          </div>
+      <div class="chat-messages" id="chat-box"></div>
 
-          <!-- Bulleted Deliverables -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-2xl mx-auto text-xs text-slate-200">
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-accent-gold/20">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-accent-gold flex-shrink-0"></i>
-              <span>તમારા ક્ષેત્રોનું <b class="text-white">ઊંડાણપૂર્વકનું સચોટ ભવિષ્યફળ</b></span>
-            </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-emerald-500/20">
-              <i data-lucide="calendar" class="w-4 h-4 text-emerald-400 flex-shrink-0"></i>
-              <span>આગામી <b class="text-white">૬ મહિનાની મહિને-મહિને ટાઈમલાઈન</b></span>
-            </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-accent-red/20">
-              <i data-lucide="flame" class="w-4 h-4 text-accent-red flex-shrink-0"></i>
-              <span>શનિ-રાહુ શાંતિ માટે <b class="text-white">સિદ્ધ મંત્ર અને પૂજન વિધિ</b></span>
-            </div>
-            <div class="flex items-center gap-2 bg-cosmic-900/90 p-2.5 rounded-lg border border-cyan-500/20">
-              <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 flex-shrink-0"></i>
-              <span>તમારા માટે <b class="text-white">શુભ રત્ન, રુદ્રાક્ષ, રંગ અને ભાગ્યશાળી અંક</b></span>
-            </div>
-          </div>
-
-          <!-- Price & CTA Box -->
-          <div class="border border-white/10 rounded-xl bg-cosmic-900/95 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner mt-2">
-            <div class="text-center sm:text-left">
-              <div class="text-xs text-accent-red font-bold flex items-center justify-center sm:justify-start gap-1">
-                <i data-lucide="clock" class="w-3.5 h-3.5 animate-spin"></i>
-                દક્ષિણા છૂટ બાકી: <span id="fomoTimer" class="font-mono text-white text-xs bg-accent-red px-2 py-0.5 rounded font-bold">૧૪:૫૯</span>
-              </div>
-              <div class="flex items-baseline gap-2.5 justify-center sm:justify-start mt-1.5">
-                <span class="text-base text-slate-500 line-through decoration-slate-500">₹૪૯૯</span>
-                <span class="text-4xl sm:text-5xl font-bold text-white font-mono leading-none drop-shadow-md">₹૯૯</span>
-                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold">૮૦% છૂટ</span>
-              </div>
-            </div>
-            <button id="payBtn" onclick="initiateRazorpay()" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest text-cosmic-950 bg-gradient-to-r from-accent-gold via-yellow-200 to-accent-gold hover:scale-[1.02] shadow-[0_0_35px_rgba(255,215,0,0.45)] transition-all flex items-center justify-center gap-2.5 cursor-pointer font-cinzel">
-              <i data-lucide="unlock" class="w-4 h-4"></i>
-              <span id="payBtnText">મારો રિપોર્ટ અનલૉક કરો - ₹૯૯</span>
-            </button>
-          </div>
-
-          <!-- Trust Badges & Supported UPI -->
-          <div class="text-center space-y-1.5 pt-1">
-            <p class="text-[11px] text-slate-300 flex items-center justify-center gap-1.5 font-medium">
-              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> ૧૦૦% સુરક્ષિત પેમેન્ટ • ચુકવણી પછી તરત સ્ક્રીન પર રિપોર્ટ ખૂલશે
-            </p>
-            <p class="text-[10px] font-mono text-slate-500">
-              GPay • PhonePe • Paytm • BHIM UPI • ક્રેડિટ/ડેબિટ કાર્ડ
-            </p>
-          </div>
-
-        </div>
+      <div class="chat-input-area">
+        <input type="text" id="user-input" class="chat-input" placeholder="તમારી સમસ્યા કે વાત અહીં લખો..." onkeypress="handleKey(event)" />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
-
-      <!-- Paid Post-Payment 1-Minute Astrological Decoding Loader -->
-      <div id="aiPaidLoader" class="hidden shakti-glass rounded-2xl p-8 sm:p-10 text-center space-y-5 my-6 max-w-lg mx-auto border border-accent-gold/40 bg-cosmic-950/95 backdrop-blur-3xl shadow-[0_0_50px_rgba(255,215,0,0.25)] relative overflow-hidden">
-        <div class="scanline"></div>
-        
-        <div class="relative w-20 h-20 mx-auto">
-          <div class="w-20 h-20 border-4 border-slate-800 border-t-accent-gold border-r-emerald-400 rounded-full animate-spin mx-auto"></div>
-          <div class="absolute inset-0 flex items-center justify-center font-mono text-xs font-bold text-accent-gold" id="paidLoaderPct">0%</div>
-        </div>
-
-        <div class="space-y-1.5">
-          <h3 class="text-lg font-cinzel font-bold text-white tracking-wide">
-            પેમેન્ટ સફળ! ભાગ્યવેદ સુપરકમ્પ્યુટર કુંડળી ડીકોડ કરે છે...
-          </h3>
-          <p id="aiPaidStatus" class="text-xs font-mono text-accent-amber transition-all">
-            નવરાત્રિ મહા શક્તિ ચક્ર અને તમારા પસંદ કરેલા તમામ ક્ષેત્રોનું સંકલન થઈ રહ્યું છે...
-          </p>
-        </div>
-
-        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-700">
-          <div id="paidProgressBar" class="bg-gradient-to-r from-accent-red via-accent-amber to-accent-gold h-full w-0 transition-all duration-300"></div>
-        </div>
-
-        <div class="text-[11px] font-mono text-slate-400 flex justify-between">
-          <span>અંદાજિત સમય: <b class="text-white" id="paidRemainingText">૫૫ સેકન્ડ</b></span>
-          <span class="text-accent-cyan">શાસ્ત્રોક્ત ચોકસાઈ સંકલન</span>
-        </div>
-      </div>
-
-      <!-- Premium Unlocked Section (Gemini Data Render) -->
-      <div id="premiumUnlokedSection" class="hidden space-y-8 mt-10 scroll-mt-20">
-         <div class="shakti-glass rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-emerald-500/40 bg-emerald-950/20">
-             
-             <!-- Header -->
-             <div class="border-b border-white/10 pb-6 mb-6 flex items-center gap-4">
-                 <div class="p-3.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                     <i data-lucide="check-circle-2" class="w-8 h-8 animate-pulse"></i>
-                 </div>
-                 <div>
-                    <h2 class="text-xl md:text-2xl font-bold font-cinzel text-white leading-tight">તમારો સંપૂર્ણ વૈદિક અહેવાલ સક્રિય થયો છે!</h2>
-                    <p class="text-[11px] font-mono text-emerald-400 mt-1 flex items-center gap-1.5 uppercase tracking-wider">
-                       <i data-lucide="shield-check" class="w-3 h-3"></i> પેમેન્ટ સફળ • ૧૦૦% વ્યક્તિગત શાસ્ત્રોક્ત વિશ્લેષણ
-                    </p>
-                 </div>
-             </div>
-
-             <!-- Lucky Parameters Strip -->
-             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                <div class="bg-cosmic-950/90 border border-accent-gold/30 p-3.5 rounded-xl text-center">
-                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">શુભ રંગ</span>
-                   <span class="text-sm font-bold text-accent-gold" id="luckyColor">--</span>
-                </div>
-                <div class="bg-cosmic-950/90 border border-emerald-500/30 p-3.5 rounded-xl text-center">
-                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">ભાગ્યશાળી અંક</span>
-                   <span class="text-sm font-bold text-emerald-400 font-mono" id="luckyNumber">--</span>
-                </div>
-                <div class="bg-cosmic-950/90 border border-accent-red/30 p-3.5 rounded-xl text-center">
-                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">આરાધ્ય દેવી</span>
-                   <span class="text-sm font-bold text-accent-red" id="luckyDevi">--</span>
-                </div>
-                <div class="bg-cosmic-950/90 border border-purple-500/30 p-3.5 rounded-xl text-center">
-                   <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">અનુકૂળ રુદ્રાક્ષ</span>
-                   <span class="text-sm font-bold text-purple-300" id="luckyRudra">--</span>
-                </div>
-             </div>
-
-             <!-- Executive Summary Box -->
-             <div class="bg-cosmic-900/90 border border-accent-gold/30 p-5 sm:p-6 rounded-xl space-y-2 mb-8 shadow-xl">
-               <div class="flex items-center gap-2 text-accent-gold font-bold text-sm uppercase tracking-wider">
-                 <i data-lucide="crown" class="w-4 h-4"></i> મહા કુંડળી સારાંશ (Executive Summary)
-               </div>
-               <div id="executiveSummaryText" class="text-slate-200 text-sm leading-relaxed space-y-2"></div>
-             </div>
-             
-             <!-- Selected Areas Deep Stack -->
-             <div class="space-y-6">
-               <div class="flex items-center gap-2 text-lg font-bold text-white font-cinzel border-b border-white/10 pb-3">
-                 <i data-lucide="layers" class="w-5 h-5 text-accent-amber"></i> તમારા પસંદ કરેલા ક્ષેત્રોનું ઊંડાણપૂર્વકનું વિશ્લેષણ
-               </div>
-               
-               <div id="dynamicAreaReportsContainer" class="space-y-5"></div>
-             </div>
-
-             <!-- Planetary Dosha Card -->
-             <div class="bg-cosmic-900/90 border border-amber-500/30 p-6 rounded-xl space-y-3 mt-8">
-               <div class="flex items-center gap-2.5 text-base font-bold text-amber-400 border-b border-amber-500/20 pb-3">
-                 <i data-lucide="shield-alert" class="w-5 h-5 text-amber-400"></i> ગ્રહ સંક્રમણ દોષ અને સાવચેતી ચેતવણી
-               </div>
-               <div id="premiumDosha" class="text-slate-300 text-sm leading-relaxed space-y-2"></div>
-             </div>
-             
-             <!-- Authentic Remedies -->
-             <div class="bg-cosmic-900/90 border border-accent-gold/30 p-6 rounded-xl space-y-4 mt-8 shadow-2xl">
-               <div class="flex items-center gap-2.5 text-base font-bold text-accent-gold border-b border-accent-gold/20 pb-3">
-                 <i data-lucide="sparkles" class="w-5 h-5 text-accent-gold"></i> નવરાત્રિ વિશેષ શાસ્ત્રોક્ત ઉપાયો અને સિદ્ધ પૂજન વિધિ
-               </div>
-               <div id="premiumRemediesContainer" class="space-y-4 text-slate-300 text-sm leading-relaxed"></div>
-             </div>
-
-             <!-- Authentic Vedic Astrological Note -->
-             <div class="p-4 rounded-xl bg-cosmic-950 border border-accent-gold/20 text-xs text-slate-400 leading-relaxed font-mono mt-6 flex items-start gap-2.5">
-               <i data-lucide="info" class="w-4 h-4 text-accent-gold flex-shrink-0 mt-0.5"></i>
-               <span><b>શાસ્ત્રોક્ત નિર્દેશ:</b> આ વિશ્લેષણ પ્રાચીન સૂર્ય સિદ્ધાંત પંચાંગ, ૨૭ નક્ષત્ર ગોચર અને નવરાત્રિ મહા સંક્રમણના ગાણિતિક સૂત્રો અનુસાર ગણવામાં આવ્યું છે.</span>
-             </div>
-
-             <!-- Start New Scan Button -->
-             <button onclick="startNewScan()" class="mt-8 w-full py-4 rounded-xl border border-accent-gold/40 text-accent-gold font-bold text-sm uppercase tracking-wider hover:bg-accent-gold/10 transition-all flex items-center justify-center gap-2 cursor-pointer font-cinzel">
-               <i data-lucide="user-plus" class="w-4 h-4"></i>
-               પરિવારના અન્ય સભ્ય માટે નવો સ્કેન કરો
-             </button>
-         </div>
-      </div>
-
     </div>
-  </main>
+  </section>
 
-  <footer class="border-t border-accent-gold/10 bg-cosmic-950 py-8 px-4 text-center text-[10px] text-slate-500 font-mono mt-12 relative z-10">
-    <p class="text-slate-400 mb-1 uppercase tracking-widest">પ્રાચીન સૂર્ય કુંડળી સિદ્ધાંત • ક્વોન્ટમ એસ્ટ્રો લેબ્સ</p>
-    © 2026 Bhagyaveda Labs. All rights reserved.
-  </footer>
+  <!-- STAGE 5: POST CHAT & PDF BONUS -->
+  <section id="bonus-section" class="glass-card" style="display: none;">
+    <div class="bonus-card">
+      <div style="font-size: 38px; margin-bottom: 10px;">👑</div>
+      <h2 style="font-size: 18px; color: var(--accent-gold); margin-bottom: 6px;">તમારું સેશન સંપન્ન થયું!</h2>
+      <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+        મોહિની સાથે નક્કી કરેલા નિયમોનું પાલન કરો. તમારા વચન મુજબ તમારો સિક્રેટ માસ્ટર ગાઈડ નીચે ડાઉનલોડ માટે તૈયાર છે:
+      </p>
+      <button class="pay-btn pay-btn-gold" onclick="downloadBonusGuide()">📥 ડાઉનલોડ કરો: ધ મોહિની પ્રોટોકોલ (PDF)</button>
+    </div>
+  </section>
 
-  <script>
-    lucide.createIcons();
+</div>
 
-    const BACKEND_URL = "https://bhagyaveda-backend.onrender.com";
-    
-    // Render Uptime Ping
-    window.addEventListener('DOMContentLoaded', () => {
-      fetch(`${BACKEND_URL}/api/ping`).catch(() => {});
+<script>
+  /* ================= CONFIGURATION ================= */
+  const BACKEND_CHAT_URL = "https://bhagyaveda-backend.onrender.com/api/mohini/chat"; 
+  const RAZORPAY_KEY = "rzp_test_placeholder"; 
+
+  const questions = [
+    {
+      q: "તમે આજે અહીં કયા મુખ્ય કારણસર આવ્યા છો?",
+      options: [
+        "કોઈપણ સ્ત્રી સાથે વાતચીતમાં અચકાયા વિના ઊંડું આકર્ષણ ઊભું કરતાં શીખવું છે",
+        "સ્ત્રી-મનની અસલી માનસિકતા (સાયકોલોજી) અને ગુપ્ત સંકેતો ડિકોડ કરવા છે",
+        "હંમેશાં નજરઅંદાજ કે રિજેક્ટ થવાનો સિલસિલો કાયમ માટે બંધ કરવો છે",
+        "મારી અંદર એવી હાઈ-વેલ્યુ પર્સનાલિટી બનાવવી છે જેથી સ્ત્રીઓ સામેથી ધ્યાન આપે"
+      ]
+    },
+    {
+      q: "સ્ત્રીઓના આકર્ષણ વિશે તમારી માન્યતા શું છે?",
+      options: [
+        "મને લાગે છે કે સ્ત્રીઓ ફક્ત દેખાવ, સ્ટેટસ કે પૈસા જોઈને આકર્ષાય છે",
+        "સ્ત્રીઓ ક્યારે શું ઇચ્છે છે અને એમના મૂડ/સિગ્નલ્સ શું કહે છે તે સમજવું અશક્ય લાગે છે",
+        "હું હંમેશાં સાચો, કેરિંગ અને સારો (Nice Guy) રહું છું, છતાં સ્ત્રીઓ કદર નથી કરતી",
+        "સ્ત્રીઓ શરૂઆતમાં વાત કરે છે, પણ થોડા સમય પછી રસ ગુમાવી દે છે"
+      ]
+    },
+    {
+      q: "સ્ત્રીઓ સાથેના વ્યવહારમાં તમારી સૌથી મોટી અડચણ ક્યાં આવે છે?",
+      options: [
+        "પહેલી વાતચીતમાં જ રોમાંચ, રહસ્ય અને ઉત્સુકતા જાળવી રાખવામાં",
+        "હંમેશાં 'ફ્રેન્ડઝોન' (માત્ર સારો મિત્ર) બની જવામાં",
+        "વાતચીતમાં એવું વર્ચસ્વ રાખવામાં જેથી સ્ત્રી તમને સામાન્ય ન ગણે",
+        "સ્ત્રી સમક્ષ મનની લાગણી કે રોમેન્ટિક ઈરાદો સ્પષ્ટ રીતે મૂકવામાં"
+      ]
+    },
+    {
+      q: "મોહિની પાસેથી તમે કઈ કળા શીખવા માંગો છો?",
+      options: [
+        "સ્ત્રીના સબકોન્શિયસ (અવચેતન) મનમાં સ્થાન બનાવવાની સાયકોલોજી",
+        "સામાન્ય ચેટ કે મેસેજિંગને તીવ્ર આકર્ષણમાં ફેરવવાની ટેકનિક",
+        "કોઈપણ પરિસ્થિતિમાં સ્ત્રી સામે આત્મવિશ્વાસથી છવાઈ જવાનો નિયમ",
+        "સ્ત્રી તમને ગુમાવવાથી ડરે તેવું માનસિક જોડાણ ઊભું કરવાનો રસ્તો"
+      ]
+    }
+  ];
+
+  let currentQuestion = 0;
+  let selectedIndices = []; 
+  let userAnswers = [];
+  let calculatedProfile = null;
+  let chatHistory = [];
+  let remainingSeconds = 0;
+  let timerInterval = null;
+
+  function loadQuestion() {
+    const qData = questions[currentQuestion];
+    const fillPercent = ((currentQuestion + 1) / questions.length) * 100;
+    document.getElementById("progress-fill").style.width = fillPercent + "%";
+
+    let html = `<h2 class="question-title">${currentQuestion + 1}. ${qData.q}</h2><div class="options-list">`;
+    qData.options.forEach((opt, idx) => {
+      html += `<button class="option-btn" onclick="handleAnswer(${idx}, '${opt.replace(/'/g, "\\\'")}')">
+                <span>${opt}</span>
+                <span>➔</span>
+              </button>`;
     });
-
-    let clientData = {};
-    let isUserPaid = false;
-    let preGeneratedData = null;
-
-    // Toggle Select All Areas
-    let allSelected = false;
-    function toggleSelectAllAreas() {
-      const checkboxes = document.querySelectorAll('#areasContainer input[type="checkbox"]');
-      allSelected = !allSelected;
-      checkboxes.forEach(cb => cb.checked = allSelected);
-      const btn = document.getElementById('btnSelectAll');
-      if (btn) btn.innerText = allSelected ? "બધા રદ કરો" : "બધા પસંદ કરો";
-
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', 'ToggleSelectAllAreas', {
-          action: allSelected ? 'select_all' : 'deselect_all'
-        });
-      }
-    }
-
-    function getHash(str) {
-      let hash = 0;
-      for (let i = 0; i < str.length; i++) {
-        hash = ((hash << 5) - hash) + str.charCodeAt(i);
-        hash |= 0;
-      }
-      return Math.abs(hash);
-    }
-
-    function calculateBhagyank(dob) {
-      if (!dob) return 1;
-      const digits = dob.replace(/[^0-9]/g, '');
-      let sum = digits.split('').reduce((acc, num) => acc + parseInt(num, 10), 0);
-      while (sum > 9) {
-        sum = sum.toString().split('').reduce((acc, num) => acc + parseInt(num, 10), 0);
-      }
-      return sum || 1;
-    }
-
-    // ટૂંકા અને હૂક આધારિત દર્દ/સમસ્યા - જવાબો બ્લર રાખવા માટે
-    const careerHooksBySurya = {
-      "મેષ": "દશમ કર્મ ભાવ પર સૂર્ય-શનિ દ્રષ્ટિને કારણે છેલ્લા ૮ મહિનાથી કરેલી મહેનતનું યોગ્ય વળતર મળતું નથી અને અન્ય લોકો શ્રેય પડાવી જાય છે.",
-      "વૃષભ": "ધન ભાવમાં રાહુની અસ્થિર ચાલને લીધે પૈસા હાથમાં આવે છે પણ અણધાર્યા ખર્ચમાં ધોવાઈ જાય છે. આર્થિક સ્થિરતા અટકેલી છે.",
-      "મિથુન": "પ્રતિભા અને બુદ્ધિ તેજ હોવા છતાં કાર્યક્ષેત્રે યોગ્ય માન-સન્માન કે પ્રમોશન મળવામાં સતત અદ્રશ્ય અવરોધ આવે છે.",
-      "કર્ક": "ભાગ્ય ભાવે ચંદ્રના ચડાવ-ઉતારથી કાર્યસ્થળે અસંતોષ રહે છે અને સહકર્મચારીઓ તમારી નમ્રતાનો ગેરલાભ ઉઠાવે છે.",
-      "સિંહ": "સૂર્યનું સંક્રમણ મોટા બદલાવ સૂચવે છે, પરંતુ છેલ્લા કેટલાક સમયથી ભાગ્યમાં જે સ્થગિતતા છે તે માનસિક બોજ વધારે છે.",
-      "કન્યા": "અષ્ટમ કેતુના પ્રભાવથી મહેનત વધુ અને પરિણામ ઓછું મળે છે. બિનજરૂરી નાણાકીય જવાબદારીઓ તમારા માથે આવી પડે છે.",
-      "તુલા": "દશમે ગુરુ-શુક્ર સંક્રમણ મોટો ઉછાળો આપવા તૈયાર છે, પણ ગુપ્ત વિરોધીઓ તમારી પ્રગતિમાં આડખીલી બની રહ્યા છે.",
-      "વૃશ્ચિક": "ષષ્ઠ ભાવે મંગળ-શનિનો સંઘર્ષ સતત દબાણ રાખે છે. લોહી-પાણી એક કર્યા છતાં છેલ્લી ઘડીએ ડીલ કે કામ અટકી પડે છે.",
-      "ધન": "ગુરુનું બળ પદવી વધારી શકે છે, પરંતુ ખોટી દિશામાં થતા નિર્ણયો તમારી બચત અને સમય બંને વેડફી રહ્યા છે.",
-      "મકર": "શનિદેવના અંતિમ સંઘર્ષ તબક્કામાં કામનો બોજ અતિશય વધ્યો છે પણ તે પ્રમાણમાં આર્થિક સ્થિરતા હજી દેખાતી નથી.",
-      "કુંભ": "નવા વિચારો હોવા છતાં આર્થિક રોકાણ કે સહયોગના અભાવે તમારા આયોજનો કાગળ પર જ અટકી ગયા છે.",
-      "મીન": "બારમા ભાવે રાહુ-ગુરુથી આવક કરતાં જાવકનું પલડું ભારે રહે છે. યોગ્ય તક સામે હોવા છતાં નિર્ણય લેવામાં વિલંબ થાય છે."
-    };
-
-    const loveHooksByNaam = {
-      "મેષ": "બહારથી કડક દેખાતા તમારું દિલ અંદરથી એકલતા અનુભવે છે. તમે જેમના માટે સર્વસ્વ આપો છો, તેમની પાસેથી કદર નથી મળતી.",
-      "વૃષભ": "તમે સંબંધમાં ૧૦૦% વફાદારી આપો છો, પણ સામેની વ્યક્તિના બદલાતા મૂડ અને અણધાર્યો વ્યવહાર તમને સતત માનસિક પીડા આપે છે.",
-      "મિથુન": "દિલમાં ઊંડો લગાવ હોવા છતાં વાતચીતમાં અહંકાર અને મૌન વચ્ચે આવી જાય છે, જેથી ગેરસમજ વધતી જાય છે.",
-      "કર્ક": "ભૂતકાળમાં તૂટેલા વિશ્વાસને કારણે વર્તમાન સંબંધમાં પણ મન અશાંત રહે છે. સાચી લાગણીની કદર ન થવાનો ભય રહે છે.",
-      "સિંહ": "સંબંધમાં અહંકારનો ટકરાવ અને બહારના લોકોની દખલગીરીથી દિલમાં કડવાશ ભળતી જાય છે.",
-      "કન્યા": "વધુ પડતું ઓવરથિંકિંગ અને મનની શંકાઓને કારણે સંબંધમાં નિકટતા આવવાને બદલે અજાણ્યું અંતર ઊભું થઈ રહ્યું છે.",
-      "તુલા": "દિલ અને દિમાગ વચ્ચે મોટો સંઘર્ષ છે. શું સંબંધ સાચો છે કે માત્ર એકલા પડવાના ડરથી ઢસડી રહ્યા છો?",
-      "વૃશ્ચિક": "ભૂતકાળમાં કોઈ અંગતે જ પીઠમાં ખંજર ભોંક્યું હોવાથી તમે સરળતાથી વિશ્વાસ નથી કરી શકતા અને અંદર ને અંદર ઘૂંટાઓ છો.",
-      "ધન": "સંબંધમાં સામેવાળાનો અધિકાર જમાવવાનો પ્રયત્ન તમને ગૂંગળામણ આપે છે. આઝાદી અને લાગણી વચ્ચે તાલમેલ તૂટી રહ્યો છે.",
-      "મકર": "જવાબદારીઓના બોજ હેઠળ અંગત સંબંધો ઉપેક્ષિત થઈ રહ્યા છે, જેનાથી સામેની વ્યક્તિમાં અસંતોષ વધી રહ્યો છે.",
-      "કુંભ": "તમે લાગણી વ્યક્ત નથી કરી શકતા, જેને સામેની વ્યક્તિ તમારી બેપરવાહી કે અભિમાન સમજીને દૂર જઈ રહી છે.",
-      "મીન": "સામેવાળી વ્યક્તિ પર આંધળો વિશ્વાસ મૂકીને પોતાની જાતને કુરબાન કરી દો છો, જેથી વારંવાર દિલ દુભાય છે."
-    };
-
-    const warningHooksByBhagyank = {
-      1: "સૂર્ય-રાહુ પ્રભાવ: હાથમાં આવેલી બાજી છેલ્લી ઘડીએ બગડવાનો દોષ. અતિ-વિશ્વાસથી નાણાકીય દંડનો ખતરો.",
-      2: "ચંદ્ર પ્રભાવ: માનસિક અસ્થિરતા, અનિદ્રા અને નજર દોષથી કામ થતાં થતાં અટકી જવાની સ્થિતિ.",
-      3: "ગુરુ-રાહુ ચાંડાળ પ્રભાવ: લોકોને તમારાથી ફાયદો થાય પણ તમારું પોતાનું કામ અટકેલું રહે. ઉધાર નાણાં ડૂબવાનો ભય.",
-      4: "રાહુ છાયા દોષ: અચાનક નાણાકીય નુકસાન અને બનતા કામમાં અંતિમ ક્ષણે અવરોધ આવવો.",
-      5: "બુધ વાણી દોષ: નિર્ણયોમાં ઉતાવળ અને કાગળીયા હિસાબોમાં બેદરકારીથી મોટો વિવાદ થવાનો સંકેત.",
-      6: "શુક્ર-કેતુ દોષ: મોજશોખ કે ગજા બહારના ખર્ચથી બચત ધોવાઈ જવી અને અંગત સંબંધોમાં બદનામીનો ભય.",
-      7: "કેતુ પ્રભાવ: કામ વચ્ચેથી અધૂરું છોડી દેવાની વૃત્તિ અને અંદરથી આવતી વિરક્તિથી ભાગ્યોદય અટકવો.",
-      8: "શનિ કઠોર પરીક્ષા: સતત સંઘર્ષ, કામમાં વિલંબ, અણધાર્યા વિરોધીઓ અને શારીરિક થાકનો દોષ.",
-      9: "મંગળ અગ્નિ પ્રભાવ: ગુસ્સા કે આવેશમાં લીધેલો એક ઉતાવળિયો નિર્ણય વર્ષોની મહેનત બગાડી શકે છે."
-    };
-
-    function getNaamRashi(name) {
-      if (!name) return "મેષ";
-      const clean = name.trim().toUpperCase();
-      const ch = clean.charAt(0);
-      const rashiMap = [
-        { rashi: "મેષ", chars: ["A", "L", "E", "I", "O", "અ", "લ", "ઇ", "ઈ", "એ"] },
-        { rashi: "વૃષભ", chars: ["B", "V", "U", "W", "બ", "વ", "ઉ", "ઊ"] },
-        { rashi: "મિથુન", chars: ["K", "CHH", "GH", "Q", "C", "ક", "છ", "ઘ"] },
-        { rashi: "કર્ક", chars: ["D", "H", "ડ", "હ"] },
-        { rashi: "સિંહ", chars: ["M", "T", "મ", "ટ"] },
-        { rashi: "કન્યા", chars: ["P", "TH", "N", "પ", "ઠ", "ણ"] },
-        { rashi: "તુલા", chars: ["R", "T", "ર", "ત"] },
-        { rashi: "વૃશ્ચિક", chars: ["N", "Y", "ન", "ય"] },
-        { rashi: "ધન", chars: ["BH", "DH", "F", "ભ", "ધ", "ફ", "ઢ"] },
-        { rashi: "મકર", chars: ["KH", "J", "ખ", "જ"] },
-        { rashi: "કુંભ", chars: ["G", "S", "SH", "ગ", "શ", "ષ", "સ"] },
-        { rashi: "મીન", chars: ["D", "CH", "Z", "TH", "દ", "ચ", "ઝ", "થ"] }
-      ];
-      for (const item of rashiMap) {
-        if (item.chars.some(c => clean.startsWith(c) || ch === c)) return item.rashi;
-      }
-      return "સિંહ";
-    }
-
-    function getSuryaRashi(dob) {
-      if (!dob) return "મેષ";
-      const parts = dob.split('-');
-      const month = parseInt(parts[1], 10);
-      const day = parseInt(parts[2], 10);
-      if ((month === 1 && day >= 14) || (month === 2 && day <= 12)) return "મકર";
-      if ((month === 2 && day >= 13) || (month === 3 && day <= 14)) return "કુંભ";
-      if ((month === 3 && day >= 15) || (month === 4 && day <= 13)) return "મીન";
-      if ((month === 4 && day >= 14) || (month === 5 && day <= 14)) return "મેષ";
-      if ((month === 5 && day >= 15) || (month === 6 && day <= 14)) return "વૃષભ";
-      if ((month === 6 && day >= 15) || (month === 7 && day <= 15)) return "મિથુન";
-      if ((month === 7 && day >= 16) || (month === 8 && day <= 16)) return "કર્ક";
-      if ((month === 8 && day >= 17) || (month === 9 && day <= 16)) return "સિંહ";
-      if ((month === 9 && day >= 17) || (month === 10 && day <= 16)) return "કન્યા";
-      if ((month === 10 && day >= 17) || (month === 11 && day <= 15)) return "તુલા";
-      if ((month === 11 && day >= 16) || (month === 12 && day <= 15)) return "વૃશ્ચિક";
-      return "ધન";
-    }
-
-    function startTimer(duration) {
-      let timer = duration, minutes, seconds;
-      const display = document.querySelector('#fomoTimer');
-      const interval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        if(display) display.textContent = minutes + ":" + seconds;
-        if (--timer < 0) clearInterval(interval);
-      }, 1000);
-    }
-
-    function runQuantumCalculation(e) {
-      if (e && e.preventDefault) e.preventDefault();
-
-      try {
-        const nameInput = document.getElementById('userName');
-        const dobInput = document.getElementById('userDob');
-
-        if (!nameInput || !nameInput.value.trim()) {
-          alert("કૃપા કરીને તમારું પૂરું નામ દાખલ કરો.");
-          if (nameInput) nameInput.focus();
-          return false;
-        }
-
-        if (!dobInput || !dobInput.value) {
-          alert("કૃપા કરીને જન્મ તારીખ પસંદ કરો.");
-          if (dobInput) dobInput.focus();
-          return false;
-        }
-
-        const checkedBoxes = document.querySelectorAll('#areasContainer input[type="checkbox"]:checked');
-        let selectedAreas = Array.from(checkedBoxes).map(cb => cb.value);
-
-        if (selectedAreas.length === 0) {
-          alert("કૃપા કરીને ઓછામાં ઓછું ૧ જીવન ક્ષેત્ર પસંદ કરો.");
-          return false;
-        }
-
-        const name = nameInput.value.trim();
-        const dob = dobInput.value;
-        const time = document.getElementById('userTimePeriod')?.value || 'unknown';
-        const gender = document.getElementById('userGender')?.value || 'male';
-        const bhagyank = calculateBhagyank(dob);
-
-        clientData = {
-          name: name,
-          dob: dob,
-          time: time,
-          gender: gender,
-          bhagyank: bhagyank,
-          selectedAreas: selectedAreas,
-          naamRashi: getNaamRashi(name),
-          suryaRashi: getSuryaRashi(dob)
-        };
-
-        try {
-          localStorage.setItem('bhagya_client_data', JSON.stringify(clientData));
-        } catch(err){}
-
-        // --- META PIXEL EVENT: LEAD ---
-        if (typeof fbq === 'function') {
-          fbq('track', 'Lead', {
-            content_name: 'Vedic Kundli Scan Form Submitted',
-            content_category: 'Astrology Lead',
-            selected_areas_count: selectedAreas.length
-          });
-        }
-
-        const hero = document.getElementById('heroSection');
-        const card = document.getElementById('calculatorCard');
-        const loader = document.getElementById('loaderScreen');
-        const status = document.getElementById('loaderStatus');
-        const progressBar = document.getElementById('progressBar');
-        const percentageText = document.getElementById('loaderPercentage');
-        const timeRemainingText = document.getElementById('timeRemainingText');
-
-        const telemNakshatra = document.getElementById('telemNakshatra');
-        const telemAyanamsha = document.getElementById('telemAyanamsha');
-        const telemShakti = document.getElementById('telemShakti');
-
-        if (hero) hero.style.display = 'none';
-        if (card) card.classList.add('hidden');
-        if (loader) loader.classList.remove('hidden');
-
-        let progress = 0;
-        let totalSeconds = 20;
-
-        const dynamicStages = [
-          { at: 15, text: "સૂર્ય સિદ્ધાંત ડેટાબેઝ સિંક્રનાઇઝ થઈ રહ્યો છે...", nakshatra: "અશ્વિની - ભરણી - કૃત્તિકા", ayanamsha: "૨૪° ૧૨' ૧૫\"", shakti: "પ્રથમ શૈલપુત્રી ઉર્જા પદ" },
-          { at: 35, text: "૨૭ નક્ષત્રો અને ૧૨ ભાવોની ડિગ્રી ગણતરી...", nakshatra: "રોહિણી - મૃગશીર્ષ - આર્દ્રા", ayanamsha: "૨૪° ૧૩' ૦૦\"", shakti: "દ્વિતીય બ્રહ્મચારિણી આભા મંડળ" },
-          { at: 60, text: "નવરાત્રિ મહા ગ્રહ સંક્રમણ: ગુરુ-શનિ-રાહુ ગોચર મેપિંગ...", nakshatra: "પુનર્વસુ - પુષ્ય - આશ્લેષા", ayanamsha: "૨૪° ૧૩' ૪૫\"", shakti: "તૃતીય ચંદ્રઘંટા શંખનાદ આવૃત્તિ" },
-          { at: 80, text: "અષ્ટકવર્ગ બિંદુઓ અને ષડ્બળ શક્તિ સિમ્યુલેશન...", nakshatra: "મઘા - પૂર્વા ફાલ્ગુની - ઉત્તરા", ayanamsha: "૨૪° ૧૪' ૧૦\"", shakti: "કુષ્માંડા બ્રહ્માંડ ગર્ભ કેન્દ્ર" },
-          { at: 95, text: "તમારા પસંદ કરેલા ક્ષેત્રો પર ક્રાંતિવૃત્ત ગોચર પ્રોજેક્શન...", nakshatra: "હસ્ત - ચિત્રા - સ્વાતિ", ayanamsha: "૨૪° ૧૪' ૨૨\"", shakti: "સ્કંદમાતા રક્ષા કવચ સિંક" },
-          { at: 100, text: "વૈદિક સુપરકમ્પ્યુટર ગણતરી પૂર્ણ: પરિણામ તૈયાર!", nakshatra: "શ્રવણ - ધનિષ્ઠા - રેવતી", ayanamsha: "૨૪° ૧૫' ૦૦\"", shakti: "સિદ્ધિદાત્રી વરદાન મંડલ" }
-        ];
-
-        const simInterval = setInterval(() => {
-          progress += 0.5;
-          if (progress > 100) progress = 100;
-
-          if (progressBar) progressBar.style.width = Math.floor(progress) + '%';
-          if (percentageText) percentageText.innerText = Math.floor(progress) + '%';
-
-          const currentRemaining = Math.max(0, Math.ceil(totalSeconds * (1 - progress / 100)));
-          if (timeRemainingText) timeRemainingText.innerText = `${currentRemaining} સેકન્ડ`;
-
-          const curStage = dynamicStages.find(s => progress <= s.at);
-          if (curStage) {
-            if (status) status.innerText = curStage.text;
-            if (telemNakshatra) telemNakshatra.innerText = curStage.nakshatra;
-            if (telemAyanamsha) telemAyanamsha.innerText = curStage.ayanamsha;
-            if (telemShakti) telemShakti.innerText = curStage.shakti;
-          }
-
-          if (progress >= 100) {
-            clearInterval(simInterval);
-            setTimeout(() => {
-              if (loader) loader.classList.add('hidden');
-              displayFreePrediction();
-            }, 300);
-          }
-        }, 100);
-
-      } catch (err) {
-        console.error("Simulation error:", err);
-        displayFreePrediction();
-      }
-
-      return false;
-    }
-
-    function displayFreePrediction() {
-      try {
-        const { name, dob, time, gender, naamRashi, suryaRashi, bhagyank, selectedAreas } = clientData;
-        const areasCount = (selectedAreas && selectedAreas.length) ? selectedAreas.length : 1;
-
-        const seed = getHash(`${name}_${dob}_${gender}_${naamRashi}`);
-        const frictionScore = 74 + (seed % 22);
-
-        const resTitle = document.getElementById('resTitle');
-        if (resTitle) resTitle.innerText = `${name || 'જાતક'}જી, તમારો કુંડળી સ્કેન તૈયાર છે!`;
-
-        const bNaam = document.getElementById('badgeNaamRashi');
-        if (bNaam) bNaam.innerText = naamRashi || 'મેષ';
-
-        const bSurya = document.getElementById('badgeSuryaRashi');
-        if (bSurya) bSurya.innerText = suryaRashi || 'મેષ';
-
-        const bBhag = document.getElementById('badgeBhagyank');
-        if (bBhag) bBhag.innerText = `અંક ${bhagyank || 1}`;
-
-        const bTransit = document.getElementById('badgeTransitScore');
-        if (bTransit) bTransit.innerText = `${frictionScore}% તીવ્ર`;
-
-        const para = document.getElementById('paraIntro');
-        if (para) {
-          para.innerHTML = `સુપરકમ્પ્યુટર ગણતરી મુજબ તમારી સૂર્ય રાશિ <b>'${suryaRashi}'</b> અને નામ રાશિ <b>'${naamRashi}'</b> પર નવરાત્રિ મહા ગ્રહ પરિવર્તનથી જીવનમાં મોટો વળાંક આવી રહ્યો છે. નીચે તમારા મુખ્ય ૩ અવરોધો ડીકોડ થયા છે:`;
-        }
-
-        const careerHook = careerHooksBySurya[suryaRashi] || careerHooksBySurya["મેષ"];
-        const loveHook = loveHooksByNaam[naamRashi] || loveHooksByNaam["સિંહ"];
-        const warningHook = warningHooksByBhagyank[bhagyank] || warningHooksByBhagyank[1];
-
-        // Blur Lock Cards - સમસ્યા બતાવો, ઉકેલ ₹99 માં લૉક રાખો
-        const pillarsBox = document.getElementById('pillarsBox');
-        if (pillarsBox) {
-          pillarsBox.innerHTML = `
-            <div class="bg-cosmic-950/95 border border-accent-gold/40 p-4 rounded-xl space-y-2.5 shadow-lg">
-              <div class="text-accent-gold flex items-center justify-between font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
-                <span class="flex items-center gap-1.5"><i data-lucide="coins" class="w-3.5 h-3.5 text-accent-gold"></i> ૧. ધન & કરિયર ડાયગ્નોસિસ</span>
-                <span class="text-[10px] text-accent-gold/80 font-mono">(${suryaRashi})</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed font-light">${careerHook}</p>
-              
-              <!-- Blurred Locked Solution -->
-              <div class="relative mt-2 p-2.5 bg-slate-900/80 rounded-lg overflow-hidden border border-accent-gold/25">
-                <div class="blur-[4px] select-none text-[11px] text-slate-400">
-                  નવરાત્રિ પછીનો સુવર્ણ વળાંક, પ્રમોશનની ચોક્કસ તારીખો અને ધન પ્રાપ્તિ મુહૂર્ત સંપૂર્ણ અહેવાલમાં...
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center bg-cosmic-950/80 text-accent-gold text-[11px] font-bold gap-1.5">
-                  <i data-lucide="lock" class="w-3.5 h-3.5 text-accent-red"></i> 
-                  <span>સંપૂર્ણ ઉપાય ₹૯૯ માં લૉક છે</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-cosmic-950/95 border border-accent-red/40 p-4 rounded-xl space-y-2.5 shadow-lg">
-              <div class="text-accent-red flex items-center justify-between font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
-                <span class="flex items-center gap-1.5"><i data-lucide="heart" class="w-3.5 h-3.5 text-accent-red"></i> ૨. સંબંધ & લાગણીઓનું સત્ય</span>
-                <span class="text-[10px] text-accent-red/80 font-mono">(${naamRashi})</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed font-light">${loveHook}</p>
-              
-              <!-- Blurred Locked Solution -->
-              <div class="relative mt-2 p-2.5 bg-slate-900/80 rounded-lg overflow-hidden border border-accent-red/25">
-                <div class="blur-[4px] select-none text-[11px] text-slate-400">
-                  સંબંધમાં સુધારો ક્યારે થશે, લગ્ન-પ્રેમ યોગ અને સાથી સાથે મનમેળ માટેના ગુપ્ત ઉપાયો...
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center bg-cosmic-950/80 text-accent-red text-[11px] font-bold gap-1.5">
-                  <i data-lucide="lock" class="w-3.5 h-3.5 text-accent-red"></i> 
-                  <span>સંપૂર્ણ ઉકેલ ₹૯૯ માં લૉક છે</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-cosmic-950/95 border border-amber-500/40 p-4 rounded-xl space-y-2.5 shadow-lg">
-              <div class="text-amber-400 flex items-center justify-between font-bold text-xs uppercase tracking-wider border-b border-white/10 pb-2">
-                <span class="flex items-center gap-1.5"><i data-lucide="shield-alert" class="w-3.5 h-3.5 text-amber-400"></i> ૩. કર્મ અવરોધ & ચેતવણી</span>
-                <span class="text-[10px] text-amber-300 font-mono">(અંક ${bhagyank})</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed font-light">${warningHook}</p>
-              
-              <!-- Blurred Locked Solution -->
-              <div class="relative mt-2 p-2.5 bg-slate-900/80 rounded-lg overflow-hidden border border-amber-500/25">
-                <div class="blur-[4px] select-none text-[11px] text-slate-400">
-                  શનિ-રાહુ શાંતિ માટે સિદ્ધ નવરાત્રિ મંત્ર, દીપદાન વિધિ અને સંકટમુક્તિ ટાઈમલાઈન...
-                </div>
-                <div class="absolute inset-0 flex items-center justify-center bg-cosmic-950/80 text-amber-300 text-[11px] font-bold gap-1.5">
-                  <i data-lucide="lock" class="w-3.5 h-3.5 text-accent-red"></i> 
-                  <span>શાસ્ત્રોક્ત મંત્ર ₹૯૯ માં લૉક છે</span>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-
-        // --- META PIXEL EVENT: VIEWCONTENT (₹99) ---
-        if (typeof fbq === 'function') {
-          fbq('track', 'ViewContent', {
-            content_name: 'Navratri Vedic Deep Scan Report Offer',
-            content_category: 'Astrology Report',
-            content_ids: ['bhagyaveda_navratri_report'],
-            content_type: 'product',
-            value: 99.00,
-            currency: 'INR'
-          });
-
-          fbq('trackCustom', 'FreeScanCompleted', {
-            naam_rashi: naamRashi,
-            surya_rashi: suryaRashi,
-            bhagyank: bhagyank,
-            areas_selected: areasCount
-          });
-        }
-
-      } catch (err) {
-        console.error("displayFreePrediction error:", err);
-      } finally {
-        const resScreen = document.getElementById('resultScreen');
-        if (resScreen) {
-          resScreen.classList.remove('hidden');
-          resScreen.scrollIntoView({ behavior: 'smooth' });
-        }
-        startTimer(15 * 60);
-        if (window.lucide) {
-          try { lucide.createIcons(); } catch(e){}
-        }
-      }
-    }
-
-    // Razorpay Integration (₹99 = 9900 paise)
-    function initiateRazorpay() {
-      const myRazorpayKey = "rzp_live_TeGqB4epR2sZ2I";
-
-      // --- META PIXEL EVENT: INITIATE CHECKOUT (₹99) ---
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: 'Navratri Vedic Deep Scan Report',
-          content_category: 'Astrology',
-          content_ids: ['bhagyaveda_navratri_report'],
-          content_type: 'product',
-          value: 99.00,
-          currency: 'INR',
-          num_items: 1
-        });
-
-        fbq('track', 'AddPaymentInfo', {
-          content_name: 'Navratri Vedic Deep Scan Report',
-          content_ids: ['bhagyaveda_navratri_report'],
-          content_type: 'product',
-          value: 99.00,
-          currency: 'INR'
-        });
-      }
-
-      var options = {
-        "key": myRazorpayKey,
-        "amount": "9900", // ₹99
-        "currency": "INR",
-        "name": "Bhagyaveda Labs",
-        "description": "Navratri Vedic Deep Scan Report",
-        "handler": async function (response) {
-          
-          // --- META PIXEL EVENT: PURCHASE (₹99) ---
-          if (typeof fbq === 'function') {
-            fbq('track', 'Purchase', {
-              content_name: 'Navratri Vedic Deep Scan Report',
-              content_category: 'Astrology Report',
-              content_ids: ['bhagyaveda_navratri_report'],
-              content_type: 'product',
-              value: 99.00,
-              currency: 'INR'
-            });
-          }
-
-          isUserPaid = true;
-          document.getElementById('paywallBox').classList.add('hidden');
-
-          const paidLoader = document.getElementById('aiPaidLoader');
-          if (paidLoader) {
-            paidLoader.classList.remove('hidden');
-            paidLoader.scrollIntoView({ behavior: 'smooth' });
-          }
-
-          let paidProgress = 0;
-          const paidBar = document.getElementById('paidProgressBar');
-          const paidPct = document.getElementById('paidLoaderPct');
-          const paidRemText = document.getElementById('paidRemainingText');
-          const paidStatus = document.getElementById('aiPaidStatus');
-
-          const paidStages = [
-            { at: 20, text: "૧૨ ભાવોમાં ગ્રહોના નક્ષત્ર પદનું ગાણિતિક સંકલન..." },
-            { at: 45, text: "નવરાત્રિ મહા ગોચર શક્તિ ચક્ર અને દોષ નિવારણ મેપિંગ..." },
-            { at: 70, text: "આગામી ૬ મહિનાની ચોક્કસ ટાઈમલાઈન ફળાદેશ સિન્થેસિસ..." },
-            { at: 90, text: "સિદ્ધ નવરાત્રિ મંત્ર અને શાસ્ત્રોક્ત ઉપાયોનું અલ્ટીમેટ ડીકોડિંગ..." },
-            { at: 100, text: "અહેવાલ પૂર્ણ: સ્ક્રીન પર અનલૉક થઈ રહ્યો છે..." }
-          ];
-
-          let isApiFetched = false;
-
-          // બેકએન્ડ API કોલ (અસલ લૉજિક ૧૦૦% અકબંધ)
-          fetch(`${BACKEND_URL}/api/get-prediction`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(clientData)
-          })
-          .then(res => res.json())
-          .then(resData => {
-            if (resData.success && resData.data) {
-              preGeneratedData = resData.data;
-            }
-          })
-          .catch(err => console.error("API err:", err))
-          .finally(() => {
-            isApiFetched = true;
-          });
-
-          const paidTimer = setInterval(() => {
-            paidProgress += 1;
-            if (paidProgress > 100) paidProgress = 100;
-
-            if (paidBar) paidBar.style.width = paidProgress + '%';
-            if (paidPct) paidPct.innerText = paidProgress + '%';
-            
-            const remSeconds = Math.max(0, Math.ceil(55 * (1 - paidProgress / 100)));
-            if (paidRemText) paidRemText.innerText = `${remSeconds} સેકન્ડ`;
-
-            const stage = paidStages.find(s => paidProgress <= s.at);
-            if (stage && paidStatus) paidStatus.innerText = stage.text;
-
-            if (isApiFetched && paidProgress >= 85) {
-              paidProgress = 100;
-              clearInterval(paidTimer);
-              setTimeout(() => {
-                renderUnlockedSection();
-              }, 600);
-            } else if (paidProgress >= 100) {
-              clearInterval(paidTimer);
-              setTimeout(() => {
-                renderUnlockedSection();
-              }, 600);
-            }
-          }, 450);
-
-        },
-        "prefill": {
-          "name": clientData.name || "User"
-        },
-        "theme": {
-          "color": "#ffd700"
-        }
-      };
-
-      try {
-        var rzp1 = new window.Razorpay(options);
-        rzp1.on('payment.failed', function (response){
-          alert("પેમેન્ટ નિષ્ફળ થયું. ફરી પ્રયાસ કરો.");
-        });
-        rzp1.open();
-      } catch (error) {
-        console.error("Razorpay Error:", error);
-        alert("Razorpay લોડ કરવામાં સમસ્યા આવી રહી છે. પેજ રીફ્રેશ કરો.");
-      }
-    }
-
-    function renderUnlockedSection() {
-      const paidLoader = document.getElementById('aiPaidLoader');
-      if (paidLoader) paidLoader.classList.add('hidden');
-
-      const data = preGeneratedData || {
-        luckyColor: "સોનેરી પીળો અને કેસરી",
-        luckyNumber: `${clientData.bhagyank || '૭'}`,
-        luckyDevi: "માં ભગવતી દુર્ગા",
-        luckyRudra: "૫ મુખી રુદ્રાક્ષ",
-        executiveSummary: `<p><b>${clientData.name || 'જાતક'}જી</b>, તમારી કુંડળીમાં નવરાત્રિ મહા ગોચર સ્પષ્ટ સંકેત આપે છે કે આ સમય તમારા માટે ભાગ્યોદયનું વિશેષ સંગમ લઈને આવી રહ્યો છે.</p>`,
-        areaReports: [],
-        planetaryDosha: "શનિ અને રાહુના સંક્રમણથી બચવા માટે શાંતિ જાળવવી જરૂરી છે.",
-        specialRemedies: []
-      };
-
-      const elColor = document.getElementById('luckyColor');
-      if (elColor) elColor.innerText = data.luckyColor || "પીળો અને કેસરી";
-
-      const elNum = document.getElementById('luckyNumber');
-      if (elNum) elNum.innerText = data.luckyNumber || `${clientData.bhagyank || '૭'}`;
-
-      const elDevi = document.getElementById('luckyDevi');
-      if (elDevi) elDevi.innerText = data.luckyDevi || "માં ભગવતી દુર્ગા";
-
-      const elRudra = document.getElementById('luckyRudra');
-      if (elRudra) elRudra.innerText = data.luckyRudra || "૫ મુખી રુદ્રાક્ષ";
-
-      const elSum = document.getElementById('executiveSummaryText');
-      if (elSum) elSum.innerHTML = data.executiveSummary || "";
-
-      const areaContainer = document.getElementById('dynamicAreaReportsContainer');
-      if (areaContainer) {
-        areaContainer.innerHTML = '';
-        if (data.areaReports && data.areaReports.length > 0) {
-          data.areaReports.forEach((rep, index) => {
-            const areaCard = document.createElement('div');
-            areaCard.className = "bg-cosmic-900/90 border border-slate-700/80 p-5 sm:p-7 rounded-xl space-y-4 shadow-xl";
-            areaCard.innerHTML = `
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
-                <div class="flex items-center gap-2.5 font-bold text-base text-white">
-                  <span class="w-6 h-6 rounded-full bg-accent-gold/20 text-accent-gold text-xs flex items-center justify-center font-mono border border-accent-gold/30">${index + 1}</span>
-                  <span>${rep.areaName}</span>
-                </div>
-                <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded-full self-start">
-                  ● ${rep.status || 'મહત્વપૂર્ણ ગોચર'}
-                </span>
-              </div>
-              
-              <div class="text-slate-300 text-sm leading-relaxed space-y-3 pt-1">
-                ${rep.deepAnalysis}
-              </div>
-
-              ${rep.timeline ? `
-                <div class="p-3.5 rounded-lg bg-cosmic-950 border border-accent-gold/20 text-xs text-accent-gold space-y-1">
-                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> અપેક્ષિત ટાઈમલાઈન & ફેરફારો:</span>
-                  <p class="text-slate-300 font-light leading-relaxed">${rep.timeline}</p>
-                </div>
-              ` : ''}
-
-              ${rep.actionAdvice ? `
-                <div class="p-3.5 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-xs text-emerald-300 space-y-1">
-                  <span class="font-bold flex items-center gap-1.5"><i data-lucide="check-circle" class="w-3.5 h-3.5"></i> શાસ્ત્રોક્ત સાવચેતી & ડુઝ/ડોન્ટ્સ:</span>
-                  <p class="text-slate-300 font-light leading-relaxed">${rep.actionAdvice}</p>
-                </div>
-              ` : ''}
-            `;
-            areaContainer.appendChild(areaCard);
-          });
-        }
-      }
-
-      const elDosha = document.getElementById('premiumDosha');
-      if (elDosha) elDosha.innerHTML = data.planetaryDosha || "ગ્રહોનું સંતુલન જાળવવું.";
-
-      const remediesContainer = document.getElementById('premiumRemediesContainer');
-      if (remediesContainer) {
-        remediesContainer.innerHTML = '';
-        if (data.specialRemedies && data.specialRemedies.length > 0) {
-          data.specialRemedies.forEach((rem, idx) => {
-            const remCard = document.createElement('div');
-            remCard.className = "p-4 rounded-xl bg-cosmic-950 border border-accent-gold/20 space-y-2 shadow-lg";
-            remCard.innerHTML = `
-              <div class="font-bold text-accent-gold text-sm flex items-center gap-2">
-                <span class="w-5 h-5 rounded-full bg-accent-gold text-cosmic-950 text-xs flex items-center justify-center font-bold">${idx + 1}</span>
-                ${rem.title}
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed"><b>વિધિ:</b> ${rem.vidhi}</p>
-              ${rem.mantra ? `<p class="text-xs font-mono text-amber-300 bg-amber-950/40 p-2.5 rounded border border-amber-500/25"><b>મંત્ર:</b> ${rem.mantra}</p>` : ''}
-              <p class="text-[11px] text-emerald-400"><b>ફળશ્રુતિ:</b> ${rem.benefit}</p>
-            `;
-            remediesContainer.appendChild(remCard);
-          });
-        }
-      }
-
-      const premiumSection = document.getElementById('premiumUnlokedSection');
-      if (premiumSection) {
-        premiumSection.classList.remove('hidden');
-        premiumSection.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', 'PremiumReportUnlocked', {
-          user_name: clientData.name,
-          rashi: clientData.naamRashi
-        });
-      }
-
-      if (window.lucide) {
-        try { lucide.createIcons(); } catch(e){}
-      }
-    }
-
-    function startNewScan() {
-      if (typeof fbq === 'function') {
-        fbq('trackCustom', 'StartNewScanClicked');
-      }
-
-      isUserPaid = false;
-      clientData = {};
-      preGeneratedData = null;
-      try { localStorage.removeItem('bhagya_client_data'); } catch(e){}
+    html += `</div>`;
+    document.getElementById("quiz-content").innerHTML = html;
+  }
+
+  function handleAnswer(index, answerText) {
+    selectedIndices.push(index);
+    userAnswers.push({ question: questions[currentQuestion].q, answer: answerText });
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+    } else {
+      document.getElementById("quiz-section").style.display = "none";
+      document.getElementById("analyzing-section").style.display = "block";
       
-      const nameIn = document.getElementById('userName');
-      if (nameIn) nameIn.value = '';
-      const dobIn = document.getElementById('userDob');
-      if (dobIn) dobIn.value = '';
+      calculatedProfile = computeDeterministicProfile(selectedIndices);
 
-      document.querySelectorAll('#areasContainer input[type="checkbox"]').forEach(cb => cb.checked = false);
-      const btn = document.getElementById('btnSelectAll');
-      if (btn) btn.innerText = "બધા પસંદ કરો";
-      allSelected = false;
+      setTimeout(() => {
+        document.getElementById("dyn-score").innerText = `${calculatedProfile.score}/100`;
+        document.getElementById("dyn-archetype").innerText = `આર્કીટાઇપ: ${calculatedProfile.archetype}`;
+        
+        let flawsHtml = `<strong>મુખ્ય સાયકોલોજિકલ ક્ષતિ:</strong> ${calculatedProfile.mainFlaw}<br><br>`;
+        flawsHtml += `<strong>સબકોન્શિયસ પેટર્ન:</strong> ${calculatedProfile.subPattern}`;
+        document.getElementById("dyn-flaws").innerHTML = flawsHtml;
 
-      document.getElementById('resultScreen')?.classList.add('hidden');
-      document.getElementById('premiumUnlokedSection')?.classList.add('hidden');
-      document.getElementById('aiPaidLoader')?.classList.add('hidden');
-      document.getElementById('paywallBox')?.classList.remove('hidden');
-      
-      const hero = document.getElementById('heroSection');
-      if (hero) hero.style.display = 'block';
-      const card = document.getElementById('calculatorCard');
-      if (card) card.classList.remove('hidden');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (window.lucide) {
-        try { lucide.createIcons(); } catch(e){}
-      }
+        document.getElementById("analyzing-section").style.display = "none";
+        document.getElementById("paywall-section").style.display = "block";
+      }, 2300);
     }
-  </script>
+  }
+
+  function computeDeterministicProfile(indices) {
+    const i0 = indices[0];
+    const i1 = indices[1];
+    const i2 = indices[2];
+    const i3 = indices[3];
+
+    const baseScore = 24 + ((i0 * 7 + i1 * 5 + i2 * 11 + i3 * 3) % 21);
+
+    const archetypes = [
+      {
+        name: "ધ ઓવર-અવેલેબલ નાઇસ ગાય",
+        flaw: "તમે સ્ત્રીઓ સામે પોતાની જાતને અતિશય પ્રાપ્ય અને સસ્તી બનાવી દો છો.",
+        sub: "સ્ત્રી તમારી ભલાઈને આકર્ષણ નહીં પણ કમજોરી ગણીને ગ્રાન્ટેડ લે છે."
+      },
+      {
+        name: "ધ ક્રોનિક ફ્રેન્ડઝોન કેદી",
+        flaw: "તમે સ્ત્રીના ઈમોશન્સ સાંભળો છો પણ ક્યારેય સેક્સ્યુઅલ પોલારિટી કે રહસ્ય ઊભું નથી કરતા.",
+        sub: "એ તમને મિત્ર કે ભાઈ તરીકે યાદ રાખે છે, રોમેન્ટિક પુરુષ તરીકે નહીં."
+      },
+      {
+        name: "ધ વેલિડેશન સીકર (ચિપકું પેટર્ન)",
+        flaw: "તમારો આત્મવિશ્વાસ તેના રિપ્લાયની સ્પીડ અને મૂડ પર નિર્ભર રહે છે.",
+        sub: "સ્ત્રીઓ આ અસલામતી દૂરથી જ સુંઘી લે છે અને ધીમે ધીમે ભાવ ખાવાનું શરૂ કરે છે."
+      },
+      {
+        name: "ધ મિસ્ટ્રી-લેસ કમ્યુનિકેટર",
+        flaw: "તમે પહેલી જ વાતચીતમાં તમારા બધા પત્તા અને લાગણીઓ સામે મૂકી દો છો.",
+        sub: "જ્યાં કોઈ રહસ્ય કે પડકાર નથી હોતો, ત્યાં સ્ત્રીનું સબકોન્શિયસ મન તુરંત રસ ગુમાવે છે."
+      }
+    ];
+
+    const chosenIndex = (i1 + i2) % archetypes.length;
+    const profile = archetypes[chosenIndex];
+
+    return {
+      score: baseScore,
+      archetype: profile.name,
+      mainFlaw: profile.flaw,
+      subPattern: profile.sub
+    };
+  }
+
+  function selectPlan(amount, minutes) {
+    if (!RAZORPAY_KEY || RAZORPAY_KEY === "rzp_test_placeholder") {
+      startChatSession(minutes);
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: amount * 100,
+      currency: "INR",
+      name: "Bhagyaveda — Mohini",
+      description: `Mohini Private Live Consultation (${minutes} Mins)`,
+      handler: function (response) {
+        startChatSession(minutes);
+      },
+      prefill: { name: "Valued Member" },
+      theme: { color: "#9333ea" }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+  }
+
+  function startChatSession(minutes) {
+    document.getElementById("paywall-section").style.display = "none";
+    document.getElementById("chat-section").style.display = "block";
+    
+    remainingSeconds = minutes * 60;
+    startTimer();
+
+    const initialGreeting = `મેં તમારો ટેસ્ટ જોયો. તમારો અટ્રેક્શન સ્કોર માત્ર ${calculatedProfile.score}/100 આવ્યો છે અને તમારી અંદર '${calculatedProfile.archetype}' ની સ્પષ્ટ પેટર્ન છે. ${calculatedProfile.mainFlaw} હવે મને સાચું કહો—તમારી સાથે હાલ કઈ સ્ત્રી બાબતે કેવો કિસ્સો ચાલી રહ્યો છે? હું તમને સ્ત્રી-મનનું અસલી રહસ્ય સમજાવીશ.`;
+    appendMessage("bot", initialGreeting);
+  }
+
+  function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+      updateTimerDisplay();
+      if (remainingSeconds <= 0) {
+        clearInterval(timerInterval);
+        endChatSession();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const mins = Math.floor(remainingSeconds / 60);
+    const secs = remainingSeconds % 60;
+    document.getElementById("session-timer").innerText = 
+      `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  function appendMessage(sender, text) {
+    const box = document.getElementById("chat-box");
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `msg ${sender === 'user' ? 'msg-user' : 'msg-bot'}`;
+    msgDiv.innerText = text;
+    box.appendChild(msgDiv);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function handleKey(e) {
+    if (e.key === "Enter") sendMessage();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById("user-input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendMessage("user", text);
+    input.value = "";
+    chatHistory.push({ role: "user", content: text });
+
+    const typingIndicator = document.createElement("div");
+    typingIndicator.className = "msg msg-bot";
+    typingIndicator.id = "typing";
+    typingIndicator.innerText = "મોહિની ટાઇપ કરી રહી છે...";
+    document.getElementById("chat-box").appendChild(typingIndicator);
+
+    try {
+      const response = await fetch(BACKEND_CHAT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory,
+          profile: calculatedProfile
+        })
+      });
+
+      const data = await response.json();
+      if(document.getElementById("typing")) document.getElementById("typing").remove();
+      
+      const botReply = data.reply || "સ્ત્રી-મનમાં આકર્ષણ હંમેશાં આત્મસન્માન અને ડિટેચમેન્ટથી જન્મે છે. તમારી વાત આગળ વધારો.";
+      appendMessage("bot", botReply);
+      chatHistory.push({ role: "assistant", content: botReply });
+    } catch (err) {
+      if(document.getElementById("typing")) document.getElementById("typing").remove();
+      appendMessage("bot", "સ્ત્રીઓ ક્યારેય એવા પુરુષની કદર નથી કરતી જે સતત ખુશામત કરતો હોય. થોડી રહસ્યમયતા અને આત્મસન્માન જાળવો.");
+    }
+  }
+
+  function endChatSession() {
+    document.getElementById("chat-section").style.display = "none";
+    document.getElementById("bonus-section").style.display = "block";
+  }
+
+  function downloadBonusGuide() {
+    alert("તમારી ૧૫ ગોલ્ડન રૂલ્સ PDF માર્ગદર્શિકા તૈયાર થઈ રહી છે...");
+  }
+
+  loadQuestion();
+</script>
+
 </body>
 </html>
