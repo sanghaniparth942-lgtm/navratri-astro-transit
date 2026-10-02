@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOHINI — Indian Psychological Attraction Protocol</title>
+  <title>MOHINI — Modern Attraction & Relationship Psychology Protocol</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -23,6 +23,7 @@
       --chat-user: #7e22ce;
       --chat-bot: #151022;
       --danger: #ef4444;
+      --success: #10b981;
     }
 
     * {
@@ -63,10 +64,10 @@
       background: rgba(147, 51, 234, 0.2);
       border: 1px solid var(--accent-purple);
       border-radius: 999px;
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       color: #f3e8ff;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
       margin-bottom: 14px;
     }
@@ -95,7 +96,7 @@
       right: 8px;
       width: 15px;
       height: 15px;
-      background: #10b981;
+      background: var(--success);
       border-radius: 50%;
       border: 2px solid var(--bg);
       animation: pulse 1.5s infinite;
@@ -109,7 +110,7 @@
 
     .hero-title {
       font-family: 'Cinzel', serif;
-      font-size: 27px;
+      font-size: 28px;
       font-weight: 900;
       background: linear-gradient(135deg, #fff 40%, #fde68a 75%, var(--accent-gold) 100%);
       -webkit-background-clip: text;
@@ -119,7 +120,7 @@
     }
 
     .hero-stats {
-      font-size: 11px;
+      font-size: 11.5px;
       color: #e9d5ff;
       font-weight: 600;
       margin-bottom: 12px;
@@ -128,12 +129,12 @@
     .pain-box {
       background: rgba(239, 68, 68, 0.08);
       border-left: 3px solid var(--danger);
-      padding: 11px 14px;
+      padding: 12px 14px;
       border-radius: 0 12px 12px 0;
-      font-size: 12px;
+      font-size: 12.5px;
       color: #fca5a5;
       text-align: left;
-      line-height: 1.5;
+      line-height: 1.55;
       margin-bottom: 16px;
     }
 
@@ -188,7 +189,7 @@
       align-items: center;
       justify-content: space-between;
       transition: all 0.2s ease;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .option-btn:active, .option-btn:hover {
@@ -218,18 +219,18 @@
 
     .diagnosis-header {
       background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(239, 68, 68, 0.4);
+      border: 1px solid rgba(245, 158, 11, 0.35);
       border-radius: 14px;
-      padding: 14px;
+      padding: 15px;
       text-align: center;
       margin-bottom: 16px;
     }
 
     .score-badge {
       display: inline-block;
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 900;
-      color: var(--danger);
+      color: var(--accent-gold);
       margin: 4px 0;
       font-family: 'Cinzel', serif;
     }
@@ -248,13 +249,13 @@
       padding: 12px;
       border-radius: 10px;
       margin-top: 10px;
-      font-size: 12px;
+      font-size: 12.5px;
       color: #e5e7eb;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .flaws-box strong {
-      color: #f87171;
+      color: #fca5a5;
     }
 
     .plans-container {
@@ -275,8 +276,8 @@
 
     .plan-card.recommended {
       border: 2px solid var(--accent-gold);
-      background: linear-gradient(145deg, rgba(245, 158, 11, 0.09), rgba(147, 51, 234, 0.16));
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.22);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.11), rgba(147, 51, 234, 0.18));
+      box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
     }
 
     .ribbon {
@@ -307,10 +308,10 @@
     }
 
     .pdf-spotlight {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       border: 1px dashed var(--accent-gold);
       border-radius: 10px;
-      padding: 10px 12px;
+      padding: 11px 13px;
       margin: 12px 0;
     }
 
@@ -325,18 +326,18 @@
     }
 
     .pdf-subtext {
-      font-size: 11px;
+      font-size: 11.5px;
       color: #e5e7eb;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .features-list {
       list-style: none;
-      font-size: 12px;
+      font-size: 12.5px;
       color: #d1d5db;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 7px;
       margin-bottom: 14px;
     }
 
@@ -347,7 +348,7 @@
 
     .pay-btn {
       width: 100%;
-      padding: 13px;
+      padding: 13.5px;
       border: none;
       border-radius: 12px;
       font-size: 13.5px;
@@ -402,7 +403,7 @@
 
     .bot-status {
       font-size: 11px;
-      color: #10b981;
+      color: var(--success);
     }
 
     .timer-badge {
@@ -486,7 +487,7 @@
 <div class="app-container">
   
   <header class="hero-section">
-    <div class="ai-badge">✦ Mohini Tantra-Psychology Engine ✦</div>
+    <div class="ai-badge">✦ ઈમોશનલ અટ્રેક્શન & સાયકોલોજી એનાલિટિક્સ ✦</div>
     
     <div class="avatar-wrapper">
       <img src="https://raw.githubusercontent.com/sanghaniparth942-lgtm/navratri-astro-transit/main/mohini/mohini.jpg" alt="Mohini" class="avatar-img" />
@@ -494,10 +495,10 @@
     </div>
 
     <h1 class="hero-title">MOHINI</h1>
-    <p class="hero-stats">૧,૫૦,૦૦૦+ સ્ત્રી માનસિકતા અને સંમોહન-વશીકરણ સાયકોલોજી પર ટ્રેઇન્ડ</p>
+    <p class="hero-stats">૧,૫૦,૦૦૦+ સ્ત્રી-માનસિકતા અને મોર્ડન કમ્યુનિકેશન પેટર્ન્સ પર ટ્રેઇન્ડ</p>
     
     <div class="pain-box">
-      <strong>કડવું સત્ય:</strong> સ્ત્રીઓ મોં પર જે કહે છે અને અંદરથી જેનાથી સંમોહિત થાય છે એ બંને અલગ છે. તમે લાંબો મેસેજ કરો છો અને સામેથી માત્ર 'Ok' કે 'Hmm' આવે છે? હવે આ ભીખ માંગવાની રીતો બંધ કરો.
+      <strong>કડવું મનોવૈજ્ઞાનિક સત્ય:</strong> સ્ત્રીઓ બોલીને જે પસંદગી દર્શાવે છે અને અવચેતન મનથી જેમના પ્રત્યે ઊંડું ખેંચાણ અનુભવે છે, તે બંને સાવ અલગ છે. જો લાંબા મેસેજનો જવાબ માત્ર 'Ok' કે 'Hmm' માં આવતો હોય, તો સમજી લો કે વાતચીતમાં તમારી વેલ્યુ ઘટી રહી છે. હવે વાતચીતનું સમીકરણ બદલવાનો સમય આવી ગયો છે.
     </div>
   </header>
 
@@ -511,62 +512,62 @@
   <section id="analyzing-section" class="glass-card" style="display: none;">
     <div class="analyzing-box">
       <div class="spinner"></div>
-      <h3 style="font-size: 15px; margin-bottom: 6px;">તમારા સબકોન્શિયસ પેટર્નનું વિશ્લેષણ થઈ રહ્યું છે...</h3>
-      <p style="font-size: 12px; color: var(--text-muted);">તમે સ્ત્રીઓ સામે કેમ આકર્ષણ ગુમાવો છો તેનું ન્યુરો-એનાલિસિસ ચાલુ છે.</p>
+      <h3 style="font-size: 15px; margin-bottom: 6px;">તમારા કમ્યુનિકેશન પેટર્નનું વિશ્લેષણ થઈ રહ્યું છે...</h3>
+      <p style="font-size: 12px; color: var(--text-muted);">વાતચીતમાં તમારો રસ અને આદર કેમ ઘટી જાય છે તેનું સાયકોલોજિકલ ઓડિટ ચાલુ છે.</p>
     </div>
   </section>
 
   <section id="paywall-section" class="glass-card" style="display: none;">
     <div class="diagnosis-header">
-      <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase;">તમારો અટ્રેક્શન પાવર સ્કોર</div>
+      <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase;">તમારો પર્સનાલિટી અટ્રેક્શન સ્કોર</div>
       <div class="score-badge" id="dyn-score">--/100</div>
       <div class="archetype-title" id="dyn-archetype">વિશ્લેષણ પૂર્ણ</div>
       <div class="flaws-box" id="dyn-flaws"></div>
     </div>
 
     <div style="text-align: center; margin-bottom: 12px;">
-      <h2 style="font-size: 16px; margin-bottom: 4px;">મોહિની સાથે ખાનગી સેશન શરૂ કરો</h2>
-      <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.4;">
-        સ્ત્રીના અચેતન મનમાં અસલી પુરુષનું ચુંબકીય વર્ચસ્વ કેમ ઊભું કરવું તે લાઈવ શીખો.
+      <h2 style="font-size: 16px; margin-bottom: 4px;">મોહિની સાથે ખાનગી ૧-ઓન-૧ સેશન શરૂ કરો</h2>
+      <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.45;">
+        સ્ત્રીના મનમાં તમારા પ્રત્યે સ્વાભાવિક કૌતુક, ગંભીર રસ અને ઊંચો આદર કેવી રીતે જગાડવો તે લાઈવ શીખો.
       </p>
     </div>
 
     <div class="plans-container">
       <div class="plan-card" onclick="selectPlan(99, 30)">
         <div class="plan-title">
-          <span>ઈમર્જન્સી સાયકોલોજી સેશન</span>
+          <span>ક્વિક સોલ્યુશન સેશન</span>
           <span class="plan-price">₹૯૯</span>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૩૦ મિનિટ લાઈવ વન-ઓન-વન ચેટ</p>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૩૦ મિનિટ લાઈવ વન-ઓન-વન પર્સનલ ચેટ</p>
         <ul class="features-list">
-          <li>ઇગ્નોર થવાનું તુરંત કેવી રીતે અટકાવવું</li>
-          <li>મેસેજનો એવો જવાબ જે તેની ઉત્સુકતા વધારે</li>
-          <li>૧૦૦% ખાનગી અને એન્ક્રિપ્ટેડ વાતચીત</li>
+          <li>ઇગ્નોર કે કોલ્ડ રિપ્લાય થવાની સ્થિતિને તુરંત રિવર્સ કરવાની કળા</li>
+          <li>ટેક્સ્ટિંગમાં તમારી ઓવર-અવેલેબિલિટી ઘટાડી આદર વધારવાની રીત</li>
+          <li>૧૦૦% ખાનગી, ગોપનીય અને સુરક્ષિત વાતચીત</li>
         </ul>
-        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ સેશન અનલૉક કરો (₹૯૯)</button>
+        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ સેશન શરૂ કરો (₹૯૯)</button>
       </div>
 
       <div class="plan-card recommended" onclick="selectPlan(149, 60)">
         <div class="ribbon">સૌથી વધુ પસંદ કરાયેલ</div>
         <div class="plan-title">
-          <span>માસ્ટર અટ્રેક્શન સેશન + PDF</span>
+          <span>માસ્ટર અટ્રેક્શન સેશન + બ્લુપ્રિન્ટ PDF</span>
           <span class="plan-price">₹૧૪૯</span>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૬૦ મિનિટ ગહન વ્યૂહરચના અને લાઈવ પ્લાનિંગ</p>
+        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૬૦ મિનિટ ગહન સાયકોલોજી ગાઈડન્સ અને લાઈવ પ્લાનિંગ</p>
         
         <div class="pdf-spotlight">
-          <div class="pdf-badge">👑 લાઈફટાઈમ બોનસ: ધ મોહિની પ્રોટોકોલ (PDF)</div>
+          <div class="pdf-badge">👑 લાઈફટાઈમ બોનસ: ધ મોહિની પ્રોટોકોલ (PDF માસ્ટર ગાઈડ)</div>
           <div class="pdf-subtext">
-            <strong>સ્ત્રી-મનના ૧૫ અટૂટ વૈજ્ઞાનિક નિયમો:</strong> "Seen to Craving" ટેકનિક, ફ્રેન્ડઝોન કિલર, અને વાતચીતમાં અદ્રશ્ય રોમેન્ટિક ટેન્શન બનાવવાનો સિક્રેટ બ્લુપ્રિન્ટ (મૂલ્ય ₹૧,૯૯૯ — આ પ્લાન સાથે બિલકુલ મફત).
+            <strong>સ્ત્રી-મનના ૧૫ અટૂટ મનોવૈજ્ઞાનિક નિયમો:</strong> "Seen to Craving" ટેકનિક, ફ્રેન્ડઝોનમાંથી બહાર નીકળવાનો સાચો રસ્તો, અને કમ્યુનિકેશનમાં હાઈ-વેલ્યુ પ્રભાવ ઊભો કરવાનો સિક્રેટ બ્લુપ્રિન્ટ (મૂલ્ય ₹૧,૯૯૯ — આ પ્લાન સાથે બિલકુલ મફત).
           </div>
         </div>
 
         <ul class="features-list">
-          <li>તેને સામેથી મેસેજ કરવા મજબૂર કરતી સાયકોલોજી</li>
-          <li>તમારી કદર ન કરતી સ્ત્રીને ગુમાવવાનો ડર (FOMO) આપવાની રીત</li>
-          <li>૬૦ મિનિટ વિગતવાર લાઈવ માર્ગદર્શન</li>
+          <li>સામેવાળી વ્યક્તિમાં તમને જાણવાની ઉત્સુકતા અને ઉત્સાહ વધારવાની ટેકનિક</li>
+          <li>તમારી સાચી વેલ્યુ સમજી 'હેલ્ધી બાઉન્ડ્રીઝ' બનાવવાની કળા</li>
+          <li>૬૦ મિનિટ સ્ટેપ-બાય-સ્ટેપ વ્યક્તિગત કેસ સોલ્યુશન</li>
         </ul>
-        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF માસ્ટર ગાઈડ (₹૧૪૯)</button>
+        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF માસ્ટર ગાઈડ અનલૉક કરો (₹૧૪૯)</button>
       </div>
     </div>
   </section>
@@ -578,7 +579,7 @@
           <img src="https://raw.githubusercontent.com/sanghaniparth942-lgtm/navratri-astro-transit/main/mohini/mohini.jpg" alt="Mohini" class="bot-avatar-small" />
           <div>
             <div style="font-weight: 700; font-size: 13.5px;">મોહિની (Mohini)</div>
-            <div class="bot-status">● લાઈવ સંમોહન-કનેક્ટેડ</div>
+            <div class="bot-status">● લાઈવ એડવાઈઝર સક્રિય</div>
           </div>
         </div>
         <div class="timer-badge" id="session-timer">00:00</div>
@@ -587,7 +588,7 @@
       <div class="chat-messages" id="chat-box"></div>
 
       <div class="chat-input-area">
-        <input type="text" id="user-input" class="chat-input" placeholder="તમારી સમસ્યા કે વાત અહીં લખો..." onkeypress="handleKey(event)" />
+        <input type="text" id="user-input" class="chat-input" placeholder="તમારી સ્થિતિ કે પ્રશ્ન અહીં લખો..." onkeypress="handleKey(event)" />
         <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
     </div>
@@ -598,7 +599,7 @@
       <div style="font-size: 38px; margin-bottom: 10px;">👑</div>
       <h2 style="font-size: 18px; color: var(--accent-gold); margin-bottom: 6px;">તમારું સેશન સંપન્ન થયું!</h2>
       <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
-        મોહિની સાથે નક્કી કરેલા નિયમોનું પાલન કરો. તમારા વચન મુજબ તમારો સિક્રેટ માસ્ટર ગાઈડ નીચે ડાઉનલોડ માટે તૈયાર છે:
+        મોહિની સાથે નક્કી કરેલા મનોવૈજ્ઞાનિક સિદ્ધાંતોનું પાલન કરો. તમારા પ્લાન મુજબ તમારી સિક્રેટ માસ્ટર ગાઈડ નીચે ડાઉનલોડ માટે તૈયાર છે:
       </p>
       <button class="pay-btn pay-btn-gold" onclick="downloadBonusGuide()">📥 ડાઉનલોડ કરો: ધ મોહિની પ્રોટોકોલ (PDF)</button>
     </div>
@@ -612,39 +613,39 @@
 
   const questions = [
     {
-      q: "તમે આજે અહીં કયા મુખ્ય કારણસર આવ્યા છો?",
+      q: "તમે આજે અહીં કયા મુખ્ય હેતુસર આવ્યા છો?",
       options: [
-        "કોઈપણ સ્ત્રી સાથે વાતચીતમાં અચકાયા વિના ઊંડું આકર્ષણ ઊભું કરતાં શીખવું છે",
-        "સ્ત્રી-મનની અસલી માનસિકતા (સાયકોલોજી) અને ગુપ્ત સંકેતો ડિકોડ કરવા છે",
-        "હંમેશાં નજરઅંદાજ કે રિજેક્ટ થવાનો સિલસિલો કાયમ માટે બંધ કરવો છે",
-        "મારી અંદર એવી હાઈ-વેલ્યુ પર્સનાલિટી બનાવવી છે જેથી સ્ત્રીઓ સામેથી ધ્યાન આપે"
+        "કોઈપણ સ્ત્રી સાથે વાતચીતમાં અચકાયા વિના ઊંડો પ્રભાવ અને આદર ઊભો કરવો છે",
+        "સ્ત્રી-મનના અસલી મનોવૈજ્ઞાનિક સિગ્નલ્સ અને અપેક્ષાઓ યોગ્ય રીતે સમજવી છે",
+        "વાતચીતમાં સતત નજરઅંદાજ થવાનો સિલસિલો કાયમ માટે બંધ કરવો છે",
+        "પોતાની અંદર એવી હાઈ-વેલ્યુ પર્સનાલિટી કેળવવી છે જેથી સ્ત્રીઓ સામેથી ગંભીરતાથી લે"
       ]
     },
     {
-      q: "સ્ત્રીઓના આકર્ષણ વિશે તમારી માન્યતા શું છે?",
+      q: "સ્ત્રીઓના આકર્ષણ વિશે તમારો સૌથી મોટો અનુભવ શું રહ્યો છે?",
       options: [
-        "મને લાગે છે કે સ્ત્રીઓ ફક્ત દેખાવ, સ્ટેટસ કે પૈસા જોઈને આકર્ષાય છે",
-        "સ્ત્રીઓ ક્યારે શું ઇચ્છે છે અને એમના મૂડ/સિગ્નલ્સ શું કહે છે તે સમજવું અશક્ય લાગે છે",
-        "હું હંમેશાં સાચો, કેરિંગ અને સારો (Nice Guy) રહું છું, છતાં સ્ત્રીઓ કદર નથી કરતી",
-        "સ્ત્રીઓ શરૂઆતમાં વાત કરે છે, પણ થોડા સમય પછી રસ ગુમાવી દે છે"
+        "મને લાગે છે કે મોટાભાગે માત્ર બાહ્ય સ્ટેટસ કે દેખાવ જ મહત્વ રાખે છે",
+        "સ્ત્રીઓ ક્યારે શું અનુભવે છે અને તેમના મૂડને સમજવો ખૂબ અઘરો લાગે છે",
+        "હું હંમેશાં કેરિંગ, સારો અને મદદગાર રહું છું, છતાં યોગ્ય કદર મળતી નથી",
+        "શરૂઆતમાં સારી વાતચીત થાય છે, પણ થોડા જ દિવસોમાં તેમનો રસ ઓછો થઈ જાય છે"
       ]
     },
     {
-      q: "સ્ત્રીઓ સાથેના વ્યવહારમાં તમારી સૌથી મોટી અડચણ ક્યાં આવે છે?",
+      q: "સ્ત્રીઓ સાથેના સંવાદમાં તમને સૌથી મોટી મુશ્કેલી ક્યાં નડે છે?",
       options: [
-        "પહેલી વાતચીતમાં જ રોમાંચ, રહસ્ય અને ઉત્સુકતા જાળવી રાખવામાં",
-        "હંમેશાં 'ફ્રેન્ડઝોન' (માત્ર સારો મિત્ર) બની જવામાં",
-        "વાતચીતમાં એવું વર્ચસ્વ રાખવામાં જેથી સ્ત્રી તમને સામાન્ય ન ગણે",
-        "સ્ત્રી સમક્ષ મનની લાગણી કે રોમેન્ટિક ઈરાદો સ્પષ્ટ રીતે મૂકવામાં"
+        "વાતચીતમાં શરૂઆતથી જ કૌતુક, રહસ્ય અને ઉત્સાહ જાળવી રાખવામાં",
+        "હંમેશાં માત્ર એક 'સારો મિત્ર' (ફ્રેન્ડઝોન) બનીને રહી જવામાં",
+        "પોતાના વિચારો અને આત્મસન્માન સાથે મક્કમતાથી વાત રજૂ કરવામાં",
+        "સામેવાળી વ્યક્તિ સમક્ષ પોતાની સાચી લાગણી કે ઈરાદો સ્પષ્ટ રીતે મૂકવામાં"
       ]
     },
     {
-      q: "મોહિની પાસેથી તમે કઈ કળા શીખવા માંગો છો?",
+      q: "આ પ્રોટોકોલ દ્વારા તમે કઈ કુશળતામાં માસ્ટરી મેળવવા માંગો છો?",
       options: [
-        "સ્ત્રીના સબકોન્શિયસ (અવચેતન) મનમાં સ્થાન બનાવવાની સાયકોલોજી",
-        "સામાન્ય ચેટ કે મેસેજિંગને તીવ્ર આકર્ષણમાં ફેરવવાની ટેકનિક",
-        "કોઈપણ પરિસ્થિતિમાં સ્ત્રી સામે આત્મવિશ્વાસથી છવાઈ જવાનો નિયમ",
-        "સ્ત્રી તમને ગુમાવવાથી ડરે તેવું માનસિક જોડાણ ઊભું કરવાનો રસ્તો"
+        "સ્ત્રીના અચેતન મનમાં સન્માન અને સ્વાભાવિક આકર્ષણ ઊભું કરવાની સાયકોલોજી",
+        "સામાન્ય ચેટિંગને રસપ્રદ અને પ્રભાવશાળી વાતચીતમાં ફેરવવાની ટેકનિક",
+        "કોઈપણ સંજોગોમાં નર્વસ થયા વિના આત્મવિશ્વાસથી છવાઈ જવાનો નિયમ",
+        "એક એવું મનોવૈજ્ઞાનિક જોડાણ ઊભું કરવું જેથી સામેવાળી વ્યક્તિ તમારી કદર સમજે"
       ]
     }
   ];
@@ -690,7 +691,7 @@
         document.getElementById("dyn-score").innerText = `${calculatedProfile.score}/100`;
         document.getElementById("dyn-archetype").innerText = `આર્કીટાઇપ: ${calculatedProfile.archetype}`;
         
-        let flawsHtml = `<strong>મુખ્ય સાયકોલોજિકલ ક્ષતિ:</strong> ${calculatedProfile.mainFlaw}<br><br>`;
+        let flawsHtml = `<strong>મુખ્ય મનોવૈજ્ઞાનિક ક્ષતિ:</strong> ${calculatedProfile.mainFlaw}<br><br>`;
         flawsHtml += `<strong>સબકોન્શિયસ પેટર્ન:</strong> ${calculatedProfile.subPattern}`;
         document.getElementById("dyn-flaws").innerHTML = flawsHtml;
 
@@ -706,28 +707,28 @@
     const i2 = indices[2];
     const i3 = indices[3];
 
-    const baseScore = 24 + ((i0 * 7 + i1 * 5 + i2 * 11 + i3 * 3) % 21);
+    const baseScore = 26 + ((i0 * 7 + i1 * 5 + i2 * 11 + i3 * 3) % 19);
 
     const archetypes = [
       {
         name: "ધ ઓવર-અવેલેબલ નાઇસ ગાય",
-        flaw: "તમે સ્ત્રીઓ સામે પોતાની જાતને અતિશય પ્રાપ્ય અને સસ્તી બનાવી દો છો.",
-        sub: "સ્ત્રી તમારી ભલાઈને આકર્ષણ નહીં પણ કમજોરી ગણીને ગ્રાન્ટેડ લે છે."
+        flaw: "તમે વાતચીતમાં સીમાઓ વગર હંમેશાં અતિશય ઉપલબ્ધ રહો છો, જેનાથી તમારી રહસ્યમયતા ઘટી જાય છે.",
+        sub: "સામેવાળી વ્યક્તિ તમારી ભલાઈ અને સતત હાજરીને આકર્ષણ નહીં પણ ટેકન-ફોર-ગ્રાન્ટેડ ગણી લે છે."
       },
       {
-        name: "ધ ક્રોનિક ફ્રેન્ડઝોન કેદી",
-        flaw: "તમે સ્ત્રીના ઈમોશન્સ સાંભળો છો પણ ક્યારેય સેક્સ્યુઅલ પોલારિટી કે રહસ્ય ઊભું નથી કરતા.",
-        sub: "એ તમને મિત્ર કે ભાઈ તરીકે યાદ રાખે છે, રોમેન્ટિક પુરુષ તરીકે નહીં."
+        name: "ધ ક્રોનિક ફ્રેન્ડઝોન પેટર્ન",
+        flaw: "તમે લાગણીઓ સાંભળવા તૈયાર રહો છો પરંતુ ક્યારેય સ્પષ્ટ રોમેન્ટિક પોલારિટી ઊભી કરતા નથી.",
+        sub: "સામેવાળી વ્યક્તિ તમને માત્ર સારો સલાહકાર માને છે, પ્રભાવશાળી અને આકર્ષક પુરુષ તરીકે નહીં."
       },
       {
-        name: "ધ વેલિડેશન સીકર (ચિપકું પેટર્ન)",
-        flaw: "તમારો આત્મવિશ્વાસ તેના રિપ્લાયની સ્પીડ અને મૂડ પર નિર્ભર રહે છે.",
-        sub: "સ્ત્રીઓ આ અસલામતી દૂરથી જ સુંઘી લે છે અને ધીમે ધીમે ભાવ ખાવાનું શરૂ કરે છે."
+        name: "ધ રિસ્પોન્સ-ડિપેન્ડન્ટ પેટર્ન",
+        flaw: "તમારો દિવસ અને મૂડ સામેવાળી વ્યક્તિના રિપ્લાયની સ્પીડ પર વધુ પડતો આધાર રાખે છે.",
+        sub: "સ્ત્રીઓ આ અસલામતી તરત અનુભવી લે છે અને પરિણામે તેમનો ઉત્સાહ ધીમે ધીમે ઓછો થઈ જાય છે."
       },
       {
-        name: "ધ મિસ્ટ્રી-લેસ કમ્યુનિકેટર",
-        flaw: "તમે પહેલી જ વાતચીતમાં તમારા બધા પત્તા અને લાગણીઓ સામે મૂકી દો છો.",
-        sub: "જ્યાં કોઈ રહસ્ય કે પડકાર નથી હોતો, ત્યાં સ્ત્રીનું સબકોન્શિયસ મન તુરંત રસ ગુમાવે છે."
+        name: "ધ ઓપન-બુક કમ્યુનિકેટર",
+        flaw: "તમે શરૂઆતી વાતચીતમાં જ તમારી બધી લાગણીઓ અને આયોજનો સામે મૂકી દો છો.",
+        sub: "જ્યાં કોઈ કુતૂહલ કે રહસ્ય બાકી રહેતું નથી, ત્યાં માનવ મન ખૂબ ઝડપથી રસ ગુમાવી દે છે."
       }
     ];
 
@@ -753,11 +754,11 @@
       amount: amount * 100,
       currency: "INR",
       name: "Bhagyaveda — Mohini",
-      description: `Mohini Private Live Consultation (${minutes} Mins)`,
+      description: `Mohini Private Psychological Consultation (${minutes} Mins)`,
       handler: function (response) {
         startChatSession(minutes);
       },
-      prefill: { name: "Valued Member" },
+      prefill: { name: "Valued Client" },
       theme: { color: "#9333ea" }
     };
     const rzp = new Razorpay(options);
@@ -771,7 +772,7 @@
     remainingSeconds = minutes * 60;
     startTimer();
 
-    const initialGreeting = `મેં તમારો ટેસ્ટ જોયો. તમારો અટ્રેક્શન સ્કોર માત્ર ${calculatedProfile.score}/100 આવ્યો છે અને તમારી અંદર '${calculatedProfile.archetype}' ની સ્પષ્ટ પેટર્ન છે. ${calculatedProfile.mainFlaw} હવે મને સાચું કહો—તમારી સાથે હાલ કઈ સ્ત્રી બાબતે કેવો કિસ્સો ચાલી રહ્યો છે? હું તમને સ્ત્રી-મનનું અસલી રહસ્ય સમજાવીશ.`;
+    const initialGreeting = `મેં તમારો એનાલિસિસ ટેસ્ટ જોયો. તમારો અટ્રેક્શન સ્કોર ${calculatedProfile.score}/100 આવ્યો છે અને તમારી અંદર '${calculatedProfile.archetype}' ની સ્પષ્ટ પેટર્ન જોવા મળે છે. ${calculatedProfile.mainFlaw} હવે મને જણાવો—હાલ તમારી કઈ સ્ત્રી કે ક્રશ સાથે વાતચીતમાં અડચણ આવી રહી છે? હું તમને સ્ત્રી-માનસિકતાનો સાચો અને પ્રભાવશાળી રસ્તો સમજાવીશ.`;
     appendMessage("bot", initialGreeting);
   }
 
@@ -836,7 +837,7 @@
       const data = await response.json();
       if(document.getElementById("typing")) document.getElementById("typing").remove();
       
-      const botReply = data.reply || "સ્ત્રી-મનમાં આકર્ષણ હંમેશાં આત્મસન્માન અને ડિટેચમેન્ટથી જન્મે છે. તમારી વાત આગળ વધારો.";
+      const botReply = data.reply || "સ્ત્રી-મનમાં આકર્ષણ હંમેશાં આત્મસન્માન, મર્યાદિત ઉપલબ્ધતા અને રહસ્યમયતાથી જન્મે છે. તમારી વાત આગળ જણાવો.";
       appendMessage("bot", botReply);
       chatHistory.push({ role: "assistant", content: botReply });
     } catch (err) {
