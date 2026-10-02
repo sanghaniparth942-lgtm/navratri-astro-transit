@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>મોહિની — સ્ત્રી મનોવિજ્ઞાન અને આકર્ષણની સર્વોચ્ચ કળા</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Razorpay Checkout Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <style>
+    :root {
+      --bg: #09080e;
+      --card-bg: rgba(22, 19, 36, 0.85);
+      --card-border: rgba(168, 85, 247, 0.25);
+      --accent-gold: #f59e0b;
+      --accent-purple: #9333ea;
+      --accent-glow: rgba(147, 51, 234, 0.35);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --chat-user: #7e22ce;
+      --chat-bot: #1e1b2e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(147, 51, 234, 0.22) 0%, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(245, 158, 11, 0.12) 0%, transparent 40%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    /* Header */
+    .brand-header {
+      text-align: center;
+      padding: 24px 0 16px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: rgba(147, 51, 234, 0.15);
+      border: 1px solid var(--accent-purple);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #e9d5ff;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fff 30%, #e9d5ff 70%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    /* Cards */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px var(--accent-glow);
+      margin-top: 16px;
+      transition: all 0.3s ease;
+    }
+
+    /* Quiz Stage */
+    .progress-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
+      width: 25%;
+      transition: width 0.3s ease;
+    }
+
+    .question-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 16px;
+      border-radius: 12px;
+      color: var(--text-main);
+      font-size: 13px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+
+    .option-btn:hover, .option-btn:active {
+      background: rgba(147, 51, 234, 0.2);
+      border-color: var(--accent-purple);
+      transform: translateY(-2px);
+    }
+
+    /* Loader / Analysis Stage */
+    .analyzing-box {
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .spinner {
+      width: 56px;
+      height: 56px;
+      border: 3px solid rgba(147, 51, 234, 0.2);
+      border-top-color: var(--accent-gold);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Paywall Stage */
+    .paywall-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .analysis-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .plans-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .plan-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 18px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .plan-card.recommended {
+      border: 2px solid var(--accent-gold);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.08), rgba(147, 51, 234, 0.15));
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .plan-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .plan-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .plan-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 8px 0 12px;
+      line-height: 1.4;
+    }
+
+    .features-list {
+      list-style: none;
+      font-size: 12px;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .features-list li::before {
+      content: "✦ ";
+      color: var(--accent-gold);
+      font-weight: bold;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+    }
+
+    .pay-btn-primary {
+      background: linear-gradient(90deg, var(--accent-purple), #7e22ce);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+    }
+
+    .pay-btn-gold {
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      color: #111;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    .pay-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+    }
+
+    /* Chat Stage */
+    .chat-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 75vh;
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bot-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bot-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      border: 2px solid var(--accent-gold);
+    }
+
+    .bot-status {
+      font-size: 11px;
+      color: #10b981;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .bot-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #10b981;
+      border-radius: 50%;
+    }
+
+    .timer-badge {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 82%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .msg-bot {
+      align-self: flex-start;
+      background: var(--chat-bot);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #f3f4f6;
+      border-bottom-left-radius: 4px;
+    }
+
+    .msg-user {
+      align-self: flex-end;
+      background: var(--chat-user);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--accent-purple);
+    }
+
+    .send-btn {
+      background: var(--accent-purple);
+      border: none;
+      width: 44px;
+      border-radius: 12px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    /* Modal / Bonus Box */
+    .bonus-card {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .bonus-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 14px 24px;
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+      color: #000;
+      font-weight: 700;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+  
+  <!-- Header -->
+  <header class="brand-header">
+    <div class="brand-badge">✦ High-Value Attraction Protocol ✦</div>
+    <h1 class="brand-title">MOHINI</h1>
+    <p class="brand-subtitle">સ્ત્રી મનોવિજ્ઞાન, સબકોન્શિયસ આકર્ષણ અને હાઈ-સ્ટેટસ વ્યક્તિત્વનું લાઈવ ગાઈડન્સ</p>
+  </header>
+
+  <!-- STAGE 1: ASSESSMENT QUIZ -->
+  <section id="quiz-section" class="glass-card">
+    <div class="progress-bar">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+    <div id="quiz-content">
+      <!-- Injected via JavaScript -->
+    </div>
+  </section>
+
+  <!-- STAGE 2: ANALYZING -->
+  <section id="analyzing-section" class="glass-card" style="display: none;">
+    <div class="analyzing-box">
+      <div class="spinner"></div>
+      <h3 style="font-size: 16px; margin-bottom: 8px;">તમારી પ્રોફાઇલનું વિશ્લેષણ થઈ રહ્યું છે...</h3>
+      <p style="font-size: 12px; color: var(--text-muted);">સ્ત્રી માનસિકતાના પેટર્ન સામે તમારી ભૂલો ડિકોડ થઈ રહી છે.</p>
+    </div>
+  </section>
+
+  <!-- STAGE 3: DIRECT PAYWALL -->
+  <section id="paywall-section" class="glass-card" style="display: none;">
+    <div class="paywall-header">
+      <span class="analysis-badge">⚠ ૩ ગંભીર સાયકોલોજિકલ ક્ષતિઓ મળી</span>
+      <h2 style="font-size: 18px; margin-bottom: 6px;">મોહિની સાથે પ્રાઇવેટ સેશન શરૂ કરો</h2>
+      <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+        સામાન્ય વાતો છોડો. સ્ત્રીના અચેતન મનમાં તમારું આકર્ષણ કેવી રીતે ઊભું કરવું તે લાઈવ શીખો.
+      </p>
+    </div>
+
+    <div class="plans-container">
+      <!-- Plan 1: 30 Mins -->
+      <div class="plan-card" onclick="selectPlan(99, 30)">
+        <div class="plan-title">
+          <span>ક્વિક સાયકોલોજી સેશન</span>
+          <span class="plan-price">₹૯૯</span>
+        </div>
+        <p class="plan-desc">૩૦ મિનિટ પ્રાઇવેટ લાઈવ ચેટિંગ</p>
+        <ul class="features-list">
+          <li>તેના મનમાં તમારી છાપ સુધારવાના નિયમો</li>
+          <li>મેસેજમાં શું લખવું તેનું ત્વરિત માર્ગદર્શન</li>
+          <li>૧૦૦% સંપૂર્ણ ખાનગી વાતચીત</li>
+        </ul>
+        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ સેશન શરૂ કરો (₹૯૯)</button>
+      </div>
+
+      <!-- Plan 2: 60 Mins (Recommended) -->
+      <div class="plan-card recommended" onclick="selectPlan(149, 60)">
+        <div class="ribbon">સૌથી વધુ પસંદ કરાયેલ</div>
+        <div class="plan-title">
+          <span>માસ્ટર અટ્રેક્શન સેશન</span>
+          <span class="plan-price">₹૧૪૯</span>
+        </div>
+        <p class="plan-desc">૬૦ મિનિટ ઊંડાણપૂર્વક પર્સનલ ગાઈડન્સ</p>
+        <ul class="features-list">
+          <li>સ્ત્રી-મનના રહસ્યો અને ફ્રેન્ડઝોનમાંથી બહાર નીકળવાનો પ્લાન</li>
+          <li>સામેથી તમને મેસેજ કરવા મજબૂર કરતી કળા</li>
+          <li><strong>બોનસ ગિફ્ટ:</strong> ૧૫ ગોલ્ડન રૂલ્સ PDF માર્ગદર્શિકા મફત</li>
+        </ul>
+        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF અનલૉક કરો (₹૧૪૯)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 4: LIVE CHAT WITH MOHINI -->
+  <section id="chat-section" class="glass-card" style="display: none;">
+    <div class="chat-wrapper">
+      <div class="chat-header">
+        <div class="bot-info">
+          <div class="bot-avatar">✨</div>
+          <div>
+            <div style="font-weight: 700; font-size: 14px;">મોહિની (Mohini AI)</div>
+            <div class="bot-status">લાઈવ કનેક્ટેડ</div>
+          </div>
+        </div>
+        <div class="timer-badge" id="session-timer">00:00</div>
+      </div>
+
+      <div class="chat-messages" id="chat-box">
+        <!-- Messages will appear here -->
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="user-input" class="chat-input" placeholder="મોહિનીને તમારો પ્રશ્ન પૂછો..." onkeypress="handleKey(event)" />
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAGE 5: POST CHAT & PDF BONUS -->
+  <section id="bonus-section" class="glass-card" style="display: none;">
+    <div class="bonus-card">
+      <div style="font-size: 40px; margin-bottom: 12px;">👑</div>
+      <h2 style="font-size: 20px; color: var(--accent-gold); margin-bottom: 8px;">તમારું સેશન સંપન્ન થયું!</h2>
+      <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+        મોહિની સાથેની ચર્ચા મુજબ તમારા નિયમોનું પાલન કરો. તમારા વચન મુજબ તમારો સિક્રેટ માસ્ટર ગાઈડ નીચે તૈયાર છે:
+      </p>
+      <a href="#" class="bonus-btn" onclick="downloadBonusGuide()">ડાઉનલોડ કરો: ૧૫ ગોલ્ડન રૂલ્સ PDF</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  /* ================= CONFIGURATION ================= */
+  // તમારા Render બેકએન્ડની લિંક અહીં મૂકવી (દા.ત. https://bhagyaveda-backend.onrender.com/api/mohini/chat)
+  const BACKEND_CHAT_URL = "https://bhagyaveda-backend.onrender.com/api/mohini/chat"; 
+  
+  // તમારો Razorpay Key ID અહીં મૂકવો (દા.ત. rzp_live_xxxxxxxxxxx)
+  const RAZORPAY_KEY = "rzp_test_placeholder"; 
+
+  /* ================= ASSESSMENT QUESTIONS ================= */
+  const questions = [
+    {
+      q: "તમે આજે અહીં કયા મુખ્ય કારણસર આવ્યા છો?",
+      options: [
+        "કોઈપણ સ્ત્રી સાથે વાતચીતમાં અચકાયા વિના ઊંડું આકર્ષણ ઊભું કરતાં શીખવું છે",
+        "સ્ત્રી-મનની અસલી માનસિકતા (સાયકોલોજી) અને ગુપ્ત સંકેતો ડિકોડ કરવા છે",
+        "હંમેશાં નજરઅંદાજ કે રિજેક્ટ થવાનો સિલસિલો કાયમ માટે બંધ કરવો છે",
+        "મારી અંદર એવી હાઈ-વેલ્યુ પર્સનાલિટી બનાવવી છે જેથી સ્ત્રીઓ સામેથી ધ્યાન આપે"
+      ]
+    },
+    {
+      q: "સ્ત્રીઓના આકર્ષણ વિશે તમારી માન્યતા શું છે?",
+      options: [
+        "મને લાગે છે કે સ્ત્રીઓ ફક્ત દેખાવ, સ્ટેટસ કે પૈસા જોઈને આકર્ષાય છે",
+        "સ્ત્રીઓ ક્યારે શું ઇચ્છે છે અને એમના મૂડ/સિગ્નલ્સ શું કહે છે તે સમજવું અશક્ય લાગે છે",
+        "હું હંમેશાં સાચો, કેરિંગ અને સારો (Nice Guy) રહું છું, છતાં સ્ત્રીઓ કદર નથી કરતી",
+        "સ્ત્રીઓ શરૂઆતમાં વાત કરે છે, પણ થોડા સમય પછી રસ ગુમાવી દે છે"
+      ]
+    },
+    {
+      q: "સ્ત્રીઓ સાથેના વ્યવહારમાં તમારી સૌથી મોટી અડચણ ક્યાં આવે છે?",
+      options: [
+        "પહેલી વાતચીતમાં જ રોમાંચ, રહસ્ય અને ઉત્સુકતા જાળવી રાખવામાં",
+        "હંમેશાં 'ફ્રેન્ડઝોન' (માત્ર સારો મિત્ર) બની જવામાં",
+        "વાતચીતમાં એવું વર્ચસ્વ રાખવામાં જેથી સ્ત્રી તમને સામાન્ય ન ગણે",
+        "સ્ત્રી સમક્ષ મનની લાગણી કે રોમેન્ટિક ઈરાદો સ્પષ્ટ રીતે મૂકવામાં"
+      ]
+    },
+    {
+      q: "મોહિની પાસેથી તમે કઈ કળા શીખવા માંગો છો?",
+      options: [
+        "સ્ત્રીના સબકોન્શિયસ (અવચેતન) મનમાં સ્થાન બનાવવાની સાયકોલોજી",
+        "સામાન્ય ચેટ કે મેસેજિંગને તીવ્ર આકર્ષણમાં ફેરવવાની ટેકનિક",
+        "કોઈપણ પરિસ્થિતિમાં સ્ત્રી સામે આત્મવિશ્વાસથી છવાઈ જવાનો નિયમ",
+        "સ્ત્રી તમને ગુમાવવાથી ડરે તેવું માનસિક જોડાણ ઊભું કરવાનો રસ્તો"
+      ]
+    }
+  ];
+
+  let currentQuestion = 0;
+  let userAnswers = [];
+  let chatHistory = [];
+  let remainingSeconds = 0;
+  let timerInterval = null;
+
+  // Render initial question
+  function loadQuestion() {
+    const qData = questions[currentQuestion];
+    const fillPercent = ((currentQuestion + 1) / questions.length) * 100;
+    document.getElementById("progress-fill").style.width = fillPercent + "%";
+
+    let html = `<h2 class="question-title">${currentQuestion + 1}. ${qData.q}</h2><div class="options-list">`;
+    qData.options.forEach((opt) => {
+      html += `<button class="option-btn" onclick="handleAnswer('${opt.replace(/'/g, "\\'")}')">
+                <span>${opt}</span>
+                <span>➔</span>
+              </button>`;
+    });
+    html += `</div>`;
+    document.getElementById("quiz-content").innerHTML = html;
+  }
+
+  function handleAnswer(answer) {
+    userAnswers.push({ question: questions[currentQuestion].q, answer: answer });
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+      loadQuestion();
+    } else {
+      // Show analyzing
+      document.getElementById("quiz-section").style.display = "none";
+      document.getElementById("analyzing-section").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("analyzing-section").style.display = "none";
+        document.getElementById("paywall-section").style.display = "block";
+      }, 2500);
+    }
+  }
+
+  // Payment Selection
+  function selectPlan(amount, minutes) {
+    // જો Razorpay કી સેટ ન હોય તો ટેસ્ટિંગ માટે સીધું ચેટ શરૂ કરી આપશે
+    if (!RAZORPAY_KEY || RAZORPAY_KEY === "rzp_test_placeholder") {
+      startChatSession(minutes);
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: amount * 100, // paise
+      currency: "INR",
+      name: "Bhagyaveda — Mohini",
+      description: `Mohini Private Live Session (${minutes} Mins)`,
+      handler: function (response) {
+        startChatSession(minutes);
+      },
+      prefill: {
+        name: "Valued Member",
+      },
+      theme: {
+        color: "#9333ea"
+      }
+    };
+    const rzp = new Razorpay(options);
+    rzp.open();
+  }
+
+  // Start Chat Stage
+  function startChatSession(minutes) {
+    document.getElementById("paywall-section").style.display = "none";
+    document.getElementById("chat-section").style.display = "block";
+    
+    remainingSeconds = minutes * 60;
+    startTimer();
+
+    // Welcome Message from Mohini
+    const initialGreeting = `નમસ્તે. મેં તમારા જવાબોનું ઊંડાણપૂર્વક વિશ્લેષણ કર્યું છે. મોટાભાગના પુરુષો સ્ત્રીઓ સામે પોતાની જાતને અતિશય પ્રાપ્ય (Over-available) બનાવીને પોતાનું આકર્ષણ ગુમાવી દે છે. હવે તમે મને નિઃસંકોચ જણાવો—તમારી સાથે હાલ કઈ બાબતમાં મુશ્કેલી આવી રહી છે? હું તમને સ્ત્રી-મનના દ્રષ્ટિકોણથી સચોટ માર્ગદર્શન આપીશ.`;
+    appendMessage("bot", initialGreeting);
+  }
+
+  // Countdown Timer
+  function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+      remainingSeconds--;
+      updateTimerDisplay();
+      if (remainingSeconds <= 0) {
+        clearInterval(timerInterval);
+        endChatSession();
+      }
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const mins = Math.floor(remainingSeconds / 60);
+    const secs = remainingSeconds % 60;
+    document.getElementById("session-timer").innerText = 
+      `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  function appendMessage(sender, text) {
+    const box = document.getElementById("chat-box");
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `msg ${sender === 'user' ? 'msg-user' : 'msg-bot'}`;
+    msgDiv.innerText = text;
+    box.appendChild(msgDiv);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function handleKey(e) {
+    if (e.key === "Enter") sendMessage();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById("user-input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendMessage("user", text);
+    input.value = "";
+    chatHistory.push({ role: "user", content: text });
+
+    // Typing effect placeholder
+    const typingIndicator = document.createElement("div");
+    typingIndicator.className = "msg msg-bot";
+    typingIndicator.id = "typing";
+    typingIndicator.innerText = "મોહિની ટાઇપ કરી રહી છે...";
+    document.getElementById("chat-box").appendChild(typingIndicator);
+
+    try {
+      const response = await fetch(BACKEND_CHAT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory,
+          quizContext: userAnswers
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("typing").remove();
+      
+      const botReply = data.reply || "સ્ત્રી-મનમાં આકર્ષણ હંમેશાં રહસ્ય અને આત્મસન્માનથી જન્મે છે. તમારી વાત ચાલુ રાખો.";
+      appendMessage("bot", botReply);
+      chatHistory.push({ role: "assistant", content: botReply });
+    } catch (err) {
+      if(document.getElementById("typing")) document.getElementById("typing").remove();
+      appendMessage("bot", "સ્ત્રીઓ ક્યારેય એવા પુરુષ તરફ આકર્ષાતી નથી જે પોતાની કિંમત ન સમજતો હોય. તમે જે સ્થિતિ જણાવી, તેમાં શાંતિ અને વર્ચસ્વ જાળવવું જરૂરી છે.");
+    }
+  }
+
+  function endChatSession() {
+    document.getElementById("chat-section").style.display = "none";
+    document.getElementById("bonus-section").style.display = "block";
+  }
+
+  function downloadBonusGuide() {
+    alert("તમારી ૧૫ ગોલ્ડન રૂલ્સ માર્ગદર્શિકા ડાઉનલોડ થઈ રહી છે...");
+  }
+
+  // Start Quiz on load
+  loadQuestion();
+</script>
+
+</body>
+</html>
