@@ -27,6 +27,13 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- End Vercel Web Analytics -->
+
   <style>
     :root {
       --bg: #060509;
@@ -622,7 +629,7 @@
 
       <!-- ચેટ બોક્સની નીચે એક્સક્લુઝિવ PDF મેળવવાનું બટન (Google Drive લિંક સાથે) -->
       <div id="pdf-download-bar" style="margin-top: 10px; display: none;">
-        <a href="https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing" target="_blank" style="text-decoration: none;">
+        <a href="https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing" target="_blank" style="text-decoration: none;" onclick="trackPdfClick()">
           <button type="button" class="pay-btn pay-btn-gold" style="padding: 10px 14px; font-size: 12px; border-radius: 10px; width: 100%; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
             📥 તમારી એક્સક્લુઝિવ PDF મેળવો (ધ મોહિની પ્રોટોકોલ)
           </button>
@@ -720,6 +727,17 @@
   }
 
   function handleAnswer(index, answerText) {
+    // 1. QuizStart Event (Pehla prashna par fire thashe)
+    if (currentQuestion === 0) {
+      if (typeof fbq === 'function') fbq('trackCustom', 'QuizStart');
+      if (window.va) window.va('event', { name: 'QuizStart' });
+    }
+
+    // 2. QuizStep Event (Har prashna na javab par track thashe)
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'QuizStep', { step: currentQuestion + 1, answer_index: index });
+    }
+
     selectedIndices.push(index);
     userAnswers.push({ question: questions[currentQuestion].q, answer: answerText });
     currentQuestion++;
@@ -742,6 +760,20 @@
 
         document.getElementById("analyzing-section").style.display = "none";
         document.getElementById("paywall-section").style.display = "block";
+
+        // 3. ViewContent & QuizCompleted Events (Result/Paywall aave tyare)
+        if (typeof fbq === 'function') {
+          fbq('track', 'ViewContent', {
+            content_name: 'Attraction Score Result',
+            content_category: 'Quiz Result',
+            value: calculatedProfile.score
+          });
+          fbq('trackCustom', 'QuizCompleted', {
+            score: calculatedProfile.score,
+            archetype: calculatedProfile.archetype
+          });
+        }
+        if (window.va) window.va('event', { name: 'QuizCompleted', data: { archetype: calculatedProfile.archetype, score: calculatedProfile.score } });
       }, 2300);
     }
   }
@@ -794,7 +826,22 @@
   }
 
   function selectPlan(amount, minutes) {
-    selectedPlanAmount = amount; // કયો પ્લાન લીધો એ સેવ કરી લેશે
+    selectedPlanAmount = amount; // પસંદ કરેલો પ્લાન યાદ રાખવા માટે
+
+    // 4. InitiateCheckout & AddToCart Events (Plan click kare tyare)
+    if (typeof fbq === 'function') {
+      fbq('track', 'AddToCart', {
+        value: amount,
+        currency: 'INR',
+        content_name: `Mohini Private Consultation (${minutes} Mins)`
+      });
+      fbq('track', 'InitiateCheckout', {
+        value: amount,
+        currency: 'INR',
+        content_name: `Mohini Private Consultation (${minutes} Mins)`
+      });
+    }
+    if (window.va) window.va('event', { name: 'InitiateCheckout', data: { amount: amount, minutes: minutes } });
 
     if (!RAZORPAY_KEY || RAZORPAY_KEY === "rzp_test_placeholder") {
       startChatSession(minutes);
@@ -808,6 +855,16 @@
       name: "Bhagyaveda — Mohini",
       description: `Mohini Private Consultation (${minutes} Mins)`,
       handler: function (response) {
+        // 5. Purchase Event (Payment successful thaya pachi)
+        if (typeof fbq === 'function') {
+          fbq('track', 'Purchase', {
+            value: amount,
+            currency: 'INR',
+            content_name: `Mohini Private Consultation (${minutes} Mins)`
+          });
+        }
+        if (window.va) window.va('event', { name: 'Purchase', data: { amount: amount, minutes: minutes } });
+
         startChatSession(minutes);
       },
       prefill: { name: "Valued Client" },
@@ -911,8 +968,17 @@
     document.getElementById("bonus-section").style.display = "block";
   }
 
-  // બોનસ સેક્શનમાં ક્લિક કરવાથી પણ Google Drive લિંક ખૂલશે
+  // 6. PDF Click Event (Chat bar ma thi click kare tyare)
+  function trackPdfClick() {
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', 'DownloadPDFGuide');
+    }
+    if (window.va) window.va('event', { name: 'DownloadPDFGuide' });
+  }
+
+  // 7. Bonus section ma thi download kare tyare
   function downloadBonusGuide() {
+    trackPdfClick();
     window.open(PDF_DRIVE_URL, "_blank");
   }
 
