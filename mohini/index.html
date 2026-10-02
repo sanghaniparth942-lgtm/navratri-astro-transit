@@ -622,7 +622,9 @@
 
 <script>
   const BACKEND_CHAT_URL = "https://mohini-backend-bswa.onrender.com/api/mohini/chat";
-  const RAZORPAY_KEY = "rzp_test_placeholder"; 
+  
+  // તમારી Razorpay Test Key અહીં સેટ કરી દીધી છે:
+  const RAZORPAY_KEY = "rzp_test_TejDX6Yy6zpfFH"; 
 
   const questions = [
     {
@@ -721,7 +723,6 @@
     const i2 = indices[2];
     const i3 = indices[3];
 
-    // દરેક પ્રશ્ન માટે પોઈન્ટ્સ - આનાથી સરખા જવાબો પર હંમેશા સરખો સ્કોર આવશે (૩૧ થી ૪૬ ની વચ્ચે)
     const weightsQ1 = [4, 6, 3, 7];
     const weightsQ2 = [5, 7, 3, 6];
     const weightsQ3 = [6, 4, 3, 5];
@@ -729,7 +730,6 @@
 
     const finalScore = 18 + weightsQ1[i0] + weightsQ2[i1] + weightsQ3[i2] + weightsQ4[i3];
 
-    // પ્રશ્ન ૩ (સૌથી મોટી અડચણ) ના દરેક વિકલ્પ સાથે ૧૦૦% ચોક્કસ મેચ થતો આર્કીટાઇપ
     const archetypesMap = [
       {
         name: "ધ ઓપન-બુક કમ્યુનિકેટર",
@@ -771,11 +771,12 @@
 
     const options = {
       key: RAZORPAY_KEY,
-      amount: amount * 100,
+      amount: amount * 100, // ₹99 = 9900 પૈસા, ₹149 = 14900 પૈસા
       currency: "INR",
       name: "Bhagyaveda — Mohini AI",
       description: `Mohini AI Private Consultation (${minutes} Mins)`,
       handler: function (response) {
+        // પેમેન્ટ સફળ થાય એટલે ચેટ શરૂ થશે
         startChatSession(minutes);
       },
       prefill: { name: "Valued Client" },
