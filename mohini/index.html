@@ -401,7 +401,6 @@
       border: 2px solid var(--accent-gold);
     }
 
-    /* AI શબ્દ હટાવીને માત્ર ઓનલાઇન રાખ્યું છે */
     .bot-status {
       font-size: 11.5px;
       color: var(--success);
@@ -582,7 +581,7 @@
     </div>
   </section>
 
-  <!-- CHAT SECTION: અહી "AI" હટાવી દીધું છે, માત્ર "● ઓનલાઇન" દેખાશે -->
+  <!-- CHAT SECTION -->
   <section id="chat-section" class="glass-card" style="display: none;">
     <div class="chat-wrapper">
       <div class="chat-header">
@@ -602,9 +601,19 @@
         <input type="text" id="user-input" class="chat-input" placeholder="તમારી સ્થિતિ કે પ્રશ્ન અહીં લખો..." onkeypress="handleKey(event)" />
         <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
+
+      <!-- ચેટ બોક્સની નીચે એક્સક્લુઝિવ PDF મેળવવાનું બટન (Google Drive લિંક સાથે) -->
+      <div id="pdf-download-bar" style="margin-top: 10px; display: none;">
+        <a href="https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing" target="_blank" style="text-decoration: none;">
+          <button type="button" class="pay-btn pay-btn-gold" style="padding: 10px 14px; font-size: 12px; border-radius: 10px; width: 100%; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
+            📥 તમારી એક્સક્લુઝિવ PDF મેળવો (ધ મોહિની પ્રોટોકોલ)
+          </button>
+        </a>
+      </div>
     </div>
   </section>
 
+  <!-- BONUS SECTION -->
   <section id="bonus-section" class="glass-card" style="display: none;">
     <div class="bonus-card">
       <div style="font-size: 38px; margin-bottom: 10px;">👑</div>
@@ -616,7 +625,6 @@
     </div>
   </section>
 
-  <!-- First page policy intact -->
   <footer class="footer-note">
     ✦ ૧૦૦% ગોપનીય અને એન્ક્રિપ્ટેડ ✦<br>
     નોંધ: મોહિની એ અદ્યતન આર્ટિફિશિયલ ઇન્ટેલિજન્સ (AI) આધારિત રિલેશનશિપ, પર્સનાલિટી અને કમ્યુનિકેશન સાયકોલોજી માર્ગદર્શિકા પ્રણાલી છે.
@@ -626,9 +634,8 @@
 
 <script>
   const BACKEND_CHAT_URL = "https://mohini-backend-bswa.onrender.com/api/mohini/chat";
-  
-  // તમારી સાચી Razorpay Test Key:
   const RAZORPAY_KEY = "rzp_test_TejDX6Yy6zpfFH"; 
+  const PDF_DRIVE_URL = "https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing";
 
   const questions = [
     {
@@ -676,6 +683,7 @@
   let chatHistory = [];
   let remainingSeconds = 0;
   let timerInterval = null;
+  let selectedPlanAmount = 0; // પસંદ કરેલો પ્લાન યાદ રાખવા માટે
 
   function loadQuestion() {
     const qData = questions[currentQuestion];
@@ -768,6 +776,8 @@
   }
 
   function selectPlan(amount, minutes) {
+    selectedPlanAmount = amount; // કયો પ્લાન લીધો એ સેવ કરી લેશે
+
     if (!RAZORPAY_KEY || RAZORPAY_KEY === "rzp_test_placeholder") {
       startChatSession(minutes);
       return;
@@ -793,10 +803,17 @@
     document.getElementById("paywall-section").style.display = "none";
     document.getElementById("chat-section").style.display = "block";
     
+    // જો ₹૧૪૯ વાળો પ્લાન હોય તો જ ચેટ નીચે PDF ડાઉનલોડ બટન દેખાશે
+    if (selectedPlanAmount === 149) {
+      document.getElementById("pdf-download-bar").style.display = "block";
+    } else {
+      document.getElementById("pdf-download-bar").style.display = "none";
+    }
+
     remainingSeconds = minutes * 60;
     startTimer();
 
-    // 100% નેચરલ અને સ્વીટ માનવીય સ્ટાર્ટિંગ મેસેજ
+    // તમારો મનપસંદ ૧૦૦% નેચરલ અને સ્વીટ સ્ટાર્ટિંગ મેસેજ
     const initialGreeting = `Hi dear... 😉 હું છું મોહિની! \n\nએક સ્માર્ટ અને વેલ-ટ્રેઇન્ડ મોહિની... જે તમારી દરેક સમસ્યાનું એકદમ સાચું અને સ્માર્ટ સમાધાન આપશે. ✨\n\nબોલો ડિયર, ક્યાંથી વાત શરૂ કરશું...? 🥀`;
     appendMessage("bot", initialGreeting);
   }
@@ -876,8 +893,9 @@
     document.getElementById("bonus-section").style.display = "block";
   }
 
+  // બોનસ સેક્શનમાં ક્લિક કરવાથી પણ Google Drive લિંક ખૂલશે
   function downloadBonusGuide() {
-    alert("તમારી ૧૫ ગોલ્ડન રૂલ્સ PDF માર્ગદર્શિકા તૈયાર થઈ રહી છે...");
+    window.open(PDF_DRIVE_URL, "_blank");
   }
 
   loadQuestion();
