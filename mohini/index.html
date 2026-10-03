@@ -183,7 +183,7 @@
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
-      width: 25%;
+      width: 33%;
       transition: width 0.3s ease;
     }
 
@@ -223,166 +223,158 @@
       transform: translateY(-2px);
     }
 
-    .analyzing-box {
-      text-align: center;
-      padding: 40px 10px;
-    }
-
-    .spinner {
-      width: 52px;
-      height: 52px;
-      border: 3px solid rgba(147, 51, 234, 0.2);
-      border-top-color: var(--accent-gold);
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      margin: 0 auto 18px;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
+    /* Result Header & Warning */
     .diagnosis-header {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(245, 158, 11, 0.35);
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(239, 68, 68, 0.4);
       border-radius: 14px;
-      padding: 15px;
+      padding: 16px;
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .score-title {
+      font-size: 12px;
+      color: #fca5a5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
     }
 
     .score-badge {
-      display: inline-block;
-      font-size: 27px;
+      font-size: 32px;
       font-weight: 900;
-      color: var(--accent-gold);
-      margin: 4px 0;
+      color: var(--danger);
+      margin: 6px 0;
       font-family: 'Cinzel', serif;
     }
 
-    .archetype-title {
-      font-size: 14px;
+    .warning-box {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid var(--danger);
+      color: #f87171;
+      font-size: 11.5px;
       font-weight: 800;
-      color: #fde047;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-top: 4px;
     }
 
-    .flaws-box {
+    /* Mohini Pitch Intro */
+    .mohini-intro-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(147, 51, 234, 0.1);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
       text-align: left;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 12px;
-      border-radius: 10px;
-      margin-top: 10px;
+    }
+
+    .mohini-intro-avatar {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+    }
+
+    .mohini-intro-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-gold);
+    }
+
+    .mohini-intro-avatar .live-pulse {
+      width: 11px;
+      height: 11px;
+      bottom: 2px;
+      right: 2px;
+    }
+
+    .mohini-intro-text {
       font-size: 12.5px;
-      color: #e5e7eb;
-      line-height: 1.55;
+      line-height: 1.5;
+      color: #f3e8ff;
     }
 
-    .flaws-box strong {
-      color: #fca5a5;
-    }
-
+    /* Plans */
     .plans-container {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 14px;
+      gap: 12px;
     }
 
     .plan-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 16px;
-      padding: 18px;
+      border-radius: 14px;
+      padding: 14px 16px;
       position: relative;
       cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .plan-card:hover {
+      border-color: var(--accent-purple);
+      background: rgba(147, 51, 234, 0.12);
     }
 
     .plan-card.recommended {
       border: 2px solid var(--accent-gold);
-      background: linear-gradient(145deg, rgba(245, 158, 11, 0.11), rgba(147, 51, 234, 0.18));
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), rgba(147, 51, 234, 0.16));
     }
 
     .ribbon {
       position: absolute;
-      top: -10px;
+      top: -9px;
       right: 14px;
       background: linear-gradient(90deg, #d97706, #f59e0b);
       color: #000;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 6px;
+      padding: 2px 8px;
+      border-radius: 5px;
       text-transform: uppercase;
     }
 
-    .plan-title {
-      font-size: 15px;
-      font-weight: 700;
+    .plan-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .plan-price {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--accent-gold);
-    }
-
-    .pdf-spotlight {
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px dashed var(--accent-gold);
-      border-radius: 10px;
-      padding: 11px 13px;
-      margin: 12px 0;
-    }
-
-    .pdf-badge {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--accent-gold);
-      display: flex;
-      align-items: center;
-      gap: 5px;
       margin-bottom: 4px;
     }
 
-    .pdf-subtext {
-      font-size: 11.5px;
-      color: #e5e7eb;
-      line-height: 1.45;
+    .plan-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #fff;
     }
 
-    .features-list {
-      list-style: none;
-      font-size: 12.5px;
-      color: #d1d5db;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      margin-bottom: 14px;
-    }
-
-    .features-list li::before {
-      content: "✦ ";
+    .plan-price {
+      font-size: 20px;
+      font-weight: 800;
       color: var(--accent-gold);
+    }
+
+    .plan-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
     .pay-btn {
       width: 100%;
-      padding: 13.5px;
+      padding: 11px;
       border: none;
-      border-radius: 12px;
-      font-size: 13.5px;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
     }
 
     .pay-btn-primary {
@@ -396,6 +388,7 @@
       font-weight: 800;
     }
 
+    /* Chat Section */
     .chat-wrapper {
       display: flex;
       flex-direction: column;
@@ -422,7 +415,6 @@
       display: block;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center;
       border: 2px solid var(--accent-gold);
     }
 
@@ -520,6 +512,7 @@
 
 <div class="app-container">
   
+  <!-- HERO SECTION -->
   <header class="hero-section">
     <div class="ai-badge">✦ AI-સંચાલિત રિલેશનશિપ & પર્સનાલિટી સાયકોલોજી ✦</div>
     
@@ -536,6 +529,7 @@
     </div>
   </header>
 
+  <!-- QUIZ SECTION (EXACTLY 3 QUESTIONS) -->
   <section id="quiz-section" class="glass-card">
     <div class="progress-bar">
       <div id="progress-fill" class="progress-fill"></div>
@@ -543,66 +537,59 @@
     <div id="quiz-content"></div>
   </section>
 
-  <section id="analyzing-section" class="glass-card" style="display: none;">
-    <div class="analyzing-box">
-      <div class="spinner"></div>
-      <h3 style="font-size: 15px; margin-bottom: 6px;">તમારા કમ્યુનિકેશન પેટર્નનું વિશ્લેષણ થઈ રહ્યું છે...</h3>
-      <p style="font-size: 12px; color: var(--text-muted);">વાતચીતમાં તમારો પ્રભાવ અને આદર કેમ ઘટી જાય છે તેનું AI ન્યુરો-એનાલિસિસ ચાલુ છે.</p>
-    </div>
-  </section>
-
+  <!-- RESULT & PAYWALL SECTION -->
   <section id="paywall-section" class="glass-card" style="display: none;">
     <div class="diagnosis-header">
-      <div style="font-size: 11px; color: #9ca3af; text-transform: uppercase;">તમારો પર્સનાલિટી અટ્રેક્શન સ્કોર</div>
-      <div class="score-badge" id="dyn-score">--/100</div>
-      <div class="archetype-title" id="dyn-archetype">વિશ્લેષણ પૂર્ણ</div>
-      <div class="flaws-box" id="dyn-flaws"></div>
+      <div class="score-title">આકર્ષણ સ્કોર (Attraction Score)</div>
+      <div class="score-badge" id="dyn-score">૨૯/૧૦૦</div>
+      <div class="warning-box">⚠️ Warning: આકર્ષણ સ્કોર અત્યંત નીચો (Low) છે</div>
     </div>
 
-    <div style="text-align: center; margin-bottom: 12px;">
-      <h2 style="font-size: 16px; margin-bottom: 4px;">મોહિની AI સાથે પ્રાઈવેટ સેશન શરૂ કરો</h2>
-      <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.45;">
-        કોઈપણ જજમેન્ટ વગર ૧૦૦% ગોપનીય રીતે સ્ત્રીના મનમાં સ્વાભાવિક આકર્ષણ અને આદર કેમ જગાડવો તે લાઈવ શીખો.
-      </p>
+    <!-- MOHINI PITCH INTRO -->
+    <div class="mohini-intro-box">
+      <div class="mohini-intro-avatar">
+        <img src="https://raw.githubusercontent.com/sanghaniparth942-lgtm/navratri-astro-transit/main/mohini/mohini.jpg" alt="Mohini" />
+        <div class="live-pulse"></div>
+      </div>
+      <div class="mohini-intro-text">
+        <strong>નમસ્કાર, હું મોહિની છું...</strong> મારી સાથે વાત કરીને તમે સ્ત્રીઓના રહસ્ય અને મનોવિજ્ઞાનને જાણી શકો છો... આ દ્વારા તમારો આકર્ષણ સ્કોર વધશે જે તમારા સંબંધોમાં કામ આવશે...
+      </div>
     </div>
 
+    <!-- 3 PRICING OPTIONS -->
     <div class="plans-container">
+      
+      <!-- Option 1: 15 Mins / ₹49 -->
+      <div class="plan-card" onclick="selectPlan(49, 15)">
+        <div class="plan-header">
+          <span class="plan-name">૧૫ મિનિટ લાઈવ ચેટ</span>
+          <span class="plan-price">₹૪૯</span>
+        </div>
+        <p class="plan-sub">ત્વરિત સમસ્યા સમાધાન અને પ્રાથમિક માર્ગદર્શન</p>
+        <button class="pay-btn pay-btn-primary">૧૫ મિનિટ ચેટ શરૂ કરો (₹૪૯)</button>
+      </div>
+
+      <!-- Option 2: 30 Mins / ₹99 -->
       <div class="plan-card" onclick="selectPlan(99, 30)">
-        <div class="plan-title">
-          <span>ઈમર્જન્સી સાયકોલોજી સેશન</span>
+        <div class="plan-header">
+          <span class="plan-name">૩૦ મિનિટ લાઈવ ચેટ</span>
           <span class="plan-price">₹૯૯</span>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૩૦ મિનિટ લાઈવ AI વન-ઓન-વન ચેટ</p>
-        <ul class="features-list">
-          <li>ઇગ્નોર કે કોલ્ડ રિપ્લાય થવાની સ્થિતિને તુરંત રિવર્સ કરવાની કળા</li>
-          <li>ટેક્સ્ટિંગમાં તમારી ઓવર-અવેલેબિલિટી ઘટાડી આદર વધારવાની રીત</li>
-          <li>૧૦૦% ખાનગી, ગોપનીય અને એન્ક્રિપ્ટેડ વાતચીત</li>
-        </ul>
-        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ સેશન અનલૉક કરો (₹૯૯)</button>
+        <p class="plan-sub">ઈન-ડેપ્થ કમ્યુનિકેશન એનાલિસિસ અને ગાઈડન્સ</p>
+        <button class="pay-btn pay-btn-primary">૩૦ મિનિટ ચેટ શરૂ કરો (₹૯૯)</button>
       </div>
 
+      <!-- Option 3: 60 Mins + PDF / ₹149 (Recommended) -->
       <div class="plan-card recommended" onclick="selectPlan(149, 60)">
         <div class="ribbon">સૌથી વધુ પસંદ કરાયેલ</div>
-        <div class="plan-title">
-          <span>માસ્ટર અટ્રેક્શન સેશન + બ્લુપ્રિન્ટ PDF</span>
+        <div class="plan-header">
+          <span class="plan-name">૬૦ મિનિટ ચેટ + મોહિની PDF</span>
           <span class="plan-price">₹૧૪૯</span>
         </div>
-        <p style="font-size: 11px; color: var(--text-muted); margin: 6px 0 10px;">૬૦ મિનિટ ગહન સાયકોલોજી ગાઈડન્સ અને લાઈવ પ્લાનિંગ</p>
-        
-        <div class="pdf-spotlight">
-          <div class="pdf-badge">👑 લાઈફટાઈમ બોનસ: ધ મોહિની પ્રોટોકોલ (PDF માસ્ટર ગાઈડ)</div>
-          <div class="pdf-subtext">
-            <strong>સ્ત્રી-મનના ૧૫ અટૂટ મનોવૈજ્ઞાનિક નિયમો:</strong> "Seen to Craving" ટેકનિક, ફ્રેન્ડઝોનમાંથી બહાર નીકળવાનો સાચો રસ્તો, અને કમ્યુનિકેશનમાં હાઈ-વેલ્યુ પ્રભાવ ઊભો કરવાનો સિક્રેટ બ્લુપ્રિન્ટ (મૂલ્ય ₹૧,૯૯૯ — આ પ્લાન સાથે બિલકુલ મફત).
-          </div>
-        </div>
-
-        <ul class="features-list">
-          <li>સામેવાળી વ્યક્તિમાં તમને જાણવાની ઉત્સુકતા અને રસ વધારવાની સાયકોલોજી</li>
-          <li>તમારી સાચી વેલ્યુ સમજી 'હેલ્ધી બાઉન્ડ્રીઝ' બનાવવાની કળા</li>
-          <li>૬૦ મિનિટ સ્ટેપ-બાય-સ્ટેપ વ્યક્તિગત કેસ સોલ્યુશન</li>
-        </ul>
-        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF માસ્ટર ગાઈડ (₹૧૪૯)</button>
+        <p class="plan-sub">સંપૂર્ણ માસ્ટર સેશન + "ધ મોહિની પ્રોટોકોલ" લાઈફટાઈમ PDF ગાઈડ</p>
+        <button class="pay-btn pay-btn-gold">૬૦ મિનિટ + ફ્રી PDF અનલૉક કરો (₹૧૪૯)</button>
       </div>
+
     </div>
   </section>
 
@@ -627,7 +614,6 @@
         <button class="send-btn" onclick="sendMessage()">➤</button>
       </div>
 
-      <!-- ચેટ બોક્સની નીચે એક્સક્લુઝિવ PDF મેળવવાનું બટન (Google Drive લિંક સાથે) -->
       <div id="pdf-download-bar" style="margin-top: 10px; display: none;">
         <a href="https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing" target="_blank" style="text-decoration: none;" onclick="trackPdfClick()">
           <button type="button" class="pay-btn pay-btn-gold" style="padding: 10px 14px; font-size: 12px; border-radius: 10px; width: 100%; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
@@ -662,41 +648,33 @@
   const RAZORPAY_KEY = "rzp_live_TeGqB4epR2sZ2I"; 
   const PDF_DRIVE_URL = "https://drive.google.com/file/d/1Bsv8dqGCa4U4xGLEpno3tRtYv4VSCsO7/view?usp=sharing";
 
+  // ચોક્કસ ૩ પ્રશ્નો
   const questions = [
     {
-      q: "તમે આજે અહીં કયા મુખ્ય હેતુસર આવ્યા છો?",
+      q: "તમે કેટલા સંબંધમાં રહી ચૂક્યા છો?",
       options: [
-        "કોઈપણ સ્ત્રી સાથે વાતચીતમાં અચકાયા વિના ઊંડો પ્રભાવ અને આદર ઊભો કરવો છે",
-        "સ્ત્રી-મનના અસલી મનોવૈજ્ઞાનિક સિગ્નલ્સ અને અપેક્ષાઓ યોગ્ય રીતે સમજવી છે",
-        "વાતચીતમાં સતત નજરઅંદાજ થવાનો સિલસિલો કાયમ માટે બંધ કરવો છે",
-        "પોતાની અંદર એવી હાઈ-વેલ્યુ પર્સનાલિટી કેળવવી છે જેથી સ્ત્રીઓ સામેથી ગંભીરતાથી લે"
+        "એકપણ સંબંધમાં નથી રહ્યો",
+        "૧ થી ૨ સંબંધમાં રહી ચૂક્યો છું",
+        "૩ કે તેથી વધુ સંબંધો રહ્યા છે",
+        "માત્ર વન-સાઇડેડ આકર્ષણ જ રહ્યું છે"
       ]
     },
     {
-      q: "સ્ત્રીઓના આકર્ષણ વિશે તમારો સૌથી મોટો અનુભવ શું રહ્યો છે?",
+      q: "તમારા કેટલા સંબંધ સફળ રહ્યા છે?",
       options: [
-        "મને લાગે છે કે મોટાભાગે માત્ર બાહ્ય સ્ટેટસ કે દેખાવ જ મહત્વ રાખે છે",
-        "સ્ત્રીઓ ક્યારે શું અનુભવે છે અને તેમના મૂડને સમજવો ખૂબ અઘરો લાગે છે",
-        "હું હંમેશાં કેરિંગ, સારો અને મદદગાર રહું છું, છતાં યોગ્ય કદર મળતી નથી",
-        "શરૂઆતમાં સારી વાતચીત થાય છે, પણ થોડા જ દિવસોમાં તેમનો રસ ઓછો થઈ જાય છે"
+        "એકપણ નહીં, હંમેશાં નિરાશા જ મળી છે",
+        "૧ સંબંધ સફળ રહ્યો હતો, પણ પછી અંત આવ્યો",
+        "શરૂઆતમાં બધું સારું હોય છે, પછી રસ ઓછો થઈ જાય છે",
+        "હજી સુધી કોઈ ગંભીર સફળ સંબંધ નથી રહ્યો"
       ]
     },
     {
-      q: "સ્ત્રીઓ સાથેના સંવાદમાં તમને સૌથી મોટી મુશ્કેલી ક્યાં નડે છે?",
+      q: "તમે સ્ત્રીઓ વિશે શું વિચારો છો?",
       options: [
-        "વાતચીતમાં શરૂઆતથી જ કૌતુક, રહસ્ય અને ઉત્સાહ જાળવી રાખવામાં",
-        "હંમેશાં માત્ર એક 'સારો મિત્ર' (ફ્રેન્ડઝોન) બનીને રહી જવામાં",
-        "પોતાના વિચારો અને આત્મસન્માન સાથે મક્કમતાથી વાત રજૂ કરવામાં",
-        "સામેવાળી વ્યક્તિ સમક્ષ પોતાની સાચી લાગણી કે ઈરાદો સ્પષ્ટ રીતે મૂકવામાં"
-      ]
-    },
-    {
-      q: "આ AI પ્રોટોકોલ દ્વારા તમે કઈ કુશળતામાં માસ્ટરી મેળવવા માંગો છો?",
-      options: [
-        "સ્ત્રીના અચેતન મનમાં સન્માન અને સ્વાભાવિક આકર્ષણ ઊભું કરવાની સાયકોલોજી",
-        "સામાન્ય ચેટિંગને રસપ્રદ અને પ્રભાવશાળી વાતચીતમાં ફેરવવાની ટેકનિક",
-        "કોઈપણ સંજોગોમાં નર્વસ થયા વિના આત્મવિશ્વાસથી છવાઈ જવાનો નિયમ",
-        "એક એવું મનોવૈજ્ઞાનિક જોડાણ ઊભું કરવું જેથી સામેવાળી વ્યક્તિ તમારી કદર સમજે"
+        "સ્ત્રીઓનું મન અને પસંદગી સમજવી ખૂબ અઘરી છે",
+        "તેઓ માત્ર પૈસા, લુક્સ કે સ્ટેટસ જ જુએ છે",
+        "હું હંમેશાં સાચો અને કેરિંગ રહું છું, છતાં કદર નથી થતી",
+        "તેમની સાથે વાતચીત શરૂ કરવામાં જ હું નર્વસ થઈ જાઉં છું"
       ]
     }
   ];
@@ -704,11 +682,10 @@
   let currentQuestion = 0;
   let selectedIndices = []; 
   let userAnswers = [];
-  let calculatedProfile = null;
   let chatHistory = [];
   let remainingSeconds = 0;
   let timerInterval = null;
-  let selectedPlanAmount = 0; // પસંદ કરેલો પ્લાન યાદ રાખવા માટે
+  let selectedPlanAmount = 0;
 
   function loadQuestion() {
     const qData = questions[currentQuestion];
@@ -727,13 +704,11 @@
   }
 
   function handleAnswer(index, answerText) {
-    // 1. QuizStart Event (Pehla prashna par fire thashe)
     if (currentQuestion === 0) {
       if (typeof fbq === 'function') fbq('trackCustom', 'QuizStart');
       if (window.va) window.va('event', { name: 'QuizStart' });
     }
 
-    // 2. QuizStep Event (Har prashna na javab par track thashe)
     if (typeof fbq === 'function') {
       fbq('trackCustom', 'QuizStep', { step: currentQuestion + 1, answer_index: index });
     }
@@ -745,100 +720,40 @@
     if (currentQuestion < questions.length) {
       loadQuestion();
     } else {
+      // ૩ અટેમ્પ્ટ પૂરા થતાં જ સીધો સ્કોર અને પેવોલ
       document.getElementById("quiz-section").style.display = "none";
-      document.getElementById("analyzing-section").style.display = "block";
-      
-      calculatedProfile = computeDeterministicProfile(selectedIndices);
 
-      setTimeout(() => {
-        document.getElementById("dyn-score").innerText = `${calculatedProfile.score}/100`;
-        document.getElementById("dyn-archetype").innerText = `આર્કીટાઇપ: ${calculatedProfile.archetype}`;
-        
-        let flawsHtml = `<strong>મુખ્ય મનોવૈજ્ઞાનિક ક્ષતિ:</strong> ${calculatedProfile.mainFlaw}<br><br>`;
-        flawsHtml += `<strong>સબકોન્શિયસ પેટર્ન:</strong> ${calculatedProfile.subPattern}`;
-        document.getElementById("dyn-flaws").innerHTML = flawsHtml;
+      // સ્કોર હંમેશાં ૪૦ થી નીચે (૨૬ થી ૩૮ ની વચ્ચે)
+      const calculatedScore = 26 + ((selectedIndices[0] * 3 + selectedIndices[1] * 2 + selectedIndices[2]) % 12);
+      document.getElementById("dyn-score").innerText = `${calculatedScore}/100`;
 
-        document.getElementById("analyzing-section").style.display = "none";
-        document.getElementById("paywall-section").style.display = "block";
+      document.getElementById("paywall-section").style.display = "block";
 
-        // 3. ViewContent & QuizCompleted Events (Result/Paywall aave tyare)
-        if (typeof fbq === 'function') {
-          fbq('track', 'ViewContent', {
-            content_name: 'Attraction Score Result',
-            content_category: 'Quiz Result',
-            value: calculatedProfile.score
-          });
-          fbq('trackCustom', 'QuizCompleted', {
-            score: calculatedProfile.score,
-            archetype: calculatedProfile.archetype
-          });
-        }
-        if (window.va) window.va('event', { name: 'QuizCompleted', data: { archetype: calculatedProfile.archetype, score: calculatedProfile.score } });
-      }, 2300);
+      if (typeof fbq === 'function') {
+        fbq('track', 'ViewContent', {
+          content_name: 'Attraction Score Result',
+          content_category: 'Quiz Result',
+          value: calculatedScore
+        });
+        fbq('trackCustom', 'QuizCompleted', { score: calculatedScore });
+      }
+      if (window.va) window.va('event', { name: 'QuizCompleted', data: { score: calculatedScore } });
     }
   }
 
-  // ૧૦૦% ગાણિતિક અને સાયકોલોજિકલ ડિટર્મિનિસ્ટિક ફોર્મ્યુલા
-  function computeDeterministicProfile(indices) {
-    const i0 = indices[0];
-    const i1 = indices[1];
-    const i2 = indices[2];
-    const i3 = indices[3];
-
-    const weightsQ1 = [4, 6, 3, 7];
-    const weightsQ2 = [5, 7, 3, 6];
-    const weightsQ3 = [6, 4, 3, 5];
-    const weightsQ4 = [7, 5, 8, 4];
-
-    const finalScore = 18 + weightsQ1[i0] + weightsQ2[i1] + weightsQ3[i2] + weightsQ4[i3];
-
-    const archetypesMap = [
-      {
-        name: "ધ ઓપન-બુક કમ્યુનિકેટર",
-        flaw: "તમે શરૂઆતી વાતચીતમાં જ તમારી બધી લાગણીઓ અને આયોજનો સામે મૂકી દો છો.",
-        sub: "જ્યાં કોઈ કુતૂહલ કે રહસ્ય બાકી રહેતું નથી, ત્યાં માનવ મન ખૂબ ઝડપથી રસ ગુમાવી દે છે."
-      },
-      {
-        name: "ધ ક્રોનિક ફ્રેન્ડઝોન પેટર્ન",
-        flaw: "તમે લાગણીઓ સાંભળવા તૈયાર રહો છો પરંતુ ક્યારેય સ્પષ્ટ રોમેન્ટિક પોલારિટી ઊભી કરતા નથી.",
-        sub: "સામેવાળી વ્યક્તિ તમને માત્ર સારો સલાહકાર માને છે, પ્રભાવશાળી અને આકર્ષક પુરુષ તરીકે નહીં."
-      },
-      {
-        name: "ધ ઓવર-અવેલેબલ નાઇસ ગાય",
-        flaw: "તમે વાતચીતમાં સીમાઓ વગર હંમેશાં અતિશય ઉપલબ્ધ રહો છો, જેનાથી તમારી રહસ્યમયતા ઘટી જાય છે.",
-        sub: "સામેવાળી વ્યક્તિ તમારી ભલાઈ અને સતત હાજરીને આકર્ષણ નહીં પણ ટેકન-ફોર-ગ્રાન્ટેડ ગણી લે છે."
-      },
-      {
-        name: "ધ રિસ્પોન્સ-ડિપેન્ડન્ટ પેટર્ન",
-        flaw: "તમારો દિવસ અને મૂડ સામેવાળી વ્યક્તિના રિપ્લાયની સ્પીડ પર વધુ પડતો આધાર રાખે છે.",
-        sub: "સ્ત્રીઓ આ અસલામતી તરત અનુભવી લે છે અને પરિણામે તેમનો ઉત્સાહ ધીમે ધીમે ઓછો થઈ જાય છે."
-      }
-    ];
-
-    const profile = archetypesMap[i2];
-
-    return {
-      score: finalScore,
-      archetype: profile.name,
-      mainFlaw: profile.flaw,
-      subPattern: profile.sub
-    };
-  }
-
   function selectPlan(amount, minutes) {
-    selectedPlanAmount = amount; // પસંદ કરેલો પ્લાન યાદ રાખવા માટે
+    selectedPlanAmount = amount;
 
-    // 4. InitiateCheckout & AddToCart Events (Plan click kare tyare)
     if (typeof fbq === 'function') {
       fbq('track', 'AddToCart', {
         value: amount,
         currency: 'INR',
-        content_name: `Mohini Private Consultation (${minutes} Mins)`
+        content_name: `Mohini Chat (${minutes} Mins)`
       });
       fbq('track', 'InitiateCheckout', {
         value: amount,
         currency: 'INR',
-        content_name: `Mohini Private Consultation (${minutes} Mins)`
+        content_name: `Mohini Chat (${minutes} Mins)`
       });
     }
     if (window.va) window.va('event', { name: 'InitiateCheckout', data: { amount: amount, minutes: minutes } });
@@ -850,17 +765,16 @@
 
     const options = {
       key: RAZORPAY_KEY,
-      amount: amount * 100, // ₹99 = 9900 પૈસા, ₹149 = 14900 પૈસા
+      amount: amount * 100,
       currency: "INR",
       name: "Bhagyaveda — Mohini",
-      description: `Mohini Private Consultation (${minutes} Mins)`,
+      description: `Mohini Chat Session (${minutes} Mins)`,
       handler: function (response) {
-        // 5. Purchase Event (Payment successful thaya pachi)
         if (typeof fbq === 'function') {
           fbq('track', 'Purchase', {
             value: amount,
             currency: 'INR',
-            content_name: `Mohini Private Consultation (${minutes} Mins)`
+            content_name: `Mohini Chat (${minutes} Mins)`
           });
         }
         if (window.va) window.va('event', { name: 'Purchase', data: { amount: amount, minutes: minutes } });
@@ -878,7 +792,7 @@
     document.getElementById("paywall-section").style.display = "none";
     document.getElementById("chat-section").style.display = "block";
     
-    // જો ₹૧૪૯ વાળો પ્લાન હોય તો જ ચેટ નીચે PDF ડાઉનલોડ બટન દેખાશે
+    // ₹૧૪૯ વાળા પ્લાન માટે જ PDF ડાઉનલોડ બટન
     if (selectedPlanAmount === 149) {
       document.getElementById("pdf-download-bar").style.display = "block";
     } else {
@@ -888,7 +802,6 @@
     remainingSeconds = minutes * 60;
     startTimer();
 
-    // તમારો મનપસંદ ૧૦૦% નેચરલ અને સ્વીટ સ્ટાર્ટિંગ મેસેજ
     const initialGreeting = `Hi dear... 😉 હું છું મોહિની! \n\nએક સ્માર્ટ અને વેલ-ટ્રેઇન્ડ મોહિની... જે તમારી દરેક સમસ્યાનું એકદમ સાચું અને સ્માર્ટ સમાધાન આપશે. ✨\n\nબોલો ડિયર, ક્યાંથી વાત શરૂ કરશું...? 🥀`;
     appendMessage("bot", initialGreeting);
   }
@@ -946,8 +859,7 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: text,
-          history: chatHistory,
-          profile: calculatedProfile
+          history: chatHistory
         })
       });
 
@@ -968,7 +880,6 @@
     document.getElementById("bonus-section").style.display = "block";
   }
 
-  // 6. PDF Click Event (Chat bar ma thi click kare tyare)
   function trackPdfClick() {
     if (typeof fbq === 'function') {
       fbq('trackCustom', 'DownloadPDFGuide');
@@ -976,7 +887,6 @@
     if (window.va) window.va('event', { name: 'DownloadPDFGuide' });
   }
 
-  // 7. Bonus section ma thi download kare tyare
   function downloadBonusGuide() {
     trackPdfClick();
     window.open(PDF_DRIVE_URL, "_blank");
